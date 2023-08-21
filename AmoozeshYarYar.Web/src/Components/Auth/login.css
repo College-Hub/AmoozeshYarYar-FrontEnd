@@ -1,0 +1,36 @@
+.custome-outlet {
+    background-color: #8080800d;
+    padding: 2rem 3rem;
+}
+
+.helper {
+    margin-top: 0.75rem;
+    width: 100%;
+}
+
+    .helper .custome-Success {
+        display: block;
+        color: var(--success);
+    }
+
+    .helper .custome-danger {
+        display: block;
+        color: var(--danger);
+    }
+
+.custome-submit-btn {
+    color: var(--success);
+    background-color: transparent;
+    border: 1px solid var(--success);
+    border-radius: 4px;
+    transition: 0.25s;
+    padding: 0.25rem 1rem;
+}
+
+.custome-submit-btn:hover {
+    background-color: var(--success-alternative);
+    color: var(--C2);
+}
+#loginForm i {
+    color: var(--C4);
+}

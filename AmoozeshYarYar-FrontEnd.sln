@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.6.33723.286
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Src", "Src", "{2F876C9D-4230-4E53-9850-22097CE57FFC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{6B09851F-7DD7-4926-988A-D72E6473C1D0}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{5B1D1F18-F73D-4343-858D-8E6EC00D67C8}"
+EndProject
+Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "AmoozeshYarYar.Web", "AmoozeshYarYar.Web\AmoozeshYarYar.Web.esproj", "{232B08BF-1393-47AE-8ECA-E92E250AC069}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{232B08BF-1393-47AE-8ECA-E92E250AC069}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{232B08BF-1393-47AE-8ECA-E92E250AC069}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{232B08BF-1393-47AE-8ECA-E92E250AC069}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{232B08BF-1393-47AE-8ECA-E92E250AC069}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{232B08BF-1393-47AE-8ECA-E92E250AC069}.Release|Any CPU.Build.0 = Release|Any CPU
+		{232B08BF-1393-47AE-8ECA-E92E250AC069}.Release|Any CPU.Deploy.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{5B1D1F18-F73D-4343-858D-8E6EC00D67C8} = {2F876C9D-4230-4E53-9850-22097CE57FFC}
+		{232B08BF-1393-47AE-8ECA-E92E250AC069} = {5B1D1F18-F73D-4343-858D-8E6EC00D67C8}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {FD932C13-6955-4B5E-90FA-098A2F959FD2}
+	EndGlobalSection
+EndGlobal

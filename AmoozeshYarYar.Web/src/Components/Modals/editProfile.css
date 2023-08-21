@@ -1,0 +1,36 @@
+.modal-edit {
+    background-color: var(--C1);
+    border-radius: 4px;
+    border: 1px solid var(--C4);
+}
+.modal-edit label {
+    color: var(--C2);
+}
+.modal-edit input {
+    background-color: var(--C1);
+    border: 1px solid var(--C4);
+    color: var(--C2);
+}
+.modal-edit input:focus {
+    background-color: var(--C1);
+    color: var(--C2);
+}
+    .modal-edit input:disabled {
+        background-color: var(--C2-lower);
+        border: 1px solid var(--C4);
+        color: var(--C2);
+    }
+.modal-edit select {
+    background-color: var(--C1);
+    border: 1px solid var(--C4);
+    color: var(--C2);
+}
+.modal-edit select:focus{
+    background-color: var(--C1);
+    color: var(--C2);
+}
+.modal-edit select:disabled{
+    background-color: var(--C2-lower);
+    border: 1px solid var(--C4);
+    color: var(--C2);
+}

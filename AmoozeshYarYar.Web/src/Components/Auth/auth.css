@@ -1,0 +1,27 @@
+#authentication .custome-tab {
+    text-decoration: none;
+    padding: 0.75rem;
+    
+    background-color: var(--C1-lower);
+    border: 1px solid var(--C4);
+    
+    color: var(--C2);
+    transition: 0.25s;
+}
+#authentication .custome-tab:hover {
+    background-color: var(--C4-lower);
+    color: var(--C4);
+}
+#authentication .active {
+    background-color: var(--C4-lower);
+    color: var(--C4);
+}
+.custome-auth-header {
+    margin-top: 5rem;
+}
+#authentication .custome-tab:nth-of-type(2n) {
+    border-radius: 4px 0 0 0;
+}
+#authentication .custome-tab:nth-of-type(2n+1) {
+    border-radius: 0 4px 0 0;
+}

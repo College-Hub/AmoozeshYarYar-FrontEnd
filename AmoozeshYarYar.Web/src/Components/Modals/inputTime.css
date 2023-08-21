@@ -1,0 +1,37 @@
+.modal-time{
+    background-color: var(--C1);
+    border-radius: 4px;
+    color: var(--C2);
+}
+.modal-time .btn-close{
+    color: var(--C2)!important;
+}
+.MuiPickersLayout-root {
+    background-color: transparent !important;
+    border-radius: 4px;
+    padding-bottom: 3rem;
+}
+.MuiTypography-root {
+    color: var(--C2) !important;
+}
+.MuiClockNumber-root {
+    color: var(--C2) !important;
+}
+.MuiSvgIcon-root{
+    color: var(--C2) !important;
+}
+.btn-Group button{
+    margin: 0.5rem 0.25rem;
+}
+.time-modal-error-box {
+    background-color: var(--danger-alternative);
+    padding: 0.5rem 1rem;
+    border: 1px solid var(--danger);
+    border-radius: 4px;
+}
+.other-time span {
+    padding: 0.25rem 0.5rem;
+    border: 1px solid var(--alert);
+    background-color: var(--alert-lower);
+    border-radius: 4px;
+}

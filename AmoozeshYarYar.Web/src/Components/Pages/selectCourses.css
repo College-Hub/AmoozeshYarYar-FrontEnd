@@ -1,0 +1,33 @@
+
+.userInfo {
+    opacity: 0.7;
+}
+
+.row-active {
+    background-color: var(--C3--alternative-lower) !important;
+    opacity: 1;
+}
+input[type='checkbox'] {
+    background-color: var(--C1);
+    border: 1px solid var(--C4);
+    cursor: pointer;
+}
+.disabledCheckBox {
+    background-color: var(--danger-lower) !important;
+    border: 1px solid var(--danger) !important;
+    cursor: not-allowed;
+}
+.daysInfo {
+    color: var(--alert);
+}
+.setting {
+    display: flex;
+    flex-wrap: wrap;
+    /*justify-content: space-around;*/
+}
+.setting i {
+    color: var(--C3);
+    font-size: 1.3rem;
+}
+
+

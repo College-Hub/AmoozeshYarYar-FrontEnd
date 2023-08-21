@@ -1,0 +1,25 @@
+.noAccess{
+    height: 30vh;
+    padding:4rem 10rem;
+    margin-top: 5rem;
+    background-color: #ff000029;
+    border: 1px solid var(--danger);
+    border-radius: 5px;
+}
+    .noAccess h4 {
+        color: var(--C2);
+        position: relative;
+    }
+        .noAccess h4 i {
+            color: var(--danger);
+            font-size:80px;
+            position: absolute;
+            right:-7.5rem;
+            top: -3rem;
+        }
+    .noAccess hr {
+        color: var(--danger);
+    }
+    .noAccess p {
+        color: var(--C2);
+    }

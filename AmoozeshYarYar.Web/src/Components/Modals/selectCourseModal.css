@@ -1,0 +1,165 @@
+.modal-course {
+    background-color: var(--C1);
+    border-radius: 4px;
+    color: var(--C2);  
+}
+.select-course-Modal-info {
+    background-color: var(--C4-lower);
+    color: var(--C2);
+    border: 2px solid var(--C4);
+    margin-bottom: 1rem;
+    padding: 1.5rem 2rem;
+    border-radius: 4px;
+    min-height: 400px;
+}
+.select-course-Modal-table-body {
+    background-color: var(--C1);
+    border-radius: 4px;
+    font-size: 13px;
+}
+.select-course-Modal-table-header {
+    background-color: var(--C4-lower);
+    color: var(--C2);
+    border: 2px solid var(--C4);
+    margin-top: 0.4rem;
+    padding: 0.5rem 1rem;
+    border-radius: 4px 4px 0 0;
+}
+.select-course-Modal-search-row{
+    color: var(--C2);
+}
+.search-input-group {
+    display: flex;
+    border: 1px solid var(--C4);
+    padding: 0;
+    border-radius: 4px;
+}
+.search-input-group span {
+    padding: 0.3rem 0.5rem;
+    border-right: 1px solid var(--C4);
+    cursor: pointer;
+    color: var(--C4);
+}
+.search-input-group span:hover{
+    background-color: var(--C4-lower);
+}
+.select-course-Modal-search-row input {
+    color: var(--C2);
+    border: none;
+    background-color: transparent;
+
+}
+.select-course-Modal-search-row input::placeholder {
+    color: var(--C2);
+
+}
+.select-course-Modal-search-row input:focus {
+    background-color: transparent;  
+    color: var(--C2);
+}
+.select-course-Modal-table-body div{
+    color: var(--C2);
+    height: 3rem;
+}
+.select-course-Modal-table-body > div {
+    border-bottom: 1px solid var(--C2-lower);
+}
+.select-course-Modal-table-body > div:nth-of-type(2n){
+    background-color: var(--C4-lower);
+}
+.select-course-Modal-table-body div  div{
+    display: flex;
+    align-items:center;
+    padding: 1rem;
+}
+.select-course-Modal-table-footer {
+    background-color: var(--C4-lower);
+    color: var(--C2);
+    border: 2px solid var(--C4);
+    margin-top: 0.4rem;
+    padding: 0.5rem 1rem;
+    border-radius:0 0 4px 4px;
+}
+.custome-selectInput-course-Modal {
+    background-color: transparent;
+    color: var(--C2);
+    border: 1px solid var(--C4);
+}
+.clear-modal {
+    display: flex;
+    justify-content: end;
+    align-items: center;
+
+    margin-top: 2rem;
+}
+.clear-modal span {
+    border: 1px solid var(--danger);
+    background-color: var(--danger-lower);
+    color: var(--C2);
+    border-radius: 4px;
+    padding: 0.25rem 1rem;
+    cursor: pointer;
+}
+.clear-modal span:hover {
+    background-color: var(--danger-alternative); 
+}
+.btn-close-course{
+    font-size: 25px;
+    color: var(--C4);
+    background-color: transparent;
+    border: none;
+    transition: 0.25s;
+}
+.btn-close-course:hover {
+    transform: scale(1.01);
+    color: var(--C2);
+}
+.pagination {
+    border: 1px solid var(--C4);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.pagination-page {
+    padding: 0.25rem 0.75rem;
+    cursor: pointer;
+    transition: 0.25s;
+}
+.pagination-page.disabled {
+    padding: 0.25rem 0.75rem;
+    cursor: not-allowed;
+    opacity: 0.5;
+    transition: 0.25s;
+}
+
+.pagination-page:not(:last-child) {
+    border-right: 1px solid var(--C4);
+}
+
+.pagination-page:hover {
+    background-color: var(--C4-lower);
+}
+.info-icon i {
+    color: var(--C4);
+    cursor: pointer;
+    transition: 0.25s;
+}
+.info-icon i:hover {
+    color: var(--C3);
+}
+
+
+
+@media screen and (min-width: 400px) {
+    .select-course-Modal-table-body {
+        background-color: var(--C1);
+        border-radius: 4px;
+        font-size: 16px;
+    }
+}
+@media screen and (min-width: 500px) {
+    .modal-course {
+        padding: 2rem 5rem;
+    }
+
+}

@@ -1,0 +1,16 @@
+.load-spiner-container {
+    width: 100vw;
+    min-height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #ffffff1c;
+}
+.load-spiner-book {
+    width: 300px;
+    height: 300px;
+    margin: 4rem;
+}

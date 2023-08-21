@@ -1,0 +1,12 @@
+
+footer {
+    width:100%;
+    background-color: var(--C4-lower);
+    color: var(--C4);
+    padding: 1rem;
+    border-top: 2px solid var(--C4);
+    margin-top: auto;
+    position: absolute;
+    bottom: 0;
+    height:100px
+}

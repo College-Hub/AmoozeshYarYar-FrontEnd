@@ -1,0 +1,11 @@
+#aboutUs{
+    color: var(--C2);
+    
+}
+.obiWan-Container{
+    width: 200px;
+    position: absolute;
+    left: 0;
+    bottom: 100px;
+    
+}

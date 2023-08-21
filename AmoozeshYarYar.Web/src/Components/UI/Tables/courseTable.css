@@ -1,0 +1,109 @@
+.lesson-list {
+    margin: 1rem 0;
+}
+
+.lesson-list-header {
+    background-color: var(--C4-lower);
+    color: var(--C2);
+    border: 2px solid var(--C4);
+    margin-top: 1rem;
+    padding: 0.5rem 1rem;
+    border-radius: 4px 4px 0 0;
+}
+
+.lesson-list-body span {
+    font-size: 13px;
+}
+
+.lesson-list-body-row {
+    color: var(--C2);
+    border-bottom: solid 1px var(--C2-lower);
+    padding: 0.5rem;
+    transition: 0.25s;
+    opacity: 0.8;
+}
+
+    .lesson-list-body-row:nth-of-type(2n) {
+        background-color: var(--C4-lower);
+    }
+
+    .lesson-list-body-row div {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+
+    .lesson-list-body-row span {
+        margin: 0 0.5rem;
+    }
+
+.lesson-list-body .form-select {
+    background-color: var(--C1);
+    color: var(--C2)
+}
+
+.lesson-list-footer {
+    background-color: var(--C4-lower);
+    color: var(--C2);
+    border: 2px solid var(--C4);
+    margin-top: 1rem;
+    padding: 0.5rem 1rem;
+    border-radius: 0 0 4px 4px;
+}
+
+    .lesson-list-footer span span {
+        color: var(--alert);
+        font-weight: bold;
+    }
+
+.edit-lessons {
+    color: var(--C4);
+    padding: 0.25rem 0.5rem;
+    border: 1px solid var(--C4);
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+    .edit-lessons:hover {
+        background-color: var(--C4-lower);
+    }
+
+
+.DelectIcon {
+    justify-content: end;
+}
+
+    .DelectIcon i {
+        padding: 0.25rem 0.5rem;
+        border-radius: 4px;
+        background-color: var(--danger-lower);
+        border: 1px solid var(--danger);
+        margin-left: 0.5rem;
+        cursor: pointer;
+        transition: 0.1s;
+        color: var(--danger);
+    }
+
+        .DelectIcon i:hover {
+            background-color: var(--danger);
+            color: var(--C1);
+        }
+
+.selectContainer {
+    width: 100% !important
+}
+
+.cutomeSelect {
+    border: 1px solid var(--C4);
+}
+
+@media screen and (min-width: 400px) {
+    .lesson-list-body span {
+        font-size: 16px;
+    }
+
+    .cutomeSelect {
+        border: 1px solid var(--C4);
+        width: 80% !important;
+    }
+}

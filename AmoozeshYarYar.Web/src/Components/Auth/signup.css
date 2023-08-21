@@ -1,0 +1,74 @@
+
+.custome-outlet {
+    background-color: var(--C2);
+    padding: 2rem 3rem;
+    border: 1px solid var(--C4);
+    border-top: none;
+    border-radius: 0 0 4px 4px;
+    color: var(--C2);
+}
+.custome-input option{
+    background-color: var(--C1);
+}
+
+.custome-input {
+    background-color: transparent;
+    border: 1px solid var(--C4);
+    color: var(--C2);
+}
+.custome-input[disabled] {
+    background-color: var(--C4-lower);
+}
+
+.custome-input:focus {
+    background-color: var(--C4-lower);
+    color: var(--C2);
+}
+.custome-input::placeholder {
+    color: var(--C2-alternative);
+}
+.helper {
+    margin-top: 0.75rem;
+    width: 100%;
+    padding: 0.3rem 0.5rem;
+    border: 1px solid var(--danger);
+    background-color: var(--danger-alternative);
+    border-radius: 4px;
+}
+.helper .custome-danger {
+    color: var(--C2) !important;
+}
+.helper .custome-danger i{
+    color: var(--alert);
+    margin: 0.5rem;
+}
+.helper .custome-danger span {
+
+}
+.custome-submit-btn {
+
+    transition: 0.25s;
+    padding: 0.25rem 1rem;
+    margin-top: 3rem;
+}
+.custome-submit-btn:hover {
+    /*background-color: var(--success-lower);*/
+    color: var(--C3);
+}
+
+.showpass{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#signUpform i {
+    color: var(--C4);
+}
+.showpass i {
+    cursor: pointer;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+}
+    .showpass i:hover{
+        background-color: #80808030
+    }

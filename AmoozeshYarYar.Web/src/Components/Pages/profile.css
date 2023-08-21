@@ -1,0 +1,68 @@
+#profile {
+    background-color: var(--C1);
+    
+    margin: 4rem 0;
+    border-radius: 5px;
+}
+    #profile h3 {
+        margin-bottom: 2rem;
+        position: relative;
+        color: var(--C2);
+    }
+        #profile h3 i {
+            font-size: 80px;
+            margin-left: 2rem;
+            color: var(--C2);
+        }
+        #profile h3 span {
+            position: absolute;
+            top: 2rem;
+            color: var(--C2);
+        }
+    
+.userInfo_input{
+    font-size: 16px;
+}
+.userInfo_input {
+    color: var(--C2);
+}
+.userInfo_input input:disabled {
+    border: 1px solid var(--C4);
+    background-color: var(--C2-lower);
+    color: var(--C2);
+    
+}.userInfo_input select:disabled {
+   border: 1px solid var(--C4);
+   background-color: var(--C2-lower);
+   color: var(--C2);
+}
+.userInfo_input button{
+    margin-right: 0.3rem;
+    font-size: 14px;
+}
+
+
+.custome-btn {
+    color: var(--C4);
+    border: 1px solid var(--C4);
+}
+    .custome-btn:hover {
+        color: var(--C4);
+        background-color: var(--C4-lower);
+        border: 1px solid var(--C4);
+    }
+
+
+#SubmitProfile {
+    margin-top: 4rem;
+}
+#SubmitProfile p {
+    color: var(--C2);
+    font-size: 18px;
+}
+#SubmitProfile i {
+    color: var(--alert) !important;
+}
+#profile i {
+    color: var(--C4);
+}

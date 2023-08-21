@@ -1,0 +1,73 @@
+.day-list{
+    margin: 1rem 0;
+}
+.day-list-header {
+    background-color: var(--C4-lower);
+    color: var(--C2);
+    border: 2px solid var(--C4);
+    margin-top: 1rem;
+    padding: 0.5rem 1rem;
+    border-radius: 4px 4px 0 0;
+}
+.day-list-header i{
+    color: var(--C3);
+    cursor: pointer;
+}
+.day-list-body{
+    
+}
+.day-list-body-row {
+    border-bottom: solid 1px var(--C2-lower);
+    color: var(--C2);
+    padding: 0.5rem 0;
+    transition: 0.25s;
+    min-height: 3.7rem !important;
+}
+.day-list-body-row:nth-of-type(2n) {
+    background-color: var(--C4-lower);
+}
+.day-list-body-row div {
+    display: flex;
+    align-items: center;
+    padding: 0;
+}
+.day-list-footer {
+    background-color: var(--C4-lower);
+    color: var(--C2);
+    border: 2px solid var(--C4);
+    padding: 0.5rem 1rem;
+    border-radius: 0 0 4px 4px;
+    
+}
+.day-list-footer span{
+    color: var(--alert);
+    font-weight: bold;
+}
+.nerdAlert{
+    color: var();
+    border: 1px solid var(--danger);
+    padding: 0.3rem 1rem;
+    background-color: var(--danger-lower);
+    border-radius: 4px;
+    margin: 0;
+}
+.timeInput div {
+    background-color: #80808020;
+    border-radius: 4px;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    transition: 0.25s;
+ 
+}
+.timeInput div:hover{
+    background-color: #80808050;
+}
+.timeInput div input {
+    padding-right: 0.5rem;
+    cursor: pointer;
+    position: relative;
+    left: 5px;
+}
+.timeInput div span {
+    margin: 0 0.2rem;
+}
