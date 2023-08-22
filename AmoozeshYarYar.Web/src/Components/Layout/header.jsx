@@ -1,7 +1,8 @@
 ﻿ import { useSelector, useDispatch } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import { uiActions,  } from "../../Store/ui-slice";
+import { uiActions, } from "../../Store/ui-slice";
+import { BsHouse, BsChatLeftHeart } from "react-icons/bs";
 import './header.css';
 
 const Haeder = () => {
@@ -28,10 +29,10 @@ const Haeder = () => {
                     <div className={!expandNavbar ? "col-6 d-none d-lg-block" : "col-12 col-lg-6 d-inline-block"} >
                         <ul className="navbar-nav d-flex">
                             <li className="nav-item">
-                                <NavLink className={"nav-link custome-link"} aria-current="page" to='/home'><i className="bi bi-house"></i>  صفحه اصلی</NavLink>
+                                <NavLink className={"nav-link custome-link"} aria-current="page" to='/home'><BsHouse />  صفحه اصلی</NavLink>
                             </li>
                             <li className="nav-item">
-                                <NavLink className={"nav-link custome-link"} aria-current="page" to='/aboutUs'><i className="bi bi-chat-square-heart"></i> درباره ما</NavLink>
+                                <NavLink className={"nav-link custome-link"} aria-current="page" to='/aboutUs'><BsChatLeftHeart /> درباره ما</NavLink>
                             </li>
                             {/*{isloggedIn && <li className="nav-item"><NavLink className={"nav-link custome-link"} aria-current="page" to='/profile'><i className="bi bi-person-vcard"></i> &nbsp; پروفایل</NavLink></li>}*/}              
                             {/*<li className="nav-item d-block d-lg-none">*/}

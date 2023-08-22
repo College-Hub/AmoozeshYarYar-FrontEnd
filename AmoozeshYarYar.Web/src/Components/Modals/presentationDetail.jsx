@@ -9,6 +9,7 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import LoadSpiner from '../Animations/loadSpiner';
 import { useState } from 'react';
+import { BsList } from "react-icons/bs";
 const PresentationDetail = () => {
 
     // route
@@ -32,14 +33,12 @@ const PresentationDetail = () => {
 
     return (
         <Fragment>
-
-
             {
                 isloading ? <LoadSpiner /> : (
                     <Modal show={content === "Presentation-DEATAIL"} onHide={closeHandler} size="md" centered>
                         <Modal.Body className={"modal-PresentationDetail"}>
                             <div className="modal-PresentationDetail-header">
-                                <span><i className="bi bi-list"></i> جزئیات</span>
+                                <span><BsList /> جزئیات</span>
                             </div>
                             <div className="modal-PresentationDetail-body">
                                 <div className="modal-PresentationDetail-row row">

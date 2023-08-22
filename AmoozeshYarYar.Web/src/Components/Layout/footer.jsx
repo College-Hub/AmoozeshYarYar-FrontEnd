@@ -1,4 +1,5 @@
 import './footer.css';
+import { BsGoogle } from "react-icons/bs";
 
 const Footer = () => {
     return (
@@ -6,7 +7,7 @@ const Footer = () => {
             <div className="row">
                 <div className="col-3"></div>
                 <div className="col-3"></div>
-                <div className="col-3"><i className="bi bi-google"></i></div>
+                <div className="col-3"><BsGoogle /></div>
             </div>
         </footer>
     );

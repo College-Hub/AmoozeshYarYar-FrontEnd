@@ -13,6 +13,8 @@ import { Fragment } from 'react';
 import { useEffect, useState } from 'react';
 import { uiActions } from '../../Store/ui-slice';
 import { timeTableActions } from '../../Store/timeTable-slice';
+import { BsBuildings, BsBook, BsInfoCircle, BsPersonLinesFill, BsCalendar2Check, BsGear, BsCheck2Square, BsWrench } from "react-icons/bs";
+
 
 const SelectCourses = () => {
     // state
@@ -79,10 +81,10 @@ const SelectCourses = () => {
         <Fragment>
             <section id="info" className="row custome-contaner-section">
                 <div className="col-12 custome-contaner-section-header">
-                    <span><i className="bi bi-person-lines-fill"></i>اطلاعات</span>
+                    <span><BsPersonLinesFill />اطلاعات</span>
                 </div>
-                <div className="col-12 col-md-7 mb-3"><i className="bi bi-buildings"></i> دانشگاه : <span className="userInfo">{group?.universityTitle}</span></div>
-                <div className="col-12 col-md-5 mb-3"><i className="bi bi-book"></i> رشته تحصیلی : <span className="userInfo">{group?.title}</span></div>
+                <div className="col-12 col-md-7 mb-3"><BsBuildings /> دانشگاه : <span className="userInfo">{group?.universityTitle}</span></div>
+                <div className="col-12 col-md-5 mb-3"><BsBook /> رشته تحصیلی : <span className="userInfo">{group?.title}</span></div>
                 <div className="col-12"></div>
                 <div className="col-12 text-start ">
                     <button className="custome-btn-info" onClick={startHandler} >تغییر اطلاعات</button>
@@ -93,11 +95,11 @@ const SelectCourses = () => {
                     <div id="selectDay" className="row custome-contaner-section">
                         <div className="col-12 ">
                             <div className="custome-contaner-section-header">
-                                <span><i className="bi-calendar-week"></i>روز</span>
+                                <span><BsCalendar2Check />روز</span>
                             </div>
-                            <p className="hit-message"><i className="bi bi-exclamation-circle"></i> اول روز هایی از هفته که دانشگاه میایی رو باید انتخاب کنی.</p>
-                            <p className="hit-message"><i className="bi bi-exclamation-circle"></i> بعدش باید ساعت ورود و خروج خودت به دانشگاه رو انتخاب کنی.</p>
-                            <p className="hit-message"><i className="bi bi-exclamation-circle"></i> در صورتی که ساعت ورود یا خروج خودت رو انتخاب نکرده باشی ساعت پیشفرض ورود 7:00 و ساعت خروج 21:00 برات ثبت میشه.</p>
+                            <p className="hit-message"><BsInfoCircle /> اول روز هایی از هفته که دانشگاه میایی رو باید انتخاب کنی.</p>
+                            <p className="hit-message"><BsInfoCircle /> بعدش باید ساعت ورود و خروج خودت به دانشگاه رو انتخاب کنی.</p>
+                            <p className="hit-message"><BsInfoCircle /> در صورتی که ساعت ورود یا خروج خودت رو انتخاب نکرده باشی ساعت پیشفرض ورود 7:00 و ساعت خروج 21:00 برات ثبت میشه.</p>
                         </div >
                         <div className="col-12 text-start">
                             <button className="custome-btn-info" onClick={dayTableHandler}>انتخاب روز</button>
@@ -110,11 +112,11 @@ const SelectCourses = () => {
                     <div id="selectCourse" className="row custome-contaner-section">
                         <div className="col-12 ">
                             <div className="custome-contaner-section-header">
-                                <span><i className="bi bi-book"></i>درس</span>
+                                <span><BsBook />درس</span>
                             </div>
-                            <p className="hit-message"><i className="bi bi-exclamation-circle"></i> اول درس هایی که این ترم میخوای برداری رو باید انتخاب کنی.</p>
-                            <p className="hit-message"><i className="bi bi-exclamation-circle"></i> در صورتی که استاد موردنظرت برای درسی که انتخاب کردی رو انتخاب نکرده باشی تمام استاد ها برای اون درس در نتیجه نهایی برات لحاظ میشن. </p>
-                            <p className="hit-message"><i className="bi bi-exclamation-circle"></i> یادت باشه روز و ساعت هایی که میخوای دانشگاه باشی رو هم انتخاب کرده باشی.</p>
+                            <p className="hit-message"><BsInfoCircle /> اول درس هایی که این ترم میخوای برداری رو باید انتخاب کنی.</p>
+                            <p className="hit-message"><BsInfoCircle /> در صورتی که استاد موردنظرت برای درسی که انتخاب کردی رو انتخاب نکرده باشی تمام استاد ها برای اون درس در نتیجه نهایی برات لحاظ میشن. </p>
+                            <p className="hit-message"><BsInfoCircle /> یادت باشه روز و ساعت هایی که میخوای دانشگاه باشی رو هم انتخاب کرده باشی.</p>
                         </div >
                         <div className="col-12 text-start">
                             <button className="custome-btn-info" onClick={selectCourseModalHandler}>انتخاب درس</button>
@@ -125,11 +127,11 @@ const SelectCourses = () => {
             }
             <section id="moreSettings" className="custome-contaner-section row">
                 <div className="col-12 custome-contaner-section-header">
-                    <span ><i className="bi bi-gear"></i>تنظیمات بیشتر</span>
+                    <span ><BsGear />تنظیمات بیشتر</span>
                 </div>
                 <div className="col-12 pe-1 pe-md-5 setting ">
                     <div>
-                        <span className="pe-3"><i className="bi bi-wrench"></i> میزان فشردگی برنامه : </span>
+                        <span className="pe-3"><BsWrench /> میزان فشردگی برنامه : </span>
                     </div>
                     <div className="me-4 pt-1">
                         <div className="form-check form-check-inline">
@@ -151,7 +153,7 @@ const SelectCourses = () => {
 
             <section id="submit" className="row custome-contaner-section">
                 <div className="col-10  custome-contaner-section-header">
-                    <span><i className="bi bi-check2-square"></i>تایید فرم </span>
+                    <span><BsCheck2Square />تایید فرم </span>
                 </div>
                 <div className="col-2 text-start">
                     <button className="custome-btn-success" onClick={submithandler}>ثبت</button>

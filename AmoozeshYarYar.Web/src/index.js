@@ -8,8 +8,6 @@ import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import store from './Store/index';
-import { ApiProvider } from '@reduxjs/toolkit/query/react'
-import { apiSlice } from './feratures/api/apiSlice';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(   

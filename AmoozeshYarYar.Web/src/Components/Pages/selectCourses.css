@@ -25,7 +25,7 @@ input[type='checkbox'] {
     flex-wrap: wrap;
     /*justify-content: space-around;*/
 }
-.setting i {
+.setting svg {
     color: var(--C3);
     font-size: 1.3rem;
 }

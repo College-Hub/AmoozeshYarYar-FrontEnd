@@ -8,6 +8,9 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Fragment } from 'react';
 import { useEffect } from 'react';
 import { generateTimeString } from '../../../feratures/helper/helper';
+import { BsClockHistory, BsEmojiSmile, BsCalendarDay } from "react-icons/bs";
+
+
 const DayTable = () => {
     const { days, error, submitCheckforDay, nerdAlert } = useSelector(state => state.course);
     const { content } = useSelector(state => state.modal);
@@ -56,7 +59,7 @@ const DayTable = () => {
                 <div className="col-4  text-center">ساعت ورود به دانشگاه</div>
                 <div className="col-4   text-center">ساعت خروج از دانشگاه</div>
                 <div className="d-none col-md-2 d-md-flex justify-content-end">
-                    <i className="bi bi-calendar-day"></i>
+                    <BsCalendarDay />
                 </div>
             </div>
             <div className="day-list-body">
@@ -69,7 +72,7 @@ const DayTable = () => {
                         {
                             day.id === 6 ?
                                 (<div className="col-8 justify-content-center">
-                                    {nerdAlert && <p className="nerdAlert">تنها دانشگاه بهت خوش بگذره <i className="bi bi-emoji-smile"></i></p>}
+                                    {nerdAlert && <p className="nerdAlert">تنها دانشگاه بهت خوش بگذره <BsEmojiSmile /></p>}
                                 </div>)
                                 :
                                 (<Fragment>
@@ -78,7 +81,7 @@ const DayTable = () => {
                                             day.isSelected ?
                                                 (<div className="timeInput">
                                                     <div className="" data-day={day.id} onClick={StartTimeHandler}>
-                                                        <span className="d-flex justify-content-center " ><i className="bi bi-clock " data-day={day.id}></i></span>
+                                                        <span className="d-flex justify-content-center " ><BsClockHistory data-day={day.id} /></span>
                                                         {day.time[0] ? (<span dir="ltr" className=" text-center " data-day={day.id}> {generateTimeString(day.time[0])} </span>) : (<span className="d-none d-md-block col-6 text-center col-md-8" data-day={day.id}>تغییر زمان ورود</span>)}
                                                     </div>
                                                     <input type="hidden" name={"startTime-" + day.id} value={day.time[0]} />
@@ -95,7 +98,7 @@ const DayTable = () => {
                                             day.isSelected ?
                                                 (<div className="timeInput">
                                                     <div className="flex-wrap" data-day={day.id} onClick={EndTimeHandler}>
-                                                        <span className="d-flex justify-content-center"><i className="bi bi-clock" data-day={day.id}></i></span>
+                                                        <span className="d-flex justify-content-center"><BsClockHistory data-day={day.id} /></span>
                                                         {day.time[1] ? (<span className="text-center " dir="ltr" data-day={day.id}> {generateTimeString(day.time[1])} </span>) : (<span className="d-none d-md-block col-6 text-center col-md-8" data-day={day.id}>تغییر زمان خروج  </span>)}
                                                     </div>
                                                     <input type="hidden" name={"endTime-" + day.id} value={day.time[1]} />

@@ -12,6 +12,8 @@ import Badges from '../Badges/badges';
 import Like from '../Badges/likeBtn';
 import PresentationDetail from '../../Modals/presentationDetail';
 import { modalActions } from '../../../Store/modal-slice';
+import { BsChevronBarContract, BsCalendar2Check, BsInfoCircle } from "react-icons/bs";
+
 
 
 const Preview = (prop) => {
@@ -25,7 +27,7 @@ const Preview = (prop) => {
             eventKey,
             () => callback && callback(eventKey),
         );
-        return (<i className="bi bi-chevron-down drop-down" type="button" onClick={decoratedOnClick}></i>)
+        return (<BsChevronBarContract onClick={decoratedOnClick} />)
     }
     // event handler 
     const detailShowHandler = (event) => {
@@ -67,7 +69,7 @@ const Preview = (prop) => {
                     <Card.Body>
                         <div className="row">
                             <div className="col-12 row">
-                                <span><i className="bi bi-calendar2-check"></i> برنامه درسی</span>
+                                <span><BsCalendar2Check /> برنامه درسی</span>
                             </div>
                             <div className="col-12">
                                 <div className="presentation-table-header row">
@@ -91,7 +93,7 @@ const Preview = (prop) => {
                                                 <div className="d-none d-xl-block col-xl-1 text-center"></div>
                                                 <div className="d-none d-xl-block col-xl-1 text-center"></div>
                                                 <div className="d-none d-xl-block col-xl-2 text-center"></div>
-                                                <div className="col-4 col-xl-1 text-start text-xl-center details"><i className="bi bi-info-circle" id={index} onClick={detailShowHandler}></i></div>
+                                                <div className="col-4 col-xl-1 text-start text-xl-center details"><i id={index} onClick={detailShowHandler}><BsInfoCircle /> </i></div>
                                             </div>
                                         ))
                                     }

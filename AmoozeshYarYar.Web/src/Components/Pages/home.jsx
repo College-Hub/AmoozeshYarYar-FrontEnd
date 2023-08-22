@@ -7,6 +7,7 @@ import UserInfo from "../Modals/userInfo";
 import { useGetUniversiyQuery } from "../../feratures/api/apiSlice";
 import { modalActions } from "../../Store/modal-slice";
 import { courseActions } from "../../Store/course-slice";
+import { BsEmojiSmile, BsGear } from "react-icons/bs";
 
 
 const Home = () => {
@@ -30,9 +31,9 @@ const Home = () => {
                         <HomeAnimation />
                     </div>
                     <div className="col-12 col-lg-6 mt-5 mt-lg-0 offset-lg-1" dir="rtl">
-                        <h3><i className="bi bi-emoji-smile ms-3"></i>با خیال راحت انتخاب واحد کن!</h3>
+                        <h3><BsEmojiSmile /> با خیال راحت انتخاب واحد کن!</h3>
                         <p className="mt-3"> فقط کافیه روز و ساعتی که میخوای دانشگاه باشی رو به ما بگی بعد درسی که میخوای با استاد دلخواه خودت رو برامون مشخص کن ما بهت یه لیست از کد درس هایی که باید تو سامانه آموزشیار وارد کنی بهت میدیم تا با سریع ترین روش ممکن بتونی انتخاب کنی. </p>
-                        <h3 className="mt-5"><i className="bi bi-gear-wide ms-3"></i>ساخت برنامه درسی</h3>
+                        <h3 className="mt-5"><BsGear /> ساخت برنامه درسی</h3>
                         <p>برای ساخت برنامه درسی ما اول چندتا اطلاعات جزئی نیاز داریم که در ادامه ازت میگیریم برای شروع روی لینک ساخت برنامه کلیک کن.</p>
                         <div className="d-flex justify-content-end">
                             <button className="custome-btn-primary" onClick={startHandler}>ساخت برنامه</button>

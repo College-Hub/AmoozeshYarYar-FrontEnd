@@ -144,8 +144,8 @@ input[type='radio']:checked{
     color: var(--C2)
 }
 
-.hit-message i {
-    color: var(--alert);
+.hit-message svg {
+    color: var(--alert) !important;
 }
 /*badges*/
 .badges {
@@ -195,7 +195,7 @@ input[type='radio']:checked{
 .custome-contaner-section-header span {
     color: var(--C2);
 }
-.custome-contaner-section-header i {
+.custome-contaner-section-header svg {
     color: var(--C4);
     font-size: 1.8rem;
     margin-left: 0.5rem;

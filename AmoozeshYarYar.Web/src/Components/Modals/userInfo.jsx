@@ -9,6 +9,8 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import LoadSpiner from '../Animations/loadSpiner';
 import { useState } from 'react';
+import { BsBuildings, BsBook, BsInfoCircle } from "react-icons/bs";
+
 const UserInfo = () => {
 
     // route
@@ -60,7 +62,7 @@ const UserInfo = () => {
                         <div className="row">
                             <div className="col-12 col-lg-6">
                                 <div className="col-12 mt-3">
-                                    <label htmlFor="exampleInputUni" className="form-label"><i className="bi bi-buildings"></i> دانشگاه :</label>
+                                        <label htmlFor="exampleInputUni" className="form-label"><BsBuildings /> دانشگاه :</label>
                                     <select className="form-select custome-modal-input" aria-label="Default select example" onChange={uniBulrHandler} id="exampleInputUni" aria-describedby="uniHelp">
                                         <option value={undefined}>انتخاب</option>
                                         {
@@ -69,7 +71,7 @@ const UserInfo = () => {
                                     </select>
                                 </div>
                                 <div className="col-12 mt-3">
-                                    <label htmlFor="exampleInputgroup" className="form-label"><i className="bi bi-book"></i> رشته تحصیلی :</label>
+                                        <label htmlFor="exampleInputgroup" className="form-label"><BsBook /> رشته تحصیلی :</label>
                                     <select className="form-select custome-modal-input" aria-label="Default select example" onChange={groupBulrHandler} id="exampleInputgroup" aria-describedby="groupHelp" disabled={!uni}>
                                         <option value={undefined}>انتخاب</option>
                                         {
@@ -78,8 +80,8 @@ const UserInfo = () => {
                                     </select>
                                 </div>
                             </div>
-                            <div className="col-12 col-md-6 pt-5">
-                                <p><i className="bi bi-exclamation-circle"></i> برای شروع، دانشگاه و رشته تحصیلی خودت رو انتخاب کن.</p>
+                                <div className="col-12 col-md-6 pt-5">
+                                    <p className="hit-message"> <BsInfoCircle /> برای شروع، دانشگاه و رشته تحصیلی خودت رو انتخاب کن.</p>
                             </div>
                         </div>
                             <div className="d-flex justify-content-end btn-Group mt-3">

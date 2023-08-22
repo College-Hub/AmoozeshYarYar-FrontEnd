@@ -13,7 +13,7 @@ import { DemoContainer, DemoItem } from '@mui/x-date-pickers/internals/demo';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { StaticTimePicker } from '@mui/x-date-pickers/StaticTimePicker';
-
+import { BsClockHistory } from "react-icons/bs";
 
 
 const TimeModal = (prop) => {
@@ -59,7 +59,7 @@ const TimeModal = (prop) => {
     return (
         <Modal show={content === "ENDtime" || content === "STARTtime"} onHide={closeHandler} centered>
             <Modal.Body dir="ltr" className={"modal-time"}>
-                <h4 dir="rtl"><i className="bi bi-clock ms-3"></i>{content === "STARTtime" ? "ساعت ورود" : "ساعت خروج"}</h4>
+                <h4 dir="rtl"><BsClockHistory />{content === "STARTtime" ? "ساعت ورود" : "ساعت خروج"}</h4>
                 <div className="row mt-5" dir="rtl">
                     <div className="col-12 other-time">
                         {content === "ENDtime" ? (<div>ساعت ورود  :  <span dir="ltr">{SeletedDayTime[0] ? generateTimeString(SeletedDayTime[0]) : "انتخاب نشده"}</span></div>) : (<div>ساعت خروج  : <span dir="ltr">{(SeletedDayTime[1]) ? generateTimeString(SeletedDayTime[1]) : "انتخاب نشده"}</span></div>)}
