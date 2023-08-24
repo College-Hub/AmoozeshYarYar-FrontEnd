@@ -16,9 +16,10 @@ import { timeTableActions } from '../../Store/timeTable-slice';
 import { BsBuildings, BsBook, BsInfoCircle, BsPersonLinesFill, BsCalendar2Check, BsGear, BsCheck2Square, BsWrench } from "react-icons/bs";
 
 
+
 const SelectCourses = () => {
     // state
-    const { selectedcourses, daySelectTable, courses, days, TimeTableFilter } = useSelector(state => state.course);
+    const { selectedcourses, daySelectTable, courses, days, TimeTableFilter, error } = useSelector(state => state.course);
     const { group, uni } = useSelector(state => state.auth.userInfo);
     const { content } = useSelector(state => state.modal);
     const [submitUserInfo, { isLoading, isEroor }] = useSubmitUserInfoMutation();
@@ -31,7 +32,7 @@ const SelectCourses = () => {
 
     // onload 
     useEffect(() => {
-        if (!courses) {
+        if (!courses?.length) {
             handleRequest();
         }
         dispatch(courseActions.resetDays());
@@ -44,14 +45,28 @@ const SelectCourses = () => {
     useEffect(() => {
         dispatch(uiActions.setLoader(isLoading));
         dispatch(timeTableActions.clearTimeTablse());
+        if (courses?.length) {
+            dispatch(courseActions.clearError({ type: "No-COURSE" }));
+        }
     }, []);
+
+    useEffect(() => {
+        if (courses?.length) {
+            dispatch(courseActions.clearError({ type: "No-COURSE" }));
+        }
+        else dispatch(courseActions.setError({ type: "No-COURSE" }));
+    }, [courses]);
 
     // event handler
     const dayTableHandler = event => {
         dispatch(courseActions.daySeletViewChange());
     };
     const selectCourseModalHandler = () => {
-        dispatch(modalActions.setModalData({ content: "COURSE" }));
+        if (courses?.length) {
+            dispatch(courseActions.clearError({ type: "No-COURSE"}));
+            dispatch(modalActions.setModalData({ content: "COURSE" }));
+        }
+        else dispatch(courseActions.setError({ type: "No-COURSE" }));
     };
     const startHandler = () => {
         dispatch(modalActions.setModalData({ content: "USERINFO", }));
@@ -61,7 +76,7 @@ const SelectCourses = () => {
         dispatch(courseActions.setScatteration({ value }));
     };
     const submithandler = () => {
-        if (TimeTableFilter.Courses) {
+        if (TimeTableFilter.Courses?.length) {
             navigate("/timetable");
         };
     };
@@ -110,7 +125,7 @@ const SelectCourses = () => {
             {
                 selectedcourses?.length ? (<CourseTable />) : (
                     <div id="selectCourse" className="row custome-contaner-section">
-                        <div className="col-12 ">
+                        <div className="col-12 mb-3">
                             <div className="custome-contaner-section-header">
                                 <span><BsBook />درس</span>
                             </div>
@@ -118,9 +133,15 @@ const SelectCourses = () => {
                             <p className="hit-message"><BsInfoCircle /> در صورتی که استاد موردنظرت برای درسی که انتخاب کردی رو انتخاب نکرده باشی تمام استاد ها برای اون درس در نتیجه نهایی برات لحاظ میشن. </p>
                             <p className="hit-message"><BsInfoCircle /> یادت باشه روز و ساعت هایی که میخوای دانشگاه باشی رو هم انتخاب کرده باشی.</p>
                         </div >
-                        <div className="col-12 text-start">
-                            <button className="custome-btn-info" onClick={selectCourseModalHandler}>انتخاب درس</button>
+                        <div className="d-flex justify-content-between  flex-wrap">
+                            <div className="No-Course-error mb-3">
+                                <p className="hit-message"><BsInfoCircle /> هیچ درسی برای این گروه در دیتابیس وجود ندارد</p>
+                            </div>
+                            <div className="text-start ">
+                                <button className={error.noCourseModel ? "custome-disabled":"custome-btn-info"} onClick={selectCourseModalHandler} disabled={error.noCourseModel}>انتخاب درس</button>
+                            </div>
                         </div>
+                        
 
                     </div >
                 )
@@ -135,16 +156,16 @@ const SelectCourses = () => {
                     </div>
                     <div className="me-4 pt-1">
                         <div className="form-check form-check-inline">
-                            <input className="form-check-input" type="radio" onClick={setScatterationHandler} name="inlineRadioOptions" id="inlineRadio1" value="0" />
                             <label className="form-check-label" htmlFor="inlineRadio1">مهم نیست</label>
+                            <input className="form-check-input" type="radio" onClick={setScatterationHandler} name="inlineRadioOptions" id="inlineRadio1" value="0" />
                         </div>
                         <div className="form-check form-check-inline">
-                            <input className="form-check-input" type="radio" onClick={setScatterationHandler} name="inlineRadioOptions" id="inlineRadio2" value="2" />
                             <label className="form-check-label" htmlFor="inlineRadio2">پراکنده</label>
+                            <input className="form-check-input" type="radio" onClick={setScatterationHandler} name="inlineRadioOptions" id="inlineRadio2" value="2" />
                         </div>
                         <div className="form-check form-check-inline">
-                            <input className="form-check-input" type="radio" onClick={setScatterationHandler} name="inlineRadioOptions" id="inlineRadio3" value="1" />
                             <label className="form-check-label" htmlFor="inlineRadio3">فشرده</label>
+                            <input className="form-check-input" type="radio" onClick={setScatterationHandler} name="inlineRadioOptions" id="inlineRadio3" value="1" />
                         </div>
                     </div>
                 </div>
@@ -156,7 +177,7 @@ const SelectCourses = () => {
                     <span><BsCheck2Square />تایید فرم </span>
                 </div>
                 <div className="col-2 text-start">
-                    <button className="custome-btn-success" onClick={submithandler}>ثبت</button>
+                    <button className={!TimeTableFilter.Courses?.length ? "custome-disabled" : "custome-btn-success"} onClick={submithandler}>ثبت</button>
                 </div>
                 {
                     days.find(day => day.isSelected) && (

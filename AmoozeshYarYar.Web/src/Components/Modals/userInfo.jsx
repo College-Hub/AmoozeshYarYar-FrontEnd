@@ -96,7 +96,7 @@ const UserInfo = () => {
                         </div>
                             <div className="d-flex justify-content-end btn-Group mt-3">
                                 <button className={"custome-btn-danger"} onClick={closeHandler}>برگشت</button>
-                                <button className={"custome-btn-primary"} onClick={submitHandler}>ادامه</button>
+                                <button className={!uni || !group ? "custome-disabled" : "custome-btn-primary"} onClick={submitHandler}>ادامه</button>
                         </div>
                     </Modal.Body>
                 </Modal>)

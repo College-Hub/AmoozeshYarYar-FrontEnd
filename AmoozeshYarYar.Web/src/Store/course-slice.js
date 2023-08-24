@@ -24,7 +24,7 @@ const initialState = {
         { id: 6, isSelected: false, time: ['600', '2300'], title: "جمعه" },
     ],
     presentation: [],
-    error: [],
+    error: { noCourseModel: false },
     isloading: false,
     daySelectTable: false,
     nerdAlert: false,
@@ -118,9 +118,7 @@ const courseSlice = createSlice({
         activeNerdAlert(state, action) {
             state.nerdAlert = !state.nerdAlert;
         },
-        setError(state, action) {
-            state.error = action.payload;
-        },
+
         // Cleaners
         resetDays(state, action) {
             state.days.map(day => day.isSelected = false);
@@ -133,6 +131,15 @@ const courseSlice = createSlice({
                     day.time[2] = '';
                 }
             }
+        },
+        //errorhandlerse
+        setError(state, action) {
+            let type = action.payload.type;
+            if (type === "No-COURSE") state.error.noCourseModel = true;
+        },
+        clearError(state, action) {
+            let type = action.payload.type;
+            if (type === "No-COURSE") state.error.noCourseModel = false;
         },
         //more settings 
         setScatteration(state, action) {

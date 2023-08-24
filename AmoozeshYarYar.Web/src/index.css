@@ -115,9 +115,8 @@ input[type='checkbox'] {
     background-color: transparent;
     color: var(--C2-alternative);
     border-radius: 4px;
-    cursor: pointer;
     padding: 0.45rem 0.75rem;
-    cursor: not-allowed;
+    cursor: not-allowed !important;
 }
 .custome-disabled:hover {
     background-color: var(--C2-lower);

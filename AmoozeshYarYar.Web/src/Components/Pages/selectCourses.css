@@ -29,5 +29,15 @@ input[type='checkbox'] {
     color: var(--C3);
     font-size: 1.3rem;
 }
+.No-Course-error{
+    border: 1px solid var(--danger);
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    background-color: var(--danger-lower);
+    
+}
+.No-Course-error p{
+    margin: 0;
 
+}
 
