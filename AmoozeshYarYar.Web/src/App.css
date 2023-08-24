@@ -1,6 +1,7 @@
 main {
     padding: 5rem 0;
     padding-bottom: 15rem!important;
+
 }
 .bi-exclamation-circle{
     color: var(--alert);

@@ -8,6 +8,7 @@ import { authActions } from '../../Store/auth-slice';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import LoadSpiner from '../Animations/loadSpiner';
+import NoResponse from '../Errors/Requests/noResponse';
 import { useState } from 'react';
 import { BsBuildings, BsBook, BsInfoCircle } from "react-icons/bs";
 
@@ -17,11 +18,12 @@ const UserInfo = () => {
     const navigate = useNavigate();
 
     // state
-    const { isloading } = useSelector(state => state.ui);
+    const { isloading , NoResponseFromServer } = useSelector(state => state.ui);
     const { content } = useSelector(state => state.modal);
     const { startUpData } = useSelector(state => state.course);
     const [uni, setUni] = useState(undefined);
     const [group, setGroup] = useState(undefined);
+    const [view, setView ] = useState();
 
     const dispatch = useDispatch();
 
@@ -47,6 +49,14 @@ const UserInfo = () => {
         
     };
 
+    useEffect(() => {
+        if (NoResponseFromServer) 
+            setView(<NoResponse />);
+        else if (isloading) 
+            setView(<LoadSpiner />);
+        else
+            setView(null);
+    }, [isloading, NoResponseFromServer]);
 
     // content handler
  
@@ -56,7 +66,7 @@ const UserInfo = () => {
             
                 
             {
-                isloading ? <LoadSpiner /> : (
+                view ? view : (
                     <Modal show={content === "USERINFO"} onHide={closeHandler} size="lg" centered>
                     <Modal.Body className={"modal-userInfo"}>
                         <div className="row">

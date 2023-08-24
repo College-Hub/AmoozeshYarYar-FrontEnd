@@ -15,6 +15,8 @@ const uiSlice = createSlice({
         itemPerPage: 10,
         // loading
         isloading: false,
+        // Noresponse 
+        NoResponseFromServer: false,
 
     },
     reducers: {
@@ -37,6 +39,15 @@ const uiSlice = createSlice({
         setLoader(state, action) {
             state.isloading = action.payload;
         },
+        setError(state , action) {
+            let type = action.payload.type;
+            if (type === "NO-RESPONSE")
+                state.NoResponseFromServer = true;
+        },
+        deleteError(state, action) {
+            let type = action.payload;
+            if (type === "NO-RESPONSE") state.NoResponseFromServer = false;
+        }
 
     }
 });

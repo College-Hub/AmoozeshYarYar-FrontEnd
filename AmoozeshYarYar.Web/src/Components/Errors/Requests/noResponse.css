@@ -6,11 +6,19 @@
     border: 1px solid var(--danger);
     border-radius: 5px;
 }
+.noResponse-container {
+    position: absolute;
+    top: 10vh;
+    right: 0;
+    width: 100vw;
+    height:90vh;
+    background-color: var(--C1);
+}
 
-    .noResponse h4 {
-        color: var(--C2);
-        position: relative;
-    }
+.noResponse h4 {
+    color: var(--C2);
+    position: relative;
+}
 
         .noResponse h4 i {
             color: var(--danger);

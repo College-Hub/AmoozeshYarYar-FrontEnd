@@ -39,14 +39,18 @@ const App = () => {
     useEffect(() => {
         dispatch(uiActions.setLoader(isLoading));
     }, []);
-
+    
     useEffect(() => {
         if (data) {
             dispatch(courseActions.initiateStartUpData({ uniData: data }));
             dispatch(courseActions.StartUpHandler());
-            dispatch(uiActions.setLoader(isLoading));
+            dispatch(uiActions.deleteError({ type: "NO-RESPONSE" }));
         }
-
+        else if (error) {
+            dispatch(uiActions.setError({ type: "NO-RESPONSE" }));
+           
+        }
+        dispatch(uiActions.setLoader(isLoading));
     }, [isLoading]);
 
     if (isLoading) {
