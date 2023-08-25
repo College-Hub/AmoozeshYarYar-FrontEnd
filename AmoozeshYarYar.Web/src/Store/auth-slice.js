@@ -100,7 +100,14 @@ const authSlice = createSlice({
         },
         editModalToggle(state, action) {
             state.showEditModal = !state.showEditModal
-        }
+        },
+        //clear local storage
+        clearLocalStorage(state, action) {
+            let type = action.payload.type;
+            if (type === "USERINFO") localStorage.removeItem('userInfo');
+            if (type === "TOKEN") localStorage.removeItem('token');
+        },
+           
     },
 });
 

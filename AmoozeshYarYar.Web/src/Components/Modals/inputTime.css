@@ -24,9 +24,9 @@
     margin: 0.5rem 0.25rem;
 }
 .time-modal-error-box {
-    background-color: var(--danger-alternative);
+    background-color: var(--danger-lower);
     padding: 0.5rem 1rem;
-    border: 1px solid var(--danger);
+    border: 1px solid var(--danger-alternative);
     border-radius: 4px;
 }
 .other-time span {

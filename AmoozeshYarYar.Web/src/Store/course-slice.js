@@ -15,17 +15,16 @@ const initialState = {
     page: [],
     selectedcourses,
     days: [
-        { id: 0, isSelected: false, time: ['600', '2300'], title: "شنبه" },
-        { id: 1, isSelected: false, time: ['600', '2300'], title: "یک شنبه" },
-        { id: 2, isSelected: false, time: ['600', '2300'], title: "دو شنبه" },
-        { id: 3, isSelected: false, time: ['600', '2300'], title: "سه شنبه" },
-        { id: 4, isSelected: false, time: ['600', '2300'], title: "چهار شنبه" },
-        { id: 5, isSelected: false, time: ['600', '2300'], title: "پنج شنبه" },
-        { id: 6, isSelected: false, time: ['600', '2300'], title: "جمعه" },
+        { id: 0, isSelected: false, time: ['', ''], title: "شنبه" },
+        { id: 1, isSelected: false, time: ['', ''], title: "یک‌شنبه" },
+        { id: 2, isSelected: false, time: ['', ''], title: "دوشنبه" },
+        { id: 3, isSelected: false, time: ['', ''], title: "سه‌شنبه" },
+        { id: 4, isSelected: false, time: ['', ''], title: "چهارشنبه" },
+        { id: 5, isSelected: false, time: ['', ''], title: "پنج‌شنبه" },
+        { id: 6, isSelected: false, time: ['', ''], title: "جمعه" },
     ],
     presentation: [],
     error: { noCourseModel: false },
-    isloading: false,
     daySelectTable: false,
     nerdAlert: false,
     scatteration: 1,
@@ -152,6 +151,10 @@ const courseSlice = createSlice({
             state.selectedcourses?.map(course => state.TimeTableFilter.Courses.push({ courseId: course.courseId, instructorIds: course.instructorsIds }));
             state.days.filter(day => day.isSelected).map(day => state.TimeTableFilter.DayAndTime.push({ day: day.id, startTime: day.time[0], endTime: day.time[1] }));
             state.TimeTableFilter.CompressionPreference = state.scatteration;
+        },
+        //clear local storage 
+        clearLocalStorage(state, action) {
+            localStorage.removeItem('myKey');
         },
     },
     extraReducers: {

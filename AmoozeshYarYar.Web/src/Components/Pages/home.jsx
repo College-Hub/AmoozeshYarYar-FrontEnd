@@ -8,6 +8,7 @@ import { useGetUniversiyQuery } from "../../feratures/api/apiSlice";
 import { modalActions } from "../../Store/modal-slice";
 import { courseActions } from "../../Store/course-slice";
 import { BsEmojiSmile, BsGear } from "react-icons/bs";
+import { authActions } from "../../Store/auth-slice";
 
 
 const Home = () => {
@@ -22,7 +23,9 @@ const Home = () => {
     const startHandler = () => {
         dispatch(modalActions.setModalData({ content: "USERINFO",}));
     };
-
+    useEffect(() => {
+        dispatch(authActions.clearLocalStorage({ type: "USERINFO"}))
+    }, [])
     return (
         <Fragment>
             <section id="home">

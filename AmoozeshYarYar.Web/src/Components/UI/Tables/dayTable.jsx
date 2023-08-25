@@ -12,7 +12,7 @@ import { BsClockHistory, BsEmojiSmile, BsCalendarDay } from "react-icons/bs";
 
 
 const DayTable = () => {
-    const { days, error, submitCheckforDay, nerdAlert } = useSelector(state => state.course);
+    const { days, error, nerdAlert } = useSelector(state => state.course);
     const { content } = useSelector(state => state.modal);
     const dispatch = useDispatch();
 
@@ -55,9 +55,9 @@ const DayTable = () => {
     return (
         <div className="day-list">
             <div className="day-list-header row">
-                <div className="col-4 col-md-2">روز هفته</div>
-                <div className="col-4  text-center">ساعت ورود به دانشگاه</div>
-                <div className="col-4   text-center">ساعت خروج از دانشگاه</div>
+                <div className="col-3 col-md-2">روز </div>
+                <div className="col-4 text-center">ساعت ورود <span className="d-none d-md-inline-block ">  به دانشگاه</span></div>
+                <div className="col-4 text-center">ساعت خروج <span className="d-none d-md-inline-block ">  از دانشگاه</span></div>
                 <div className="d-none col-md-2 d-md-flex justify-content-end">
                     <BsCalendarDay />
                 </div>
@@ -65,7 +65,7 @@ const DayTable = () => {
             <div className="day-list-body">
                 {days.map(day => (
                     <div key={day.id} className={day.isSelected ? "day-list-body-row row row-active" : "day-list-body-row row"}>
-                        <div className="col-4 col-md-2">
+                        <div className="col-3 col-md-2">
                             <input className="form-check-input m-2" type="checkbox" onClick={daySelectHandler} value="" data-day={day.id} />
                             <span>{day.title}</span>
                         </div>
@@ -76,16 +76,14 @@ const DayTable = () => {
                                 </div>)
                                 :
                                 (<Fragment>
-                                    <div className="col-4 justify-content-center">
+                                    <div className="col-4 ps-2">
                                         {
                                             day.isSelected ?
-                                                (<div className="timeInput">
-                                                    <div className="" data-day={day.id} onClick={StartTimeHandler}>
-                                                        <span className="d-flex justify-content-center " ><BsClockHistory data-day={day.id} /></span>
-                                                        {day.time[0] ? (<span dir="ltr" className=" text-center " data-day={day.id}> {generateTimeString(day.time[0])} </span>) : (<span className="d-none d-md-block col-6 text-center col-md-8" data-day={day.id}>تغییر زمان ورود</span>)}
-                                                    </div>
+                                                (<div className="timeInput flex-fill justify-content-md-center p-2" data-day={day.id} onClick={StartTimeHandler}>
+                                                    <span className="ms-4" ><BsClockHistory data-day={day.id} /></span>
+                                                    {day.time[0] ? (<span dir="ltr" className="text-center" data-day={day.id}> {generateTimeString(day.time[0])} </span>) : (<span className="" data-day={day.id}>تغییر <span className="d-none d-md-inline-block ">زمان ورود</span></span>)}                                      
                                                     <input type="hidden" name={"startTime-" + day.id} value={day.time[0]} />
-
+                                                    
                                                 </div>)
                                                 :
                                                 (<div className="timeInput" >
@@ -93,14 +91,14 @@ const DayTable = () => {
                                                 </div>)
                                         }
                                     </div>
-                                    <div className="col-4 justify-content-center">
+                                    <div className="col-4 justify-content-center ps-2">
                                         {
                                             day.isSelected ?
-                                                (<div className="timeInput">
-                                                    <div className="flex-wrap" data-day={day.id} onClick={EndTimeHandler}>
-                                                        <span className="d-flex justify-content-center"><BsClockHistory data-day={day.id} /></span>
-                                                        {day.time[1] ? (<span className="text-center " dir="ltr" data-day={day.id}> {generateTimeString(day.time[1])} </span>) : (<span className="d-none d-md-block col-6 text-center col-md-8" data-day={day.id}>تغییر زمان خروج  </span>)}
-                                                    </div>
+                                                (<div className="timeInput flex-fill justify-content-md-center p-2 " data-day={day.id} onClick={EndTimeHandler}>
+                                                    
+                                                        <span className="ms-4"><BsClockHistory data-day={day.id} /></span>
+                                                    {day.time[1] ? (<span className="text-center" dir="ltr" data-day={day.id}> {generateTimeString(day.time[1])} </span>) : (<span className="" data-day={day.id}> تغییر <span className="d-none d-md-inline-block "> زمان خروج </span></span>)}
+                                                    
                                                     <input type="hidden" name={"endTime-" + day.id} value={day.time[1]} />
                                                 </div>)
                                                 :

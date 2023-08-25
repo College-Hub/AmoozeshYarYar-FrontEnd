@@ -62,7 +62,7 @@ const TimeModal = (prop) => {
                 <h4 dir="rtl"><BsClockHistory />{content === "STARTtime" ? "ساعت ورود" : "ساعت خروج"}</h4>
                 <div className="row mt-5" dir="rtl">
                     <div className="col-12 other-time">
-                        {content === "ENDtime" ? (<div>ساعت ورود  :  <span dir="ltr">{SeletedDayTime[0] ? generateTimeString(SeletedDayTime[0]) : "انتخاب نشده"}</span></div>) : (<div>ساعت خروج  : <span dir="ltr">{(SeletedDayTime[1]) ? generateTimeString(SeletedDayTime[1]) : "انتخاب نشده"}</span></div>)}
+                        {content === "ENDtime" ? (<div>ساعت ورود  :  <span dir="ltr">{SeletedDayTime[0] ? generateTimeString(SeletedDayTime[0]) : "پیش‌فرض"}</span></div>) : (<div>ساعت خروج  : <span dir="ltr">{(SeletedDayTime[1]) ? generateTimeString(SeletedDayTime[1]) : "پیش‌فرض"}</span></div>)}
                     </div>
                 </div>
                 <LocalizationProvider dateAdapter={AdapterDayjs} >

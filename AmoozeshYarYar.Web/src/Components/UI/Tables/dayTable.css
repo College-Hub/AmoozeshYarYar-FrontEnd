@@ -51,7 +51,7 @@
     border-radius: 4px;
     margin: 0;
 }
-.timeInput div {
+.timeInput  {
     background-color: #80808020;
     border-radius: 4px;
     padding: 0.5rem 1rem;
@@ -59,15 +59,22 @@
     transition: 0.25s;
  
 }
-.timeInput div:hover{
+.timeInput:hover{
     background-color: #80808050;
 }
-.timeInput div input {
+.timeInput input {
     padding-right: 0.5rem;
     cursor: pointer;
     position: relative;
     left: 5px;
 }
-.timeInput div span {
+.timeInput span {
     margin: 0 0.2rem;
+    font-size: 1rem;
+}
+.startTime-box div{
+    width: 100%
+}
+@media only screen and (max-width: 600px) {
+
 }
