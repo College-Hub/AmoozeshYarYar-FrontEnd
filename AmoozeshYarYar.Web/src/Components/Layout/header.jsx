@@ -1,18 +1,23 @@
 ﻿ import { useSelector, useDispatch } from 'react-redux';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { uiActions, } from "../../Store/ui-slice";
 import { BsHouse, BsChatLeftHeart } from "react-icons/bs";
 import './header.css';
+
 
 const Haeder = () => {
     // states 
     const expandNavbar = useSelector(state => state.ui.expandNavbar);
     /*const isloggedIn = useSelector(state => state.auth.isLoggedIn);*/
 
-    // useDispatch
-
+    // Hooks
+    const location = useLocation();
     const dispatch = useDispatch();
+
+    useEffect(() => {
+        console.log(location.pathname);
+    }, [location])
 
     // event handlers
     const expandNavbarHandler = () => {
@@ -28,12 +33,14 @@ const Haeder = () => {
                     </div>
                     <div className={!expandNavbar ? "col-6 d-none d-lg-block" : "col-12 col-lg-6 d-inline-block"} >
                         <ul className="navbar-nav d-flex">
-                            <li className="nav-item">
+                            <li className={location.pathname === '/home' ? "nav-item flex-fill" : "nav-item" }>
                                 <NavLink className={"nav-link custome-link"} aria-current="page" to='/home'><BsHouse />  صفحه اصلی</NavLink>
                             </li>
-                            <li className="nav-item">
+                            <li className={location.pathname === '/aboutUs' ? "nav-item flex-fill" : "nav-item"}>
                                 <NavLink className={"nav-link custome-link"} aria-current="page" to='/aboutUs'><BsChatLeftHeart /> درباره ما</NavLink>
                             </li>
+
+
                             {/*{isloggedIn && <li className="nav-item"><NavLink className={"nav-link custome-link"} aria-current="page" to='/profile'><i className="bi bi-person-vcard"></i> &nbsp; پروفایل</NavLink></li>}*/}              
                             {/*<li className="nav-item d-block d-lg-none">*/}
                             {/*        {isloggedIn ? <NavLink className={"nav-link custome-link "} aria-current="page" to='/home'><i className="bi bi-box-arrow-left"></i> &nbsp; خروج</NavLink> :*/}

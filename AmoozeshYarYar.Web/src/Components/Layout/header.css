@@ -56,3 +56,7 @@ nav .active {
         transform: scale(1.25);
     
     }
+
+.nav-item {
+    transition: 0.35s ;
+}

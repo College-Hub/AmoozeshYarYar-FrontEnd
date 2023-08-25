@@ -1,14 +1,11 @@
-﻿import { Fragment, useEffect } from "react";
-import HomeAnimation from "../Animations/homeAnimation";
+﻿import './home.css';
+import { Fragment, useEffect } from "react";
 import { useSelector, useDispatch } from 'react-redux';
-import './home.css';
-import { NavLink } from 'react-router-dom';
-import UserInfo from "../Modals/userInfo";
-import { useGetUniversiyQuery } from "../../feratures/api/apiSlice";
-import { modalActions } from "../../Store/modal-slice";
-import { courseActions } from "../../Store/course-slice";
+import { useLocation } from 'react-router-dom';
 import { BsEmojiSmile, BsGear } from "react-icons/bs";
-import { authActions } from "../../Store/auth-slice";
+import { modalActions } from "../../Store/modal-slice";
+import HomeAnimation from "../Animations/homeAnimation";
+import UserInfo from "../Modals/userInfo";
 
 
 const Home = () => {
@@ -16,16 +13,16 @@ const Home = () => {
     const { content } = useSelector(state => state.modal);
     
 
-    // usedispatch
+    // hooks 
     const dispatch = useDispatch();
 
     // event handlers
     const startHandler = () => {
         dispatch(modalActions.setModalData({ content: "USERINFO",}));
     };
-    useEffect(() => {
-        dispatch(authActions.clearLocalStorage({ type: "USERINFO"}))
-    }, [])
+    //useEffect(() => {
+    //    dispatch(authActions.clearLocalStorage({ type: "USERINFO"}))
+    //}, [])
     return (
         <Fragment>
             <section id="home">
