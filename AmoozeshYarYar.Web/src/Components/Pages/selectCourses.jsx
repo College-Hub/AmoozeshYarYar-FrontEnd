@@ -14,6 +14,7 @@ import { useEffect, useState } from 'react';
 import { uiActions } from '../../Store/ui-slice';
 import { timeTableActions } from '../../Store/timeTable-slice';
 import { BsBuildings, BsBook, BsInfoCircle, BsPersonLinesFill, BsCalendar2Check, BsGear, BsCheck2Square, BsWrench } from "react-icons/bs";
+import { toPersianNumber } from '../../feratures/helper/helper';
 
 
 
@@ -114,7 +115,7 @@ const SelectCourses = () => {
                             </div>
                             <p className="hit-message"><BsInfoCircle /> اول روز هایی از هفته که دانشگاه میایی رو باید انتخاب کنی.</p>
                             <p className="hit-message"><BsInfoCircle /> بعدش باید ساعت ورود و خروج خودت به دانشگاه رو انتخاب کنی.</p>
-                            <p className="hit-message"><BsInfoCircle /> در صورتی که ساعت ورود یا خروج خودت رو انتخاب نکرده باشی ساعت پیشفرض ورود 7:00 و ساعت خروج 21:00 برات ثبت میشه.</p>
+                            <p className="hit-message"><BsInfoCircle /> در صورتی که ساعت ورود یا خروج خودت رو انتخاب نکرده باشی ساعت پیشفرض ورود {toPersianNumber("7:00")} و ساعت خروج {toPersianNumber("21:00")} برات ثبت میشه.</p>
                         </div >
                         <div className="col-12 text-start">
                             <button className="custome-btn-info" onClick={dayTableHandler}>انتخاب روز</button>
@@ -133,7 +134,7 @@ const SelectCourses = () => {
                             <p className="hit-message"><BsInfoCircle /> در صورتی که استاد موردنظرت برای درسی که انتخاب کردی رو انتخاب نکرده باشی تمام استاد ها برای اون درس در نتیجه نهایی برات لحاظ میشن. </p>
                             <p className="hit-message"><BsInfoCircle /> یادت باشه روز و ساعت هایی که میخوای دانشگاه باشی رو هم انتخاب کرده باشی.</p>
                         </div >
-                        <div className="d-flex justify-content-between  flex-wrap">
+                        <div className="d-flex justify-content-end justify-content-md-between   flex-wrap">
                             <div className="No-Course-error mb-3">
                                 <p className="hit-message"><BsInfoCircle /> هیچ درسی برای این گروه در دیتابیس وجود ندارد</p>
                             </div>
