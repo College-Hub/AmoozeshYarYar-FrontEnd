@@ -35,3 +35,6 @@
     background-color: var(--alert-lower);
     border-radius: 4px;
 }
+ span.MuiTypography-root.MuiTypography-overline.css-1hbyad5-MuiTypography-root {
+    display:  none !important;
+}

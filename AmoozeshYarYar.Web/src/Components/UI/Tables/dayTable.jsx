@@ -7,7 +7,7 @@ import { modalActions } from "../../../Store/modal-slice";
 import { useSelector, useDispatch } from 'react-redux';
 import { Fragment } from 'react';
 import { useEffect } from 'react';
-import { generateTimeString } from '../../../feratures/helper/helper';
+import { generateTimeString, toPersianNumber } from '../../../feratures/helper/helper';
 import { BsClockHistory, BsEmojiSmile, BsCalendarDay } from "react-icons/bs";
 
 
@@ -80,9 +80,9 @@ const DayTable = () => {
                                         {
                                             day.isSelected ?
                                                 (<div className="timeInput flex-fill justify-content-md-center p-2" data-day={day.id} onClick={StartTimeHandler}>
-                                                    <span className="ms-4" ><BsClockHistory data-day={day.id} /></span>
-                                                    {day.time[0] ? (<span dir="ltr" className="text-center" data-day={day.id}> {generateTimeString(day.time[0])} </span>) : (<span className="" data-day={day.id}>تغییر <span className="d-none d-md-inline-block ">زمان ورود</span></span>)}                                      
-                                                    <input type="hidden" name={"startTime-" + day.id} value={day.time[0]} />
+                                                    <span className="ms-4" data-day={day.id} ><BsClockHistory data-day={day.id} /></span>
+                                                    {day.time[0] ? (<span dir="ltr" className="text-center" data-day={day.id}> {toPersianNumber(generateTimeString(day.time[0]))} </span>) : (<span className="" data-day={day.id}>تغییر <span className="d-none d-md-inline-block " data-day={day.id}>زمان ورود</span></span>)}                                      
+                                                    <input type="hidden" name={"startTime-" + day.id} data-day={day.id} value={day.time[0]} />
                                                     
                                                 </div>)
                                                 :
@@ -91,15 +91,16 @@ const DayTable = () => {
                                                 </div>)
                                         }
                                     </div>
+
                                     <div className="col-4 justify-content-center ps-2">
                                         {
                                             day.isSelected ?
                                                 (<div className="timeInput flex-fill justify-content-md-center p-2 " data-day={day.id} onClick={EndTimeHandler}>
                                                     
-                                                        <span className="ms-4"><BsClockHistory data-day={day.id} /></span>
-                                                    {day.time[1] ? (<span className="text-center" dir="ltr" data-day={day.id}> {generateTimeString(day.time[1])} </span>) : (<span className="" data-day={day.id}> تغییر <span className="d-none d-md-inline-block "> زمان خروج </span></span>)}
+                                                    <span className="ms-4" data-day={day.id} ><BsClockHistory data-day={day.id} /></span>
+                                                    {day.time[1] ? (<span className="text-center" dir="ltr" data-day={day.id}> {toPersianNumber(generateTimeString(day.time[1]))} </span>) : (<span className="" data-day={day.id}> تغییر <span className="d-none d-md-inline-block " data-day={day.id}> زمان خروج </span></span>)}
                                                     
-                                                    <input type="hidden" name={"endTime-" + day.id} value={day.time[1]} />
+                                                    <input type="hidden" name={"endTime-" + day.id} data-day={day.id} value={day.time[1]} />
                                                 </div>)
                                                 :
                                                 (<div className="timeInput">
@@ -113,7 +114,7 @@ const DayTable = () => {
                 ))}
             </div>
             <div className="day-list-footer row">
-                <div className="col-12 col-md-6">تعداد روز انتخاب شده در هفته : <span>{days.filter(day => day.isSelected).length}</span></div>
+                <div className="col-12 col-md-6">تعداد روز انتخاب شده در هفته : <span>{toPersianNumber(days.filter(day => day.isSelected).length.toString())}</span></div>
 
 
             </div>
