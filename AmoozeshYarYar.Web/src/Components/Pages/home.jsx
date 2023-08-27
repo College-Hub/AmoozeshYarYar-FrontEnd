@@ -27,10 +27,10 @@ const Home = () => {
         <Fragment>
             <section id="home">
                 <div className="row" dir="ltr">
-                    <div className="col-12 col-lg-5 ">
+                    <div className="col-12 col-lg-6 ">
                         <HomeAnimation />
                     </div>
-                    <div className="col-12 col-lg-6 mt-5 mt-lg-0 offset-lg-1" dir="rtl">
+                    <div className="col-12 col-lg-5 mt-5 mt-lg-0 offset-lg-1" dir="rtl">
                         <h3><BsEmojiSmile /> با خیال راحت انتخاب واحد کن!</h3>
                         <p className="mt-3"> فقط کافیه روز و ساعتی که میخوای دانشگاه باشی رو به ما بگی بعد درسی که میخوای با استاد دلخواه خودت رو برامون مشخص کن ما بهت یه لیست از کد درس هایی که باید تو سامانه آموزشیار وارد کنی بهت میدیم تا با سریع ترین روش ممکن بتونی انتخاب کنی. </p>
                         <h3 className="mt-5"><BsGear /> ساخت برنامه درسی</h3>
@@ -38,7 +38,6 @@ const Home = () => {
                         <div className="d-flex justify-content-end">
                             <button className="custome-btn-primary" onClick={startHandler}>ساخت برنامه</button>
                         </div>
-                        {/*<NavLink className={"btn custome-btn"} aria-current="page" to='/selectCourses'>  </NavLink>*/}
                     </div>
                 </div>
             </section>

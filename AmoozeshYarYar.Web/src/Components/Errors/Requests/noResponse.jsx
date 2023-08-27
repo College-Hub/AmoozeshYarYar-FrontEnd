@@ -4,9 +4,6 @@ import { useSelector } from 'react-redux';
 
 const NoResponse = () => {
     const navigate = useNavigate();
-    const ReloadHandler = () => {
-        navigate(0);
-    }
     return (
         <div className="noResponse-container ">
             <div className="noResponse container">
@@ -14,7 +11,7 @@ const NoResponse = () => {
                 <hr></hr>
                 <p>سرور جوابی به درخواستت نمیده. نمی‌دونیم چرا!  (احتمالا دیگه دوسِت نداره <i className="bi  bi-emoji-smile"></i>) </p>
                 <p>برو دوراتو بزن دوباره بیا؛ شاید نظرش عوض شد.</p>
-                <NavLink className="" onClick={ReloadHandler}>غرورتو زیر پا بذار و دوباره درخواست بده!</NavLink>
+                <NavLink to="/home" className="">غرورتو زیر پا بذار و دوباره درخواست بده!</NavLink>
             </div>
         </div>
         

@@ -64,19 +64,19 @@ const DayTable = () => {
             </div>
             <div className="day-list-body">
                 {days.map(day => (
-                    <div key={day.id} className={day.isSelected ? "day-list-body-row row row-active" : "day-list-body-row row"}>
+                    <div key={day.id} className={day.isSelected ? "day-list-body-row row row-active" : "day-list-body-row row"} data-day={day.id}>
                         <div className="col-3 col-md-2">
                             <input className="form-check-input m-2" type="checkbox" onClick={daySelectHandler} value="" data-day={day.id} checked={day.isSelected} />
                             <span>{day.title}</span>
                         </div>
                         {
                             day.id === 6 ?
-                                (<div className="col-8 justify-content-center">
+                                (<div className="col-8 justify-content-center" data-day={day.id}>
                                     {nerdAlert && <p className="nerdAlert">تنها دانشگاه بهت خوش بگذره <BsEmojiSmile /></p>}
                                 </div>)
                                 :
                                 (<Fragment>
-                                    <div className="col-4 ps-2">
+                                    <div className="col-4 ps-2" data-day={day.id}>
                                         {
                                             day.isSelected ?
                                                 (<div className="timeInput flex-fill justify-content-md-center p-2" data-day={day.id} onClick={StartTimeHandler}>
@@ -92,7 +92,7 @@ const DayTable = () => {
                                         }
                                     </div>
 
-                                    <div className="col-4 justify-content-center ps-2">
+                                    <div className="col-4 ps-2" data-day={day.id}>
                                         {
                                             day.isSelected ?
                                                 (<div className="timeInput flex-fill justify-content-md-center p-2 " data-day={day.id} onClick={EndTimeHandler}>

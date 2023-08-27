@@ -14,8 +14,7 @@ import { BsBuildings, BsBook, BsInfoCircle } from "react-icons/bs";
 
 const UserInfo = () => {
 
-    // route
-    const navigate = useNavigate();
+    
 
     // state
     const { isloading , NoResponseFromServer } = useSelector(state => state.ui);
@@ -25,7 +24,9 @@ const UserInfo = () => {
     const [group, setGroup] = useState(undefined);
     const [view, setView ] = useState();
 
+    //hooks 
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     // event handler 
     const uniBulrHandler = (event) => {
@@ -50,8 +51,10 @@ const UserInfo = () => {
     };
 
     useEffect(() => {
-        if (NoResponseFromServer) 
-            setView(<NoResponse />);
+        if (NoResponseFromServer) { 
+            navigate("/Not-Found");
+            dispatch(modalActions.hideModal());
+        }
         else if (isloading) 
             setView(<LoadSpiner />);
         else
@@ -67,10 +70,13 @@ const UserInfo = () => {
                 
             {
                 view ? view : (
-                    <Modal show={content === "USERINFO"} onHide={closeHandler} size="lg" centered>
+                    <Modal show={content === "USERINFO"} onHide={closeHandler} size="md" centered>
                     <Modal.Body className={"modal-userInfo"}>
                         <div className="row">
-                            <div className="col-12 col-lg-6">
+                            <div className="col-12">
+                                <span>اطلاعات زیر را برای شروع وارد کنید</span>
+                            </div>
+                            <div className="col-12">
                                 <div className="col-12 mt-3">
                                         <label htmlFor="exampleInputUni" className="form-label"><BsBuildings /> دانشگاه :</label>
                                     <select className="form-select custome-modal-input" aria-label="Default select example" onChange={uniBulrHandler} id="exampleInputUni" aria-describedby="uniHelp">
@@ -89,9 +95,6 @@ const UserInfo = () => {
                                         }
                                     </select>
                                 </div>
-                            </div>
-                                <div className="col-12 col-md-6 pt-5">
-                                    <p className="hit-message"> <BsInfoCircle /> برای شروع، دانشگاه و رشته تحصیلی خودت رو انتخاب کن.</p>
                             </div>
                         </div>
                             <div className="d-flex justify-content-end btn-Group mt-3">

@@ -35,3 +35,21 @@
     .noResponse p {
         color: var(--C2);
     }
+@media only screen and (max-width: 800px) {
+    .noResponse {
+        padding: 2rem 2rem;
+        padding-top: 7rem;
+    }
+    .noResponse h4 i{
+        right: 0rem;
+        top: -5rem;
+    }
+    .noResponse-container {
+        height: 120vh;
+    }
+}
+@media only screen and (max-height: 700px) {
+    .noResponse-container {
+        height: 140vh;
+    }
+}

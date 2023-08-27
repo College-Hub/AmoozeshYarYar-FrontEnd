@@ -22,21 +22,31 @@ const TimeModal = (prop) => {
     const { content, id: dayId, errors } = useSelector(state => state.modal);
     const { days } = useSelector(state => state.course);
     const dispatch = useDispatch();
-    const [H, setH] = useState();
-    const [M, setM] = useState();
+    const [H, setH] = useState('7');
+    const [M, setM] = useState('00');
 
 
-    const SeletedDayTime = days.find(day => parseInt(dayId) === day.id).time;
+    const SeletedDayTime = days.find(day => parseInt(dayId) === day.id)?.time;
 
     useEffect(() => {
+        
         if (content === "ENDtime") {
-            setM('00');
-            setH('9');
+            
+                setH('9');
+                setM('00');
+                validateTime(SeletedDayTime, '9', '00');
+            
+
         }
         else if (content === "STARTtime") {
-            setM('00');
-            setH('7');
+           
+                setH('7');
+                setM('00');
+                validateTime(SeletedDayTime, '7', '00');
+            
+           
         }
+        
     }, [])
 
     //event handler 
@@ -45,12 +55,13 @@ const TimeModal = (prop) => {
     };
     const submitHandler = () => {
         validateTime(SeletedDayTime, H, M);
+        if (!errors.errmessage) {
+            dispatch(courseActions.setTime({ enteredTime: H + M, dayId, typeOfInput: content }));
+            dispatch(modalActions.hideModal());
+            setM(null);
+            setH(null);
+        }
 
-        let id = dayId;
-        dispatch(courseActions.setTime({ enteredTime: H + M, dayId: id, typeOfInput: content }));
-        dispatch(modalActions.hideModal());
-        setM(null);
-        setH(null);
     };
     const dateChangeHandler = data => {
         let enteredM = data.$m < 10 ? '0' + data.$m : data.$m.toString();
@@ -59,6 +70,10 @@ const TimeModal = (prop) => {
         setM(enteredM);
         setH(enteredH);
 
+    };
+    const deleteTimeHandler = () => {
+        dispatch(courseActions.setTime({ enteredTime:null, dayId, typeOfInput: content }));
+        dispatch(modalActions.hideModal());
     };
     //function 
     const validateTime = (dayTime, enteredH, enteredM)  => {
@@ -71,6 +86,7 @@ const TimeModal = (prop) => {
             else dispatch(modalActions.errorHandler({ typeOfHandler: "CLEAR", errmessage: "" }));
         }
     };
+    console.log(`2022-04-17T${H}:${M}`)
     return (
         <Modal show={content === "ENDtime" || content === "STARTtime"} onHide={closeHandler} centered>
             <Modal.Body dir="ltr" className={"modal-time"}>
@@ -94,7 +110,7 @@ const TimeModal = (prop) => {
                                 }}
 
                                 ampm={false}
-                                defaultValue={content === "STARTtime" ? dayjs('2022-04-17T7:00') : dayjs('2022-04-17T9:00')}
+                                defaultValue={content === "STARTtime" ? dayjs(`2022-04-17T7:00`) : dayjs(`2022-04-17T9:00`)}
                                 onChange={dateChangeHandler}
                                 minTime={content === "ENDtime" ? dayjs('2022-04-17T8:00') : dayjs('2022-04-17T7:00')}
                                 maxTime={content === "STARTtime" ? dayjs('2022-04-17T17:00') : dayjs('2022-04-17T20:00')}
@@ -108,9 +124,14 @@ const TimeModal = (prop) => {
                         <i className="bi bi-exclamation-circle ms-2"></i><span className="">{errors.errmessage}</span>
                     </div>
                 }
-                <div className="d-flex btn-Group">
-                    <button className={errors.errmessage ? "custome-disabled" : "custome-btn-primary"} onClick={submitHandler} disabled={errors.errmessage}>ثبت</button>
-                    <button className={"custome-btn-danger"} onClick={closeHandler} >لغو</button>
+                <div className="d-flex justify-content-between btn-Group">
+                    <div>
+                        <button className={errors.errmessage ? "custome-disabled" : "custome-btn-primary"} onClick={submitHandler} disabled={errors.errmessage}>ثبت</button>
+                        <button className={"custome-btn-danger"} onClick={closeHandler} >لغو</button>
+                    </div>
+                    <div>
+                        <button className={"custome-btn-alert"} onClick={deleteTimeHandler} >حذف</button>
+                    </div>
 
                 </div>
             </Modal.Body>

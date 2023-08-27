@@ -76,6 +76,8 @@ const App = () => {
                         {/* <Route path='/profile' element={isloggedIn ? <Profile /> : <NoAccess />} ></Route>*/}
                         <Route path='/selectCourses' element={<SelectCourses />} ></Route>
                         <Route path='/timetable' element={<TimeTable />} ></Route>
+                        <Route path='/Not-Found' element={<NoResponse />} ></Route>
+                        <Route path='/timetable' element={<TimeTable />} ></Route>
                         <Route path='/*' element={<NotFound />} ></Route>
                     </Routes>
                 </main>
