@@ -134,13 +134,20 @@ const SelectCourses = () => {
                             <p className="hit-message"><BsInfoCircle /> در صورتی که استاد موردنظرت برای درسی که انتخاب کردی رو انتخاب نکرده باشی تمام استاد ها برای اون درس در نتیجه نهایی برات لحاظ میشن. </p>
                             <p className="hit-message"><BsInfoCircle /> یادت باشه روز و ساعت هایی که میخوای دانشگاه باشی رو هم انتخاب کرده باشی.</p>
                         </div >
-                        <div className="d-flex justify-content-end justify-content-md-between   flex-wrap">
-                            <div className="No-Course-error mb-3">
-                                <p className="hit-message"><BsInfoCircle /> هیچ درسی برای این گروه در دیتابیس وجود ندارد</p>
-                            </div>
-                            <div className="text-start ">
-                                <button className={error.noCourseModel ? "custome-disabled":"custome-btn-info"} onClick={selectCourseModalHandler} disabled={error.noCourseModel}>انتخاب درس</button>
-                            </div>
+                        <div className="d-flex justify-content-end flex-wrap">
+                            {
+                                error.noCourseModel ? (
+                                    <div className="No-Course-error mb-3">
+                                        <p className="hit-message"><BsInfoCircle /> هیچ درسی برای این گروه در دیتابیس وجود ندارد</p>
+                                    </div>
+                                ) : (
+                                        <div className="text-start ">
+                                            <button className={error.noCourseModel ? "custome-disabled" : "custome-btn-info"} onClick={selectCourseModalHandler} disabled={error.noCourseModel}>انتخاب درس</button>
+                                        </div>
+                                )
+                            }
+                            
+                            
                         </div>
                         
 
