@@ -52,7 +52,7 @@ const UserInfo = () => {
 
     useEffect(() => {
         if (NoResponseFromServer) { 
-            navigate("/Not-Found");
+            navigate("/NotFound");
             dispatch(modalActions.hideModal());
         }
         else if (isloading) 

@@ -1,9 +1,13 @@
 ﻿import './noResponse.css';
 import { Outlet, NavLink, useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import { useEffect, useState } from 'react';
+
+
 
 const NoResponse = () => {
     const navigate = useNavigate();
+
     return (
         <div className="noResponse-container ">
             <div className="noResponse container">
@@ -11,7 +15,7 @@ const NoResponse = () => {
                 <hr></hr>
                 <p>سرور جوابی به درخواستت نمیده. نمی‌دونیم چرا!  (احتمالا دیگه دوسِت نداره <i className="bi  bi-emoji-smile"></i>) </p>
                 <p>برو دوراتو بزن دوباره بیا؛ شاید نظرش عوض شد.</p>
-                <NavLink to="/home" className="">غرورتو زیر پا بذار و دوباره درخواست بده!</NavLink>
+                <NavLink to="/" className="">بازگشت به صفحه اصلی </NavLink>
             </div>
         </div>
         

@@ -11,7 +11,7 @@
     top: 10vh;
     right: 0;
     width: 100vw;
-    height:90vh;
+    height:90%;
     background-color: var(--C1);
 }
 
@@ -44,12 +44,7 @@
         right: 0rem;
         top: -5rem;
     }
-    .noResponse-container {
-        height: 120vh;
-    }
 }
 @media only screen and (max-height: 700px) {
-    .noResponse-container {
-        height: 140vh;
-    }
+
 }

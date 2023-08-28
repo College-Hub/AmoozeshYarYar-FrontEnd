@@ -6,9 +6,12 @@ export const apiSlice = createApi({
 
     baseQuery: fetchBaseQuery({
         //baseUrl: 'http://localhost:5269/api',
-        baseUrl: 'https://localhost:7208/api',
+        //baseUrl: 'https://localhost:7208/api',
         //arya
-        //baseUrl:'http://192.168.10.26:45455/api',
+        //baseUrl: 'http://192.168.10.26:45455/api',
+
+        //deploy
+        baseUrl:'http://5.160.82.66:11025/api',
     }),
     endpoints: builder => ({
         getUniversiy: builder.query({
