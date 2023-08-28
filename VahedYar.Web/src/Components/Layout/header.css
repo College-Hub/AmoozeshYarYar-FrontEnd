@@ -8,8 +8,9 @@ ul {
 }
 nav {
     padding : 0!important;
+    background-color: var(--C1)!important;
 }
-> custome-brand {
+.custome-brand {
     
 }
 .custome-brand a {
@@ -62,5 +63,15 @@ nav .active {
 }
 img {
     width: 100px;
-    height: 
+}
+.navbar-nav {
+    display: flex !important;
+    justify-content: end !important;
+    margin-right: 0 !important;
+    width: 100% !important;
+}
+#responsive-navbar-nav ul {
+    list-style: none;
+    padding-right: 0;
+    width: 100% !important;
 }
