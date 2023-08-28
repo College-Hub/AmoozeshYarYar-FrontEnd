@@ -9,7 +9,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{6B09851F-7
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{5B1D1F18-F73D-4343-858D-8E6EC00D67C8}"
 EndProject
-Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "AmoozeshYarYar.Web", "AmoozeshYarYar.Web\AmoozeshYarYar.Web.esproj", "{232B08BF-1393-47AE-8ECA-E92E250AC069}"
+Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "VahedYar.Web", "VahedYar.Web\VahedYar.Web.esproj", "{232B08BF-1393-47AE-8ECA-E92E250AC069}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
