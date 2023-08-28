@@ -3,3 +3,13 @@ h5 i {
     font-size: 20px;
 }
 
+.timeTable-info > span {
+    padding: 0.5rem;
+    background-color: var(--C4-lower);
+    border: 1px solid var(--C4);
+    border-radius: 4px;
+}
+.timeTable-info > span > span{
+    color: var(--C3);
+    font-weight: bold;
+}

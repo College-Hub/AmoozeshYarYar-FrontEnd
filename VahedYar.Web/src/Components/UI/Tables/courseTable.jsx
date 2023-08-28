@@ -5,6 +5,7 @@ import { modalActions } from "../../../Store/modal-slice";
 import { useSelector, useDispatch } from 'react-redux';
 import { Fragment } from 'react';
 import { useEffect } from 'react';
+import { toPersianNumber } from '../../../feratures/helper/helper';
 const CourseTable = () => {
     const { selectedcourses, courses, error, } = useSelector(state => state.course);
     const { pageNO } = useSelector(state => state.ui);
@@ -91,10 +92,10 @@ const CourseTable = () => {
                 </div>
                 <div className="lesson-list-footer row">
                     <div className="col-12 col-md-6">
-                        <span>تعداد درس انتخاب شده : <span>{selectedcourses.length}</span> </span>
+                        <span>تعداد درس انتخاب شده : <span>{toPersianNumber(selectedcourses.length)}</span> </span>
                     </div>
                     <div className="col-12 col-md-6">
-                        <span>مجموع واحد های درسی : <span>{generateTotalUnit()}</span></span>
+                        <span>مجموع واحد های درسی : <span>{toPersianNumber(generateTotalUnit())}</span></span>
                     </div>
                     
                 </div>

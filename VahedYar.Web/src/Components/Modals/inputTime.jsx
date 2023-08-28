@@ -130,7 +130,7 @@ const TimeModal = (prop) => {
                         <button className={"custome-btn-danger"} onClick={closeHandler} >لغو</button>
                     </div>
                     <div>
-                        <button className={"custome-btn-alert"} onClick={deleteTimeHandler} >حذف</button>
+                        <button className={"custome-btn-alert"} onClick={deleteTimeHandler} >پیش‌فرض</button>
                     </div>
 
                 </div>

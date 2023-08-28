@@ -21,7 +21,8 @@ export const generateTimeString = str => {
 };
 
 // convert english numbers to persian numbers 
-export const toPersianNumber = (inputString) => {
+export const toPersianNumber = (input) => {
+    let inputString = input.toString();
     const persianNumbers = {
         '0': '۰',
         '1': '۱',
