@@ -61,3 +61,10 @@
     .details i:hover {
         color: var(--C2);
     }
+
+.preview-header svg {
+    position: relative;
+    top: 5px;
+    font-size: 19px;
+    cursor: pointer;
+}

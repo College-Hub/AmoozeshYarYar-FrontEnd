@@ -12,12 +12,12 @@ import Badges from '../Badges/badges';
 import Like from '../Badges/likeBtn';
 import PresentationDetail from '../../Modals/presentationDetail';
 import { modalActions } from '../../../Store/modal-slice';
-import { BsChevronBarContract, BsCalendar2Check, BsInfoCircle } from "react-icons/bs";
+import { BsChevronBarContract, BsCalendar2Check, BsInfoCircle, BsHeart, BsHeartFill } from "react-icons/bs";
 
 
 
 const Preview = (prop) => {
-    const { Presentations, eventKey } = prop
+    const { timeTable, eventKey } = prop
     // state 
 
     //hook 
@@ -27,21 +27,22 @@ const Preview = (prop) => {
             eventKey,
             () => callback && callback(eventKey),
         );
-        return (<BsChevronBarContract onClick={decoratedOnClick} />)
+        return (<BsChevronBarContract onClick={decoratedOnClick}/>)
     }
     // event handler 
     const detailShowHandler = (event) => {
         let id = event.target.getAttribute("id");
-        dispatch(modalActions.setModalData({ content: "Presentation-DEATAIL", data: Presentations[id] }))
+        dispatch(modalActions.setModalData({ content: "Presentation-DEATAIL", data: timeTable[id] }))
     };
     const weeklyViewHandler = () => {
-        dispatch(modalActions.setModalData({ content: "WEEKVIEW", data: Presentations }))
+        dispatch(modalActions.setModalData({ content: "WEEKVIEW", data: timeTable }))
     };
     //like handler 
     const [like, setLike] = useState(false);
     const likeHandler = () => {
         setLike(!like)
     };
+    // functions 
 
     return (
         <Fragment>
@@ -59,7 +60,8 @@ const Preview = (prop) => {
                             <Badges variant={"info"} text={"روز"} padding={true} />
                             &nbsp;
                             <span>
-                                <i className={`bi bi-heart${like ? "-fill" : ""} like-btn ms-2 me-2`} onClick={likeHandler} ></i>
+                                {like ? <BsHeartFill onClick={likeHandler} className={"like-btn"} /> : <BsHeart onClick={likeHandler} className={"like-btn"} />}
+                                
                             </span>
                         </div>
                         <ContextAwareToggle eventKey={eventKey} ></ContextAwareToggle>
@@ -84,7 +86,7 @@ const Preview = (prop) => {
                                 </div>
                                 <div className="presentation-table-body">
                                     {
-                                        Presentations?.map((Presentation, index) => (
+                                        timeTable?.map((Presentation, index) => (
                                             <div className="presentation-table-body-row row" key={index}>
                                                 <div className="col-8 col-md-4 col-xl-2">{Presentation.courseTitle}</div>
                                                 <div className="d-none col-2 d-md-block col-md-3 col-xl-2">{Presentation.instructorName}</div>
@@ -99,7 +101,7 @@ const Preview = (prop) => {
                                     }
                                 </div>
                                 <div className="presentation-table-footer d-flex justify-content-end ">
-                                    <button className="custome-btn-info mt-3" onClick={weeklyViewHandler}>نمایش هفتگی</button>
+                                    <button className="d-none d-lg-block custome-btn-info mt-3" onClick={weeklyViewHandler}>نمایش هفتگی</button>
                                 </div>
                             </div>
                         </div>
