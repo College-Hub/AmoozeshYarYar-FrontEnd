@@ -27,7 +27,9 @@ const Haeder = () => {
         <header>
             <nav className="navbar navbar-expand-lg">
                 <div className="container-fluid">
-                    <div className={"col-6 col-lg-1 custome-brand"}><NavLink className={"nav-brand"} aria-current="page" to='/'>آموزشیاریار</NavLink></div>
+                    <div className={"col-6 col-lg-1 custome-brand"}><NavLink className={"nav-brand"} aria-current="page" to='/'>
+                        <img src="/Logo.png" alt="Logo" />
+                    </NavLink></div>
                     <div className={"col-6 d-flex d-lg-none justify-content-end toggle-icon"}>
                         <i className="bi bi-grid-fill" data-toggle="tooltip" data-placement="top" data-title="Tooltip on top" onClick={expandNavbarHandler}></i>
                     </div>
