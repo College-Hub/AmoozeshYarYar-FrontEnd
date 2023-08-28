@@ -30,18 +30,15 @@
 }
 .search-input-group {
     display: flex;
-    border: 1px solid var(--C4);
-    padding: 0;
+    
+}
+.search-input-group input{
+    border: 1px solid var(--C4) !important;
     border-radius: 4px;
+    margin-left: 1rem;
 }
-.search-input-group span {
-    padding: 0.3rem 0.5rem;
-    border-right: 1px solid var(--C4);
-    cursor: pointer;
-    color: var(--C4);
-}
-.search-input-group span:hover{
-    background-color: var(--C4-lower);
+.search-input-group button {
+    
 }
 .select-course-Modal-search-row input {
     color: var(--C2);
