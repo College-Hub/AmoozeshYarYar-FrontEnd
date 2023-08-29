@@ -5,10 +5,14 @@ import { useSelector, useDispatch } from 'react-redux';
 import { modalActions } from "../../Store/modal-slice";
 import { courseActions } from "../../Store/course-slice";
 import { uiActions } from "../../Store/ui-slice";
-import { Fragment, useEffect, useState } from 'react';
+import { Fragment, useEffect, useState, useRef } from 'react';
 import LoadSpiner from '../Animations/loadSpiner';
 import { toPersianNumber } from '../../feratures/helper/helper';
-import { BsInfoCircle, BsSearch } from "react-icons/bs";
+import { BsInfoCircle, BsSearch, BsList } from "react-icons/bs";
+
+import Overlay from 'react-bootstrap/Overlay';
+import Popover from 'react-bootstrap/Popover';
+import CourseDetail from '../Popovers/courseDetail';
 
 const SelectCourseModal = (prop) => {
     // state
@@ -18,6 +22,9 @@ const SelectCourseModal = (prop) => {
     const [pageIndex, setPageIndex] = useState(0);
     const [amount, setAmount] = useState(Math.ceil(courses?.length / 5));
 
+    const [show, setShow] = useState(false);
+    const [target, setTarget] = useState(null);
+    const ref = useRef(null);
     //paginator
     const dispatch = useDispatch();
 
@@ -40,10 +47,21 @@ const SelectCourseModal = (prop) => {
         let value = event.target.value;
         dispatch(courseActions.setFiterForCourses({ filter: value }));
     };
-    const courseDetailHandler = () => {
-        
-    }
+    const overlayHandler = (event) => {
+        if (show) {
+            let latestStat = show;
+            setShow(false);
+            setTimeout(() => {
+                setShow(!latestStat);
+                setTarget(event.target);
+            }, 100)
+        }
+        else {
+            setShow(!show);
+            setTarget(event.target);
+        }
 
+    };
     //pagination
     //event handler
     const paginationHandler = (event) => {
@@ -145,7 +163,10 @@ const SelectCourseModal = (prop) => {
                                                     <span >{toPersianNumber(course.theoreticalUnits)}/{toPersianNumber(course.practicalUnits)}</span>
                                                 </div>
                                                 <div className="col-1 col-md-2 d-flex detail-course justify-content-center ">
-                                                    <BsInfoCircle onCkick={courseDetailHandler} data-CourseId={course.courseId} />
+                                                    <div ref={ref}>
+                                                        <BsInfoCircle data-show={show} onClick={overlayHandler} />
+                                                        <CourseDetail ref={ref} course={course} show={show} target={target} />
+                                                    </div>
                                                 </div>
                                             </div>
                                         ))

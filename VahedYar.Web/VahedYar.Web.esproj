@@ -13,6 +13,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Folder Include="src\assets\" />
+    <Folder Include="src\Components\Popovers\" />
     <Folder Include="src\Components\UI\Badges\" />
     <Folder Include="src\Components\UI\TimeTable\" />
   </ItemGroup>
