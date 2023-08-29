@@ -13,6 +13,7 @@ import Like from '../Badges/likeBtn';
 import PresentationDetail from '../../Modals/presentationDetail';
 import { modalActions } from '../../../Store/modal-slice';
 import { BsChevronBarContract, BsCalendar2Check, BsInfoCircle, BsHeart, BsHeartFill } from "react-icons/bs";
+import { toPersianNumber } from '../../../feratures/helper/helper';
 
 
 
@@ -31,7 +32,7 @@ const Preview = (prop) => {
     }
     // event handler 
     const detailShowHandler = (event) => {
-        let id = event.target.getAttribute("id");
+        let id = event.target.getAttribute("data-prestation");
         dispatch(modalActions.setModalData({ content: "Presentation-DEATAIL", data: timeTable[id] }))
     };
     const weeklyViewHandler = () => {
@@ -49,7 +50,7 @@ const Preview = (prop) => {
             <Card className={"preview"}>
                 <Card.Header className={"d-flex justify-content-between preview-header"}>
                     <div>
-                        <span> # {eventKey + 1}</span>
+                        <span> # {toPersianNumber(eventKey + 1)}</span>
                     </div>
                     <div className="d-flex">
                         <div dir="rtl">
@@ -76,26 +77,26 @@ const Preview = (prop) => {
                             <div className="col-12">
                                 <div className="presentation-table-header row">
                                     <div className="col-8 col-md-4 col-xl-2">عنوان</div>
-                                    <div className="d-none col-2 d-md-block col-md-3 col-xl-2">استاد</div>
-                                    <div className="d-none d-md-block col-md-2 col-xl-1">روز</div>
-                                    <div className="d-none d-md-block col-md-3 col-xl-2 text-center">ساعت</div>   
+                                    <div className="d-none col-2 d-md-block col-md-2 col-xl-2">استاد</div>
+                                    <div className="d-none d-md-block col-md-1 col-xl-1">روز</div>
+                                    <div className="d-none d-md-block col-md-3 col-xl-2 text-md-start text-xl-center">ساعت</div>   
                                     <div className="d-none d-xl-block col-xl-1 text-center">واحد </div>
                                     <div className="d-none d-xl-block col-xl-1 text-center">کد درس</div>
                                     <div className="d-none d-xl-block col-xl-2 text-center">کد ارائه </div>
-                                    <div className="col-4 col-xl-1 text-start text-xl-center">جزئیات</div>
+                                    <div className="col-4 col-md-2 col-xl-1 text-start text-xl-center">جزئیات</div>
                                 </div>
                                 <div className="presentation-table-body">
                                     {
                                         timeTable?.map((Presentation, index) => (
                                             <div className="presentation-table-body-row row" key={index}>
                                                 <div className="col-8 col-md-4 col-xl-2">{Presentation.courseTitle}</div>
-                                                <div className="d-none col-2 d-md-block col-md-3 col-xl-2">{Presentation.instructorName}</div>
+                                                <div className="d-none col-2 d-md-block col-md-2 col-xl-2">{Presentation.instructorName}</div>
                                                 <div className="d-none d-md-block col-md-2 col-xl-1">{Presentation.dayOfWeekToString}</div>
                                                 <div className="d-none d-md-block col-md-3 col-xl-2 text-center" dir="ltr"><span dir="ltr">{Presentation.endTimeToString}</span><span> تا </span><span dir="ltr">{Presentation.startTimeToString}</span></div>                                             
                                                 <div className="d-none d-xl-block col-xl-1 text-center"></div>
                                                 <div className="d-none d-xl-block col-xl-1 text-center"></div>
                                                 <div className="d-none d-xl-block col-xl-2 text-center"></div>
-                                                <div className="col-4 col-xl-1 text-start text-xl-center details"><i id={index} onClick={detailShowHandler}><BsInfoCircle /> </i></div>
+                                                <div className="col-4 col-md-1 col-xl-1 text-start text-xl-center details" ><i data-prestation={index} onClick={detailShowHandler}><BsInfoCircle data-prestation={index} /> </i></div>
                                             </div>
                                         ))
                                     }

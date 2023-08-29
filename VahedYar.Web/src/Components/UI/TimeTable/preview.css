@@ -35,11 +35,13 @@
 }
 
 .presentation-table-body {
+
 }
 
 .presentation-table-body-row {
     padding: 0.5rem 0.25rem;
     border-bottom: 1px dashed var(--C3);
+    font-size: 14px;
 }
 
     .presentation-table-body-row:nth-of-type(2n) {
