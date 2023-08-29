@@ -11,6 +11,7 @@ import LoadSpiner from '../Animations/loadSpiner';
 import NoResponse from '../Errors/Requests/noResponse';
 import { useState } from 'react';
 import { BsBuildings, BsBook, BsInfoCircle } from "react-icons/bs";
+import { FaUserGraduate } from "react-icons/fa6";
 
 const UserInfo = () => {
 
@@ -22,6 +23,7 @@ const UserInfo = () => {
     const { startUpData } = useSelector(state => state.course);
     const [uni, setUni] = useState(undefined);
     const [group, setGroup] = useState(undefined);
+    const [educLevel, setEducLevel] = useState(undefined);
     const [view, setView ] = useState();
 
     //hooks 
@@ -29,21 +31,24 @@ const UserInfo = () => {
     const navigate = useNavigate();
 
     // event handler 
-    const uniBulrHandler = (event) => {
+    const uniBulrHandler = event => {
         setUni(startUpData?.find(uni => uni.universityId === event.target.value));
         setGroup(undefined)
     };
-    const groupBulrHandler = (event) => {
+    const groupBulrHandler = event => {
         setGroup(startUpData?.find(item => item.universityId === uni.universityId).groups.find(gp => gp.groupId === event.target.value));
     };
+    const educationalHandler = event => {
+        setEducLevel(event.target.value)
+    }
     const closeHandler = () => {
         dispatch(modalActions.hideModal());
     };
     const submitHandler = async () => {
-        if (uni && group) {
+        if (uni && group  ) {
             dispatch(courseActions.clearCourses());
             dispatch(courseActions.StartUpHandler());
-            dispatch(authActions.userInfoKeeper({ uni, group }));
+            dispatch(authActions.userInfoKeeper({ uni, group, educLevel }));
             navigate("/selectCourses");
             dispatch(modalActions.hideModal());
         }
@@ -74,7 +79,7 @@ const UserInfo = () => {
                     <Modal.Body className={"modal-userInfo"}>
                         <div className="row">
                             <div className="col-12">
-                                <span>اطلاعات زیر را برای شروع وارد کنید</span>
+                                <span>اطلاعات زیر را برای شروع وارد کن</span>
                             </div>
                             <div className="col-12">
                                 <div className="col-12 mt-3">
@@ -94,7 +99,16 @@ const UserInfo = () => {
                                             uni?.groups?.map(group => <option key={group.groupId} value={group.groupId}>{group.title}</option>)
                                         }
                                     </select>
-                                </div>
+                                    </div>
+                                    <div className="col-12 mt-3">
+                                        <label htmlFor="exampleInputgroup" className="form-label"><FaUserGraduate /> مقطع تحصیلی :</label>
+                                        <select className="form-select custome-modal-input" aria-label="Default select example" onChange={educationalHandler} id="exampleInputgroup" aria-describedby="groupHelp" disabled={false}>
+                                            <option value={undefined}>انتخاب</option>
+                                            {/*{*/}
+                                            {/*    uni?.groups?.map(group => <option key={group.groupId} value={group.groupId}>{group.title}</option>)*/}
+                                            {/*}*/}
+                                        </select>
+                                    </div>
                             </div>
                         </div>
                             <div className="d-flex justify-content-end btn-Group mt-3">
