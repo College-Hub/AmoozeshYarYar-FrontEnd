@@ -7,6 +7,7 @@
 .modal-PresentationDetail-header {
     border-bottom: var(--C3) solid 1px;
     margin-bottom: 1rem;
+    min-height: 40px;
 }
 
     .modal-PresentationDetail-header span {
@@ -26,45 +27,16 @@
 .modal-PresentationDetail-row {
     border-bottom: 1px dashed var(--C3);
     padding: 0.5rem 0.25rem;
+    min-height: 40px;
 }
-
-    .modal-PresentationDetail-row:nth-of-type(2n+1) {
-        background-color: var(--C3-lower);
-    }
-
-    /*//////*/
-
-
-.modal-PresentationDetail-secondary {
-    background-color: #313039;
-    color: var(--C2);
-    border-radius: 4px;
+.instractors{
+    height: auto;
+    margin-bottom: 1rem;
 }
-.modal-PresentationDetail-header-secondary {
-    border-bottom: var(--C2) solid 1px;
-    margin-bottom: 2rem;
+.instractors ul {
+    list-style: arabic-indic;
+    padding-right: 2rem;
 }
-
-    .modal-PresentationDetail-header-secondary span {
-    }
-
-    .modal-PresentationDetail-header-secondary i {
-        color: var(--C2);
-        font-size: 1.8rem;
-        position: relative;
-        top: 5px;
-    }
-
-.modal-PresentationDetail-body-secondary {
-    overflow: hidden;
+.modal-PresentationDetail-row:nth-of-type(2n+1) {
+    background-color: var(--C3-lower);
 }
-
-.modal-PresentationDetail-row-secondary {
-    border-bottom: 1px dashed var(--C2);
-    padding: 0.5rem 0.25rem;
-}
-
-    .modal-PresentationDetail-row-secondary:nth-of-type(2n+1) {
-        background-color: var(--C2-lower);
-    }
-

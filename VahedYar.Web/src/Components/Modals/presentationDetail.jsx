@@ -10,6 +10,7 @@ import Modal from 'react-bootstrap/Modal';
 import LoadSpiner from '../Animations/loadSpiner';
 import { useState } from 'react';
 import { BsList } from "react-icons/bs";
+import { toPersianNumber } from '../../feratures/helper/helper';
 const PresentationDetail = () => {
 
     // route
@@ -55,7 +56,7 @@ const PresentationDetail = () => {
                                 </div>
                                 <div className="modal-PresentationDetail-row row">
                                     <div className="col-5">ساعت :</div>
-                                    <div className="col-7 text-center" ><span dir="ltr">{data.startTimeToString}</span><span> تا </span><span dir="ltr">{data.endTimeToString}</span></div>
+                                    <div className="col-7 text-center" ><span dir="ltr">{toPersianNumber(data.startTimeToString)}</span><span> تا </span><span dir="ltr">{toPersianNumber(data.endTimeToString)}</span></div>
                                 </div>
                                 <div className="modal-PresentationDetail-row row">
                                     <div className="col-5">امتحان :</div>
