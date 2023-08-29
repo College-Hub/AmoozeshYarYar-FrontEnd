@@ -66,7 +66,7 @@ const DayTable = () => {
                 {days.map(day => (
                     <div key={day.id} className={day.isSelected ? "day-list-body-row row row-active" : "day-list-body-row row"} data-day={day.id}>
                         <div className="col-3 col-md-2">
-                            <input className="form-check-input m-2" type="checkbox" onClick={daySelectHandler} value="" data-day={day.id} checked={day.isSelected} />
+                            <input className="form-check-input m-2" type="checkbox" onChange={daySelectHandler} value="" data-day={day.id} checked={day.isSelected} />
                             <span>{day.title}</span>
                         </div>
                         {
