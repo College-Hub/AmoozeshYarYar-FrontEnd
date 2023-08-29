@@ -56,18 +56,26 @@
 }
 .days{
     width: 30%;
+    background-color : var(--C3-lower);
+
 }
-.timeZonRow{
-    padding: 0!important;
+.day{
+    font-size: 15px;
+}
+.timeZonRow {
+    padding: 0 !important;
     width: 100%;
     height: 12.5%;
+}
+.timeZonRow:first-of-type{
+    background-color: var(--C3-lower);
 }
 .timeZonRow:not(:last-of-type){
     border-bottom: 1px solid var(--C3);
 }
 .timeZonRow-child{
     height: 100%;
-    background-color: var(--C3-lower);
+    
     text-align: center;
     padding-top: 10px;
     cursor: pointer;

@@ -17,6 +17,7 @@ import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Tooltip from 'react-bootstrap/Tooltip';
 import Overlay from 'react-bootstrap/Overlay';
 import Popover from 'react-bootstrap/Popover';
+import { randomColor, toPersianNumber } from '../../feratures/helper/helper';
 
 const WeeklyView = () => {
     //state
@@ -24,6 +25,7 @@ const WeeklyView = () => {
     const { days } = useSelector(state => state.course);
     const { isloading } = useSelector(state => state.ui);
     const [showDetail, setShowDetail] = useState(null);
+
     //hooks
     const dispatch = useDispatch();
 
@@ -49,13 +51,13 @@ const WeeklyView = () => {
 
     };
     const renderPresentationPerTime = (dayId) => {
-        let pPerday = presentations.filter(p => p.dayOfWeek == dayId);
+        let pPerday = presentations.filter(p => p.dayTimes[0] == dayId);
         if (pPerday) {
             // index --> 0: start pos / 1: width / 2: ppresentation
             let positions = [];
             for (let presentation of pPerday) {
-                let startTime = presentation.startTime + '';
-                let endTime = presentation.endTime + '';
+                let startTime = presentation.dayTimes[1] + '';
+                let endTime = presentation.dayTimes[2] + '';
                 let SH, SM, EH, EM;
                 let startT = startTime.padStart(4, "0");
                 let endT = endTime.padStart(4, "0");
@@ -88,7 +90,7 @@ const WeeklyView = () => {
                         <Tooltip id="custom-tooltip">
                             {
                                 <Fragment>
-                                    <span dir="ltr">{getPresentationInfo(pos[2]).startTimeToString}</span><span> تا </span><span dir="ltr">{getPresentationInfo(pos[2]).endTimeToString}</span>
+                                    <span dir="ltr">{toPersianNumber(getPresentationInfo(pos[2]).startTimeToString)}</span><span> تا </span><span dir="ltr">{toPersianNumber(getPresentationInfo(pos[2]).endTimeToString)}</span>
                                     <br/>
                                     <span>{getPresentationInfo(pos[2]).instructorName}</span>
                                 </Fragment>
@@ -96,8 +98,8 @@ const WeeklyView = () => {
                         </Tooltip>
                     }
                 >
-                    
-                    <div key={dayId + 'A'} className=" timeZonRow-child" style={{ position: "absolute", right: `${pos[0]}%`, width: `${pos[1]}%` }} id={pos[2]} onClick={showPresentationDetailHanlder} >
+
+                        <div key={dayId + 'A'} className=" timeZonRow-child" style={{ position: "absolute", right: `${pos[0]}%`, width: `${pos[1]}%`, backgroundColor: `${randomColor()}` }} id={pos[2]} onClick={showPresentationDetailHanlder} >
                         {getPresentationInfo(pos[2]).courseTitle}
                     </div>
                     </OverlayTrigger>
@@ -115,7 +117,7 @@ const WeeklyView = () => {
         for (let i = 1; i <= 17; i++) {
             hoursTitle.push(i + 6);
         }
-        return hoursTitle.map((title, index) => <div key={index + 'H'} className="hour-column-child text-center" style={{ width: `${100 / 17}%` }} dir="ltr">{title} : 00</div>)
+        return hoursTitle.map((title, index) => <div key={index + 'H'} className="hour-column-child text-center" style={{ width: `${100 / 17}%` }} dir="ltr">{toPersianNumber(title - 1) + toPersianNumber(': 00')}</div>)
     }
     const renderDetailModal = () => {
     
@@ -124,7 +126,7 @@ const WeeklyView = () => {
         <Fragment>
             {
                 isloading ? <LoadSpiner /> : (
-                    <Modal show={content === "WEEKVIEW"} onHide={closeHandler} size="xl" centered>
+                    <Modal show={content === "WEEKVIEW"} onHide={closeHandler} size="xl" centered className={showDetail ? "focusOut" : "" }>
                         <Modal.Body className={"modal-weeklyView"}>
                             <div className="modal-weeklyView-body">
                                 <div className="week m-3  d-flex " style={{ position: "relative"}}>
@@ -160,47 +162,47 @@ const WeeklyView = () => {
 
 
                         {
-                            showDetail && <Modal show={showDetail} onHide={closeDetailHandler} size="sm" centered>
-                                <Modal.Body className={"modal-PresentationDetail-secondary"}>
-                                    <div className="modal-PresentationDetail-header-secondary d-flex justify-content-between">
-                                        <span><i className="bi bi-list"></i> جزئیات</span>
-                                        <span className={"custome-detail-close"} onClick={closeDetailHandler}><i className="bi bi-x"></i></span>
+                            showDetail && <Modal show={showDetail} onHide={closeDetailHandler} size="md" centered>
+                                <Modal.Body className={"modal-PresentationDetail"}>
+                                    <div className="modal-PresentationDetail-header d-flex justify-content-between">
+                                        <span className=""><i className="bi bi-list"></i> جزئیات</span>
+                                        
                                     </div>
-                                    <div className="modal-PresentationDetail-body-secondary">
-                                        <div className="modal-PresentationDetail-row-secondary row">
+                                    <div className="modal-PresentationDetail-body">
+                                        <div className="modal-PresentationDetail-row row">
                                             <div className="col-5">عنوان درس :</div>
                                             <div className="col-7 text-center">{showDetail?.courseTitle}</div>
                                         </div>
-                                        <div className="modal-PresentationDetail-row-secondary row">
+                                        <div className="modal-PresentationDetail-row row">
                                             <div className="col-5">استاد :</div>
                                             <div className="col-7 text-center">{showDetail?.instructorName}</div>
                                         </div>
-                                        <div className="modal-PresentationDetail-row-secondary row">
+                                        <div className="modal-PresentationDetail-row row">
                                             <div className="col-5">روز :</div>
                                             <div className="col-7 text-center">{showDetail?.dayOfWeekToString}</div>
                                         </div>
-                                        <div className="modal-PresentationDetail-row-secondary row">
+                                        <div className="modal-PresentationDetail-row row">
                                             <div className="col-5">ساعت :</div>
-                                            <div className="col-7 text-center" ><span dir="ltr">{showDetail?.startTimeToString}</span><span> تا </span><span dir="ltr">{showDetail?.endTimeToString}</span></div>
+                                            <div className="col-7 text-center" ><span dir="ltr">{toPersianNumber(showDetail?.startTimeToString)}</span><span> تا </span><span dir="ltr">{toPersianNumber(showDetail?.endTimeToString)}</span></div>
                                         </div>
-                                        <div className="modal-PresentationDetail-row-secondary row">
+                                        <div className="modal-PresentationDetail-row row">
                                             <div className="col-5">امتحان :</div>
                                             <div className="col-7 text-center"></div>
                                         </div>
-                                        <div className="modal-PresentationDetail-row-secondary row">
+                                        <div className="modal-PresentationDetail-row row">
                                             <div className="col-5">واحد :</div>
                                             <div className="col-7 text-center"></div>
                                         </div>
-                                        <div className="modal-PresentationDetail-row-secondary row">
+                                        <div className="modal-PresentationDetail-row row">
                                             <div className="col-5">کد درس :</div>
                                             <div className="col-7 text-center"></div>
                                         </div>
-                                        <div className="modal-PresentationDetail-row-secondary row">
+                                        <div className="modal-PresentationDetail-row row">
                                             <div className="col-5">کد ارائه :</div>
                                             <div className="col-7 text-center"></div>
                                         </div>
                                         <div className="d-flex justify-content-end btn-Group mt-3">
-                                            
+                                            <button className={"custome-btn-danger"} onClick={closeDetailHandler}>بستن</button>
                                         </div>
                                     </div>
                                 </Modal.Body>
