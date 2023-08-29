@@ -10,7 +10,6 @@
     margin-bottom: 1rem;
     padding: 1.5rem 2rem;
     border-radius: 4px;
-    min-height: 400px;
 }
 .select-course-Modal-table-body {
     background-color: var(--C1);
@@ -136,16 +135,22 @@
 .pagination-page:hover {
     background-color: var(--C4-lower);
 }
-.info-icon i {
+.info-icon svg {
     color: var(--C4);
     cursor: pointer;
     transition: 0.25s;
 }
-.info-icon i:hover {
+.info-icon svg:hover {
     color: var(--C3);
 }
-
-
+.detail-course{
+    padding: 0!important;
+}
+.detail-course svg {
+    color: var(--C3);
+    cursor: pointer;
+    font-size: 16px;
+}
 
 @media screen and (min-width: 400px) {
     .select-course-Modal-table-body {

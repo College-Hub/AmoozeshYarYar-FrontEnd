@@ -8,6 +8,7 @@ import { uiActions } from "../../Store/ui-slice";
 import { Fragment, useEffect, useState } from 'react';
 import LoadSpiner from '../Animations/loadSpiner';
 import { toPersianNumber } from '../../feratures/helper/helper';
+import { BsInfoCircle, BsSearch } from "react-icons/bs";
 
 const SelectCourseModal = (prop) => {
     // state
@@ -39,6 +40,9 @@ const SelectCourseModal = (prop) => {
         let value = event.target.value;
         dispatch(courseActions.setFiterForCourses({ filter: value }));
     };
+    const courseDetailHandler = () => {
+        
+    }
 
     //pagination
     //event handler
@@ -90,17 +94,15 @@ const SelectCourseModal = (prop) => {
                             <div className="m-2 mt-3">
                                 <div className="select-course-Modal-info row">
                                     <div className="col-12">
-                                        <h4><i className="bi bi-search"></i> فیلتر درس  </h4 >
+                                        <h4><BsSearch /> فیلتر درس  </h4 >
                                     </div>
-                                    {/*<div className="d-none d-lg-block col-lg-4"></div>*/}
-                                    <div className="col-12 mb-4 pt-4" dir="rtl">
+                                    <div className="col-12 mb-4" dir="rtl">
+                                        {/*<div className="">*/}
+                                        {/*    <p className="hit-message"><BsInfoCircle /> برای برداشتن درس های معارف راحت تر هستش که فیلتر گروه ارائه دهنده رو به گروه معارف تغییر بدی!</p>*/}
+
+                                        {/*</div>*/}
                                         <div className="">
-                                            <span className="ms-2"><i className="bi bi-exclamation-circle"></i></span>
-                                            <span>برای برداشتن درس های معارف راحت تر هستش که فیلتر گروه ارائه دهنده رو به گروه معارف تغییر بدی!</span>
-                                        </div>
-                                        <div className="mt-4">
-                                            <span className="ms-2"><i className="bi bi-exclamation-circle"></i></span>
-                                            <span>یادت باشه ما فقط داریم درس هایی رو بهت نشون میدیم که گروه درسی خودت ارائه میده! در صورتی که گروه درسیت رو اشتباه انتخاب کردی روی لینک تغییر مشخصات اولیه کلیک کن.</span>
+                                            <p className="hit-message"><BsInfoCircle /> یادت باشه ما فقط داریم درس هایی رو بهت نشون میدیم که گروه درسی خودت ارائه میده! در صورتی که گروه درسیت رو اشتباه انتخاب کردی روی لینک تغییر مشخصات اولیه کلیک کن.</p>
                                         </div>
                                     </div>
                                     <div className="col-12" dir="rtl">
@@ -113,23 +115,17 @@ const SelectCourseModal = (prop) => {
                                                 </div>
                                             </div>
                                         </div>
-                                        <div className="col-12 mt-4">
-                                            
-                                        </div>
-
                                     </div>
-                                    <div className="col-12 d-flex justify-content-end" dir="rtl">
-                                        <button className="custome-btn-info" onClick={closeHandler}>بازگشت</button>
+                                    <div className="col-12 d-flex justify-content-end mt-5" dir="rtl">
+                                        <button className="custome-btn-info " onClick={closeHandler}>بازگشت</button>
                                     </div>
-
                                 </div>
 
                                 <div className="select-course-Modal-table-header row">
                                     <div className="d-none d-lg-block col-1 ">انتخاب <span className="d-none d-lg-inline">درس</span></div>
-                                    <div className="col-6 col-lg-3 text-end">عنوان <span className="d-none d-lg-inline">درس</span></div>
-                                    <div className="col-4 col-lg-2 text-end">گروه <span className="d-none d-lg-inline">ارائه دهنده</span></div>
+                                    <div className="col-6 col-lg-4 text-end">عنوان <span className="d-none d-lg-inline">درس</span></div>
+                                    <div className="col-4 col-lg-3 text-end">گروه <span className="d-none d-lg-inline">ارائه دهنده</span></div>
                                     <div className="d-none d-lg-block col-2 text-center">واحد(نظری/عملی)</div>
-                                    <div className="d-none d-lg-block col-2 text-center">ترم پیشنهادی</div>
                                     <div className="col-2 text-center">جزئیات</div>
                                 </div>
                                 <div className="select-course-Modal-table-body">
@@ -139,20 +135,17 @@ const SelectCourseModal = (prop) => {
                                                 <div className="col-1  d-flex justify-content-center">
                                                     <input checked={checkForSeletedCourse(course.courseId)} className="form-check-input m-2" type="checkbox" id={course.courseId} onChange={selectCourseHandler} />
                                                 </div>
-                                                <div className="col-5 col-lg-3 ">
+                                                <div className="col-5 col-lg-4 ">
                                                     <span >{course.title}</span>
                                                 </div>
-                                                <div className="col-5 col-lg-2 ">
+                                                <div className="col-4 col-lg-3 ">
                                                     <span >{course.group}</span>
                                                 </div>
                                                 <div className="d-none d-lg-block col-2 text-center">
                                                     <span >{toPersianNumber(course.theoreticalUnits)}/{toPersianNumber(course.practicalUnits)}</span>
                                                 </div>
-                                                <div className="d-none d-lg-block col-2 d-flex justify-content-center">
-                                                    <span >{course.educationalLevel}</span>
-                                                </div>
-                                                <div className="col-2 d-flex justify-content-center">
-                                                    <span >{course.unit}</span>
+                                                <div className="col-1 col-md-2 d-flex detail-course justify-content-center ">
+                                                    <BsInfoCircle onCkick={courseDetailHandler} data-CourseId={course.courseId} />
                                                 </div>
                                             </div>
                                         ))

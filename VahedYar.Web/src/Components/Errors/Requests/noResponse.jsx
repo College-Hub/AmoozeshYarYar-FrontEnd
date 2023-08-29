@@ -18,7 +18,6 @@ const NoResponse = () => {
                 <NavLink to="/" className="">بازگشت به صفحه اصلی </NavLink>
             </div>
         </div>
-        
     );
 };
 

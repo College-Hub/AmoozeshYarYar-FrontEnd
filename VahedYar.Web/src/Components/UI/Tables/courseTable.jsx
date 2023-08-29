@@ -70,7 +70,7 @@ const CourseTable = () => {
                                     <span >{course.group}</span>
                                 </div>
                                 <div className="col-2 d-none d-lg-block text-center">
-                                    <span >{course.theoreticalUnits}/{course.practicalUnits}</span>
+                                    <span >{toPersianNumber(course.theoreticalUnits)}/{toPersianNumber(course.practicalUnits)}</span>
                                 </div>
                                 <div className="col-6 col-lg-3  d-flex justify-content-start" >
                                     <div className="selectContainer">
@@ -92,7 +92,7 @@ const CourseTable = () => {
                 </div>
                 <div className="lesson-list-footer row">
                     <div className="col-12 col-md-6">
-                        <span>تعداد درس انتخاب شده : <span>{toPersianNumber(selectedcourses.length)}</span> </span>
+                        <span>تعداد درس انتخاب شده : <span>{toPersianNumber(selectedcourses.length)}</span></span>
                     </div>
                     <div className="col-12 col-md-6">
                         <span>مجموع واحد های درسی : <span>{toPersianNumber(generateTotalUnit())}</span></span>
