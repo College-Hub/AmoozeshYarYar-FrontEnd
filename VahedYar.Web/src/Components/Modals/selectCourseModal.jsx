@@ -22,7 +22,7 @@ const SelectCourseModal = (prop) => {
     const [pageIndex, setPageIndex] = useState(0);
     const [amount, setAmount] = useState(Math.ceil(courses?.length / 5));
 
-    const [show, setShow] = useState(false);
+    const [courseDetail, setCourseDetail] = useState(false);
     const [target, setTarget] = useState(null);
     const ref = useRef(null);
     //paginator
@@ -47,20 +47,13 @@ const SelectCourseModal = (prop) => {
         let value = event.target.value;
         dispatch(courseActions.setFiterForCourses({ filter: value }));
     };
-    const overlayHandler = (event) => {
-        if (show) {
-            let latestStat = show;
-            setShow(false);
-            setTimeout(() => {
-                setShow(!latestStat);
-                setTarget(event.target);
-            }, 100)
-        }
-        else {
-            setShow(!show);
-            setTarget(event.target);
-        }
-
+    const DetailHandler = (event) => {
+        let courseId = event.target.getAttribute("data-course");
+        let course = courses.find(c => c.courseId === courseId);
+        if (course) setCourseDetail(course);
+    };
+    const hideCourseDetail = () => {
+        setCourseDetail(null);
     };
     //pagination
     //event handler
@@ -80,6 +73,8 @@ const SelectCourseModal = (prop) => {
     };
 
     //functions
+    
+
     let pages = [];
     for (let i = 1; i <= amount; i++) {
         pages.push(i);
@@ -107,7 +102,7 @@ const SelectCourseModal = (prop) => {
         <Fragment>
             {
                 isloading && !page?.length ? <LoadSpiner /> : (
-                    <Modal show={content === "COURSE"} fullscreen={true} onHide={closeHandler} size="xl" centered>
+                    <Modal show={content === "COURSE"} fullscreen={true} onHide={closeHandler} size="xl" centered className={courseDetail ? "focusOut" : "" }>
                         <Modal.Body className={"modal-course"}>
                             <div className="m-2 mt-3">
                                 <div className="select-course-Modal-info row">
@@ -164,8 +159,7 @@ const SelectCourseModal = (prop) => {
                                                 </div>
                                                 <div className="col-1 col-md-2 d-flex detail-course justify-content-center ">
                                                     <div ref={ref}>
-                                                        <BsInfoCircle data-show={show} onClick={overlayHandler} />
-                                                        <CourseDetail ref={ref} course={course} show={show} target={target} />
+                                                        <BsInfoCircle data-course={course.courseId} onClick={DetailHandler} />
                                                     </div>
                                                 </div>
                                             </div>
@@ -183,6 +177,47 @@ const SelectCourseModal = (prop) => {
                                         </div>
                                     </div>
 
+                                </div>
+                            </div>
+                        </Modal.Body>
+                    </Modal>
+                )
+            }
+            {
+                courseDetail && (
+                    <Modal show={courseDetail} onHide={hideCourseDetail} size="md" centered>
+                        <Modal.Body className={"modal-PresentationDetail"}>
+                            <div className="modal-PresentationDetail-header d-flex justify-content-between">
+                                <span className=""><i className="bi bi-list"></i> جزئیات</span>
+
+                            </div>
+                            <div className="modal-PresentationDetail-body">
+                                <div className="modal-PresentationDetail-row row">
+                                    <div className="col-5">عنوان درس :</div>
+                                    <div className="col-7 text-center">{courseDetail?.title}</div>
+                                </div>
+                                <div className="modal-PresentationDetail-row row">
+                                    <div className="col-5">واحد نظری :</div>
+                                    <div className="col-7 text-center">{toPersianNumber(courseDetail?.theoreticalUnits)}</div>
+                                </div>
+                                <div className="modal-PresentationDetail-row row">
+                                    <div className="col-5"> واحد عملی :</div>
+                                    <div className="col-7 text-center">{toPersianNumber(courseDetail?.practicalUnits)}</div>
+                                </div>
+                                <div className="modal-PresentationDetail-row row">
+                                    <div className="col-5">کد درس :</div>
+                                    <div className="col-7 text-center">{toPersianNumber(courseDetail?.courseCode)}</div>
+                                </div>
+                                <div className="instractors">
+                                    <span>اساتید :</span>
+                                    <ul>
+                                        {
+                                            courseDetail?.instructors.map(instructor => <li>{instructor?.name}</li>)
+                                        }
+                                    </ul>
+                                </div>
+                                <div className="d-flex justify-content-end btn-Group mt-3">
+                                    <button className={"custome-btn-danger"} onClick={hideCourseDetail}>بستن</button>
                                 </div>
                             </div>
                         </Modal.Body>
