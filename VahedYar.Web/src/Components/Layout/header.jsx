@@ -5,14 +5,17 @@ import { uiActions, } from "../../Store/ui-slice";
 import { BsHouse, BsChatLeftHeart } from "react-icons/bs";
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
+import Dropdown from 'react-bootstrap/Dropdown';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import './header.css';
-
+import { FaUserAstronaut, FaRegUser } from "react-icons/fa6";
+import { Fragment } from 'react';
 
 const Haeder = () => {
     // states 
     const expandNavbar = useSelector(state => state.ui.expandNavbar);
+    const [expandNav, setExpandNav] = useState(false)
     /*const isloggedIn = useSelector(state => state.auth.isLoggedIn);*/
 
     // Hooks
@@ -27,61 +30,67 @@ const Haeder = () => {
     // event handlers
     const expandNavbarHandler = () => {
         buttonRef.current.click();
+        setExpandNav(!expandNav)
     }
     return (
         <header>
-            {/*<nav className="navbar navbar-expand-lg">*/}
-            {/*    <div className="container-fluid ">*/}
-            {/*        <div className={"col-6 col-lg-1 custome-brand"}><NavLink className={"nav-brand"} aria-current="page" to='/'>*/}
-            {/*            */}
-            {/*        </NavLink></div>*/}
-            {/*        <div className={"col-6 d-flex d-lg-none justify-content-end toggle-icon"}>*/}
-            {/*            <i className="bi bi-grid-fill" data-toggle="tooltip" data-placement="top" data-title="Tooltip on top" onClick={expandNavbarHandler}></i>*/}
-            {/*        </div>*/}
-            {/*        <div className={!expandNavbar ? "col-6 d-none d-lg-block nav-animation-open" : "col-12 col-lg-6 d-inline-block nav-animation-close"} >*/}
-            {/*            <ul className="navbar-nav d-flex">*/}
-            {/*                <li className={location.pathname === '/home' ? "nav-item flex-fill" : "nav-item" }>*/}
-            {/*                    <NavLink className={"nav-link custome-link"} aria-current="page" to='/home'><BsHouse />  صفحه اصلی</NavLink>*/}
-            {/*                </li>*/}
-            {/*                <li className={location.pathname === '/aboutUs' ? "nav-item flex-fill" : "nav-item"}>*/}
-            {/*                    <NavLink className={"nav-link custome-link"} aria-current="page" to='/aboutUs'><BsChatLeftHeart /> درباره ما</NavLink>*/}
-            {/*                </li>*/}
-
-
-            {/*                */}{/*{isloggedIn && <li className="nav-item"><NavLink className={"nav-link custome-link"} aria-current="page" to='/profile'><i className="bi bi-person-vcard"></i> &nbsp; پروفایل</NavLink></li>}*/}{/*              */}
-            {/*                */}{/*<li className="nav-item d-block d-lg-none">*/}
-            {/*                */}{/*        {isloggedIn ? <NavLink className={"nav-link custome-link "} aria-current="page" to='/home'><i className="bi bi-box-arrow-left"></i> &nbsp; خروج</NavLink> :*/}
-            {/*                */}{/*            <NavLink className={"nav-link custome-link"} aria-current="page" to='/authentication/login'> <i className="bi bi-box-arrow-in-right"></i> &nbsp; ورود</NavLink>}           */}
-            {/*                */}{/*</li>*/}
-            {/*            </ul>*/}
-            {/*        </div>*/}
-            {/*        <div className={"col-4 justify-content-end d-none d-lg-flex"}>*/}
-            {/*        */}{/*    {isloggedIn ? <NavLink className={"nav-link custome-link"} aria-current="page" to='/home'><i className="bi bi-box-arrow-left"></i> &nbsp; خروج</NavLink> :*/}
-            {/*        */}{/*        <NavLink className={"nav-link custome-link"} aria-current="page" to='/authentication/login'> <i className="bi bi-box-arrow-in-right"></i> &nbsp; ورود</NavLink>}*/}
-            {/*        </div>  */}
-                    
-            {/*    </div>               */}
-            {/*</nav>*/}
-            <Navbar collapseOnSelect expand="lg" className="container-fluid" dir={""}>
+            <Navbar collapseOnSelect expand="lg" className="container-fluid p-4 pt-1" dir={""}>
                 
-                    <Navbar.Brand href="#home"><img src="/Logo.png" alt="Logo" /></Navbar.Brand>
+                <Navbar.Brand>
+                    <NavLink className={"brand"} aria-current="page" to='/home'><img src="/Logo.png" alt="Logo" /></NavLink>                    
+                </Navbar.Brand>
                     <Navbar.Toggle aria-controls="responsive-navbar-nav" ref={buttonRef} className={"d-none" } />
                     <div className={"col-6 d-flex d-lg-none justify-content-end toggle-icon"}>
-                        <i className="bi bi-grid-fill" onClick={expandNavbarHandler}></i>
+
+                        <i className={expandNav ?"bi bi-grid-fill open" : "bi bi-grid-fill"} onClick={expandNavbarHandler}></i>
                     </div>
                     <Navbar.Collapse  id="responsive-navbar-nav">
-                        <Nav className="me-auto" dir={"ltr"}>
+                        <Nav className="me-auto" dir={"ltr"} >
                             <ul className="navbar-nav d-flex">
-                                <li className={location.pathname === '/home' ? "nav-item flex-fill" : "nav-item" }>
-                                    <NavLink className={"nav-link custome-link"} aria-current="page" to='/home'><BsHouse />  صفحه اصلی</NavLink>
-                                </li>
                                 <li className={location.pathname === '/aboutUs' ? "nav-item flex-fill" : "nav-item"}>
                                     <NavLink className={"nav-link custome-link"} aria-current="page" to='/aboutUs'><BsChatLeftHeart /> درباره ما</NavLink>
                                 </li>
-                            </ul>
-                        </Nav>
-                        <Nav>
+                                <li className={location.pathname === '/home' ? "nav-item flex-fill" : "nav-item" }>
+                                    <NavLink className={"nav-link custome-link"} aria-current="page" to='/home'><BsHouse />  صفحه اصلی</NavLink>
+                                </li>
+                                {/*{*/}
+                                {/*false ? (*/}
+                                {/*    <li className={location.pathname === '/home' ? "nav-item d-lg-none flex-fill" : "nav-item d-lg-none"}>*/}
+                                {/*        <NavLink className={"nav-link custome-link"} aria-current="page" to='/home'>  خروج</NavLink>*/}
+                                {/*    </li>*/}
+                                {/*    ) : (*/}
+                                {/*    <Fragment>*/}
+                                {/*        <li className={location.pathname === '/home' ? "nav-item d-lg-none flex-fill " : " d-lg-none nav-item"}>*/}
+                                {/*            <NavLink className={"nav-link custome-link"} aria-current="page" to='/login'>  ورود  </NavLink>*/}
+                                {/*        </li >*/}
+                                {/*        <li className={location.pathname === '/home' ? "nav-item d-lg-none flex-fill" : "nav-item d-lg-none"}>*/}
+                                {/*            <NavLink className={"nav-link custome-link"} aria-current="page" to='/signup'>  ثبت نام</NavLink>*/}
+                                {/*        </li>*/}
+                                {/*    </Fragment>*/}
+                                {/*    ) */}
+                                {/*}*/}
 
+                            </ul>
+                    </Nav>
+                    <Nav dir={"ltr"} >
+                        {/*<Dropdown autoClose="outside" className={"d-none d-lg-block"}>*/}
+                        {/*    <Dropdown.Toggle id="dropdown-button-dark-example1" className={"nav-link custome-link-user" }>*/}
+                        {/*            <FaUserAstronaut />*/}
+                        {/*    </Dropdown.Toggle>*/}
+                        {/*    <Dropdown.Menu dir={"rtl"}>*/}
+                        {/*        {*/}
+                        {/*            false ? (*/}
+                        {/*                <NavLink className={"d-block text-end"} dir="rtl" aria-current="page" to='/'></NavLink>*/}
+                        {/*            ) : (*/}
+                        {/*                <Fragment>*/}
+                        {/*                   <NavLink className={"d-block text-end p-2"} dir="rtl" aria-current="page" to='/'>ورود  </NavLink>*/}
+                        {/*                    <NavLink className={"d-block text-end p-2"} dir="rtl" aria-current="page" to='/'>ثبت نام</NavLink>*/}
+                        {/*                </Fragment>*/}
+                                        
+                        {/*            )*/}
+                        {/*        }                               */}
+                        {/*    </Dropdown.Menu>*/}
+                        {/*</Dropdown>*/}
                         </Nav>
                     </Navbar.Collapse>
                 

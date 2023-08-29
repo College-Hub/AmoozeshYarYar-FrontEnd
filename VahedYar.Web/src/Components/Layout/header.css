@@ -37,7 +37,7 @@ nav {
         background-color: var(--C4-lower);
     }
 
-nav .active {
+nav .active:not(.brand) {
     color: var(--C2) !important;
     background-color: var(--C4-lower);
 }
@@ -51,13 +51,11 @@ nav .active {
     transition: 0.1s;
     padding: 0.5rem 2rem;
 }
-    .toggle-icon i:hover {
-        color: var(--C4);
-        cursor: pointer;
-        transform: scale(1.25);
-    
-    }
-
+.toggle-icon i.open {
+    color: var(--C4);
+    cursor: pointer;
+    transform: scale(1.25);
+}
 .nav-item {
     transition: 0.35s ;
 }
@@ -74,4 +72,41 @@ img {
     list-style: none;
     padding-right: 0;
     width: 100% !important;
+}
+.custome-link-user {
+    border: 1px solid var(--C4);
+    border-radius: 50%;
+    transition: 0.25s;
+    color: var(--C4);
+}
+    .custome-link-user:hover {
+        cursor: pointer;
+        background-color: var(--C4-lower);
+        border: 1px solid var(--C4);
+    }
+    .custome-link-user svg {
+        font-size: 24px;
+        margin: 5px;
+        transition: 0.25s;
+        color: var(--C4);
+    }
+    .custome-link-user:hover svg {
+        transform: scale(1.1);
+        color: var(--C2);
+    }
+#dropdown-button-dark-example1::after{
+    display: none
+}
+#dropdown-button-dark-example1.btn.show {
+    background-color: var(--C2-lower);
+    border :1px solid var(--C4);
+
+}
+.dropdown-menu.show {
+    background-color: var(--C4-lower);
+    border: var(--C4) solid 1px;
+    color: var(--C2);
+}
+.dropdown-menu a {
+    color: var(--C2);
 }
