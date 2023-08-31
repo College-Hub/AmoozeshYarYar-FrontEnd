@@ -27,6 +27,24 @@
     font-family: Sans;
     src: url(./Fonts/sans.ttf);
 }
+::-webkit-scrollbar {
+    width: 3px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: var(--C3);
+}
+
+    /* Handle on hover */
+    ::-webkit-scrollbar-thumb:hover {
+        background: #555;
+    }
 body {
     background-color: var(--C1);
     margin: 0;
