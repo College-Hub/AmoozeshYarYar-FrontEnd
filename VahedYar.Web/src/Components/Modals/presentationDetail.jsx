@@ -10,7 +10,7 @@ import Modal from 'react-bootstrap/Modal';
 import LoadSpiner from '../Animations/loadSpiner';
 import { useState } from 'react';
 import { BsList } from "react-icons/bs";
-import { toPersianNumber } from '../../feratures/helper/helper';
+import { dayToPersian, toPersianNumber } from '../../feratures/helper/helper';
 const PresentationDetail = () => {
 
     // route
@@ -29,14 +29,20 @@ const PresentationDetail = () => {
         dispatch(modalActions.hideModal());
     };
 
-    // content handler
+    // functios
+    const DayTimeRender = () => {
+        return data.ConvertDayTime.map((day, index) => <div className={index !== 0 ? "border-top border-secondary " : ""}><span dir="ltr">{toPersianNumber(day.endTime)}</span><span> تا </span><span dir="ltr">{toPersianNumber(day.startTime)}</span></div>)
+    };
+    const dayRender = () => {
+        return data.ConvertDayTime?.map((day, index) => <div className={index !== 0 ? "border-top border-secondary " : ""}>{dayToPersian(day.dayOfWeek)}</div>)
+    };
 
 
     return (
         <Fragment>
             {
                 isloading ? <LoadSpiner /> : (
-                    <Modal show={content === "Presentation-DEATAIL"} onHide={closeHandler} size="md" centered>
+                    <Modal show={content === "Presentation-DEATAIL" && data} onHide={closeHandler} size="md" centered>
                         <Modal.Body className={"modal-PresentationDetail"}>
                             <div className="modal-PresentationDetail-header">
                                 <span><BsList /> جزئیات</span>
@@ -44,7 +50,7 @@ const PresentationDetail = () => {
                             <div className="modal-PresentationDetail-body">
                                 <div className="modal-PresentationDetail-row row">
                                     <div className="col-5">عنوان درس :</div>
-                                    <div className="col-7 text-center">{data.courseTitle}</div>
+                                    <div className="col-6 text-center">{data.courseTitle}</div>
                                 </div>
                                 <div className="modal-PresentationDetail-row row">
                                     <div className="col-5">استاد :</div>
@@ -52,19 +58,31 @@ const PresentationDetail = () => {
                                 </div>
                                 <div className="modal-PresentationDetail-row row">
                                     <div className="col-5">روز :</div>
-                                    <div className="col-7 text-center">{data.dayOfWeekToString}</div>
+                                    <div className="col-7 text-center">
+                                        {
+                                            dayRender()
+                                        }
+                                    </div>
                                 </div>
                                 <div className="modal-PresentationDetail-row row">
                                     <div className="col-5">ساعت :</div>
-                                    <div className="col-7 text-center" ><span dir="ltr">{toPersianNumber(data.startTimeToString)}</span><span> تا </span><span dir="ltr">{toPersianNumber(data.endTimeToString)}</span></div>
+                                    <div className="col-7 text-center" >
+                                        {
+                                            DayTimeRender()
+                                        }
+                                    </div>
                                 </div>
                                 <div className="modal-PresentationDetail-row row">
                                     <div className="col-5">امتحان :</div>
                                     <div className="col-7 text-center"></div>
                                 </div>
                                 <div className="modal-PresentationDetail-row row">
-                                    <div className="col-5">واحد :</div>
-                                    <div className="col-7 text-center"></div>
+                                    <div className="col-5">واحد نظری :</div>
+                                    <div className="col-7 text-center">{toPersianNumber(data.theoreticalUnit)}</div>
+                                </div>
+                                <div className="modal-PresentationDetail-row row">
+                                    <div className="col-5">واحد عملی :</div>
+                                    <div className="col-7 text-center">{toPersianNumber(data.practicalUnit)}</div>
                                 </div>
                                 <div className="modal-PresentationDetail-row row">
                                     <div className="col-5">کد درس :</div>
@@ -72,7 +90,7 @@ const PresentationDetail = () => {
                                 </div>
                                 <div className="modal-PresentationDetail-row row">
                                     <div className="col-5">کد ارائه :</div>
-                                    <div className="col-7 text-center"></div>
+                                    <div className="col-7 text-center">{toPersianNumber(data.presentationCode)}</div>
                                 </div>
                                 <div className="d-flex justify-content-end btn-Group mt-3">
                                     <button className={"custome-btn-danger"} onClick={closeHandler}>بستن</button>

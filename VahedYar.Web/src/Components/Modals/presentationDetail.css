@@ -27,15 +27,6 @@
 .modal-PresentationDetail-row {
     border-bottom: 1px dashed var(--C3);
     padding: 0.5rem 0.25rem;
-    min-height: 40px;
-}
-.instractors{
-    height: auto;
-    margin-bottom: 1rem;
-}
-.instractors ul {
-    list-style: arabic-indic;
-    padding-right: 2rem;
 }
 .modal-PresentationDetail-row:nth-of-type(2n+1) {
     background-color: var(--C3-lower);
