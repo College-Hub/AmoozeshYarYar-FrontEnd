@@ -1,2 +1,9 @@
-body {
+.modal-NeedAcc {
+    background-color: var(--C1);
+    color: var(--C2);
+    border: var(--C4-lower) 1px solid;
+    border-radius: 4px;
+}
+.modal-NeedAcc svg {
+    color: var(--alert);
 }
