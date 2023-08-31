@@ -2,18 +2,19 @@
 
 // change day ids to day persian day title 
 export const dayToPersian = i => {
-    
-    if (i == '0') return "شنبه ";
-    else if (i == '1') return "یک‌شنبه";
-    else if (i == '2') return "دوشنبه";
-    else if (i == '3') return "سه‌شنبه";
-    else if (i == '4') return "چهارشنبه";
-    else if (i == '5') return "پنج‌شنبه";
-
+    i = i.toString();
+    if (i === '0') return "شنبه ";
+    else if (i === '1') return "یک‌شنبه";
+    else if (i === '2') return "دوشنبه";
+    else if (i === '3') return "سه‌شنبه";
+    else if (i === '4') return "چهارشنبه";
+    else if (i === '5') return "پنج‌شنبه";
+    else if (i === '6') return "جمعه";
 };
 
 // convert strings of numbers(like 700 --> 7:00 or 1200 --> 12:00) to time string 
 export const generateTimeString = str => {
+    str = str.toString();
     let charList = Array.from(str);
     charList.length === 4 ? charList.splice(2, 0, ' : ') : charList.splice(1, 0, ' : ')
     let newString = charList + "";
@@ -22,7 +23,7 @@ export const generateTimeString = str => {
 
 // convert english numbers to persian numbers 
 export const toPersianNumber = (input) => {
-    let inputString = input.toString();
+    let inputString = input + '';
     const persianNumbers = {
         '0': '۰',
         '1': '۱',
