@@ -21,10 +21,11 @@ import { randomColor, toPersianNumber } from '../../feratures/helper/helper';
 
 const WeeklyView = () => {
     //state
-    const { content, data: presentations } = useSelector(state => state.modal);
+    const { content, data } = useSelector(state => state.modal);
     const { days } = useSelector(state => state.course);
     const { isloading } = useSelector(state => state.ui);
     const [showDetail, setShowDetail] = useState(null);
+    const [presentations, setPresentations] = useState(null);
 
     //hooks
     const dispatch = useDispatch();
@@ -37,8 +38,7 @@ const WeeklyView = () => {
     //event handler 
     const showPresentationDetailHanlder = (event) => {
         let id = event.target.getAttribute("id")
-        let t = presentations.find(p => p.presentationId === id);
-        //dispatch(modalActions.setModalData({ content: "Presentation-DEATAIL", data: t }));
+        let t = data.find(p => p.presentationId === id);
         setShowDetail(t);
         
     };
@@ -47,17 +47,16 @@ const WeeklyView = () => {
     };
     //function
     const getPresentationInfo = (id) => {
-        return presentations.find(p => p.presentationId === id);
-
+        return data.find(p => p.presentationId === id);
     };
     const renderPresentationPerTime = (dayId) => {
-        let pPerday = presentations.filter(p => p.dayTimes[0] == dayId);
+        let pPerday = data.filter(p => p.dayTimes[0].dayOfWeek == dayId);
         if (pPerday) {
             // index --> 0: start pos / 1: width / 2: ppresentation
             let positions = [];
             for (let presentation of pPerday) {
-                let startTime = presentation.dayTimes[1] + '';
-                let endTime = presentation.dayTimes[2] + '';
+                let startTime = presentation.dayTimes[0].startTime + '';
+                let endTime = presentation.dayTimes[0].endTime + '';
                 let SH, SM, EH, EM;
                 let startT = startTime.padStart(4, "0");
                 let endT = endTime.padStart(4, "0");
@@ -90,7 +89,7 @@ const WeeklyView = () => {
                         <Tooltip id="custom-tooltip">
                             {
                                 <Fragment>
-                                    <span dir="ltr">{toPersianNumber(getPresentationInfo(pos[2]).startTimeToString)}</span><span> تا </span><span dir="ltr">{toPersianNumber(getPresentationInfo(pos[2]).endTimeToString)}</span>
+                                    <span dir="ltr">{toPersianNumber(getPresentationInfo(pos[2]).ConvertDayTime[0].startTime)}</span><span> تا </span><span dir="ltr">{toPersianNumber(getPresentationInfo(pos[2]).ConvertDayTime[0].endTime)}</span>
                                     <br/>
                                     <span>{getPresentationInfo(pos[2]).instructorName}</span>
                                 </Fragment>
@@ -98,11 +97,10 @@ const WeeklyView = () => {
                         </Tooltip>
                     }
                 >
-
                         <div key={dayId + 'A'} className=" timeZonRow-child" style={{ position: "absolute", right: `${pos[0]}%`, width: `${pos[1]}%`, backgroundColor: `${randomColor()}` }} id={pos[2]} onClick={showPresentationDetailHanlder} >
                         {getPresentationInfo(pos[2]).courseTitle}
                     </div>
-                    </OverlayTrigger>
+                </OverlayTrigger>
                     
                 </Fragment>
             ))
@@ -150,7 +148,12 @@ const WeeklyView = () => {
                                         }
                                         </div>
                                         {
-                                            days.map(day => <div key={day.id + 'AB'} className=" timeZonRow p-3" style={{ position: "relative" }}>{renderPresentationPerTime(day.id)}</div>)
+                                            days.map(day =>
+                                            <div key={day.id + 'AB'} className=" timeZonRow p-3" style={{ position: "relative" }}>
+                                                {
+                                                    renderPresentationPerTime(day.id)
+                                                }
+                                            </div>)
                                         }
                                     </div>
                                 </div>
@@ -183,7 +186,7 @@ const WeeklyView = () => {
                                         </div>
                                         <div className="modal-PresentationDetail-row row">
                                             <div className="col-5">ساعت :</div>
-                                            <div className="col-7 text-center" ><span dir="ltr">{toPersianNumber(showDetail?.startTimeToString)}</span><span> تا </span><span dir="ltr">{toPersianNumber(showDetail?.endTimeToString)}</span></div>
+                                            <div className="col-7 text-center" ><span dir="ltr">{toPersianNumber(showDetail?.ConvertDayTime[0].startTime)}</span><span> تا </span><span dir="ltr">{toPersianNumber(showDetail?.ConvertDayTime[0].endTime)}</span></div>
                                         </div>
                                         <div className="modal-PresentationDetail-row row">
                                             <div className="col-5">امتحان :</div>

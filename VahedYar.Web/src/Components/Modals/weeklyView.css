@@ -73,14 +73,13 @@
 .timeZonRow:not(:last-of-type){
     border-bottom: 1px solid var(--C3);
 }
-.timeZonRow-child{
+.timeZonRow-child {
     height: 100%;
-    
     text-align: center;
     padding-top: 10px;
     cursor: pointer;
     font-size: 12px;
-    opacity: 0.7;
+    overflow-y: auto;
 }
 .hour-column{
     position: absolute;
@@ -112,8 +111,6 @@
         width: 90%;
         right: 10%;
     }
-
-
     .days {
         width: 10%;
     }
