@@ -14,6 +14,7 @@ import PresentationDetail from '../Modals/presentationDetail';
 import WeeklyView from '../Modals/weeklyView';
 import { BsChevronBarContract, BsHeart, BsInfoCircle } from "react-icons/bs";
 import { toPersianNumber } from '../../feratures/helper/helper';
+import NeedAccount from '../Modals/needAccount';
 
 const TimeTable = () => {
     //state
@@ -83,6 +84,9 @@ const TimeTable = () => {
                             }
                             {
                                 content === "WEEKVIEW" && <WeeklyView />
+                            }
+                            {
+                                content === "NEEDACC" && <NeedAccount />
                             }
                         </Fragment>
                     )

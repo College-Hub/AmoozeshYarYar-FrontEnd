@@ -1,16 +1,12 @@
 ﻿import './preview.css';
-
-import { Fragment } from "react";
-import { useEffect, useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { Fragment, useEffect, useState } from 'react';
+import { useSelector, useDispatch, connect } from 'react-redux';
 
 import Accordion from 'react-bootstrap/Accordion';
-import AccordionContext from 'react-bootstrap/AccordionContext';
 import { useAccordionButton } from 'react-bootstrap/AccordionButton';
 import Card from 'react-bootstrap/Card';
 import Badges from '../Badges/badges';
 import Like from '../Badges/likeBtn';
-import PresentationDetail from '../../Modals/presentationDetail';
 import { modalActions } from '../../../Store/modal-slice';
 import { BsChevronBarContract, BsCalendar2Check, BsInfoCircle, BsHeart, BsHeartFill } from "react-icons/bs";
 import { dayToPersian, toPersianNumber } from '../../../feratures/helper/helper';
@@ -19,6 +15,7 @@ import { dayToPersian, toPersianNumber } from '../../../feratures/helper/helper'
 
 const Preview = (prop) => {
     const { timeTable, eventKey } = prop
+    const { content } = useSelector(state => state.modal);
     // state 
 
     //hook 
@@ -58,7 +55,7 @@ const Preview = (prop) => {
         return presentation.ConvertDayTime?.map((day, index) => <div className={index !== 0 ? "border-top border-secondary " : ""}>{dayToPersian(day.dayOfWeek)}</div>)
     };
     const showMoreTimeTablesHandler = () => {
-
+        dispatch(modalActions.setModalData({ content: "NEEDACC", data:  "MoreTimeTable"}))
     };
 
 
@@ -135,7 +132,6 @@ const Preview = (prop) => {
                     </Card.Body>
                 </Accordion.Collapse>
             </Card>
-
         </Fragment>
     );
 };

@@ -5,8 +5,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import Haeder from './Components/Layout/header';
 import Footer from './Components/Layout/footer';
 import Signup from './Components/Auth/signup';
-//import Login from './Components/Auth/login';
-//import Auth from './Components/Auth/auth';
+import Login from './Components/Auth/login';
+import Auth from './Components/Auth/auth';
 import Home from './Components/Pages/home';
 import AboutUs from './Components/Pages/aboutUs';
 import Profile from './Components/Pages/profile';
@@ -24,7 +24,7 @@ import { uiActions } from './Store/ui-slice';
 
 
 const App = () => {
-    //const isloggedIn = useSelector(state => state.auth.isLoggedIn);
+    const isloggedIn = useSelector(state => state.auth.isLoggedIn);
     const { startUpData } = useSelector(state => state.course);
 
 
@@ -69,11 +69,11 @@ const App = () => {
                         <Route path='/' element={<Navigate to='/home' />} ></Route>
                         <Route path='/home' element={<Home />} ></Route>
                         <Route path='/aboutUs' element={<AboutUs />} ></Route>
-                        {/*<Route path='/authentication/*' element={isloggedIn ? <Auth /> : <NoAccess />} >*/}
-                        {/*    <Route path='login' element={ <Login /> } />*/}
-                        {/*    <Route path='signup' element={<Signup />} />*/}
-                        {/*</Route>*/}
-                        {/* <Route path='/profile' element={isloggedIn ? <Profile /> : <NoAccess />} ></Route>*/}
+                        <Route path='/authentication/*' element={isloggedIn ? <Auth /> : <NoAccess />} >
+                            <Route path='login' element={ <Login /> } />
+                            <Route path='signup' element={<Signup />} />
+                        </Route>
+                         <Route path='/profile' element={isloggedIn ? <Profile /> : <NoAccess />} ></Route>
                         <Route path='/selectCourses' element={<SelectCourses />} ></Route>
                         <Route path='/timetable' element={<TimeTable />} ></Route>
                         <Route path='/Register' element={<Signup />} ></Route>
