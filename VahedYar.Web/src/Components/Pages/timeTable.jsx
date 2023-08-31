@@ -74,7 +74,7 @@ const TimeTable = () => {
                                 </div>
                                 <Accordion defaultActiveKey="0">
                                     {
-                                        timeTables?.map((p, index) => index < 5 ? <Preview key={index} eventKey={index} timeTable={p} /> : null)
+                                        timeTables?.map((p, index) => index < 10 ? <Preview key={index} eventKey={index} timeTable={p} /> : null)
                                     }
                                 </Accordion>
                             </section>

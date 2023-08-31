@@ -52,6 +52,10 @@ const SelectCourses = () => {
     }, []);
 
     useEffect(() => {
+            dispatch(uiActions.setLoader(isLoading));
+    }, [isLoading]);
+
+    useEffect(() => {
         if (courses?.length) {
             dispatch(courseActions.clearError({ type: "No-COURSE" }));
         }
@@ -93,6 +97,33 @@ const SelectCourses = () => {
             console.log(e)
         }
     }
+
+    //functions
+    // Select Course - function to handle loader and error for Course request 
+    const SelectCourseViewHandler = () => {
+        if (!isLoading && error.noCourseModel) {
+            return (
+                <div className="No-Course-error mb-3">
+                    <p className="hit-message"><BsInfoCircle /> هیچ درسی برای این گروه در دیتابیس وجود ندارد</p>
+                </div>
+            )
+        }
+        else if (isLoading) {
+            return (
+            <div className="text-start ">
+               <button className={"custome-btn-info"}><span className="spinner-border spinner-border-sm" aria-hidden="true"></span> در حال بارگذاری</button>
+            </div>)
+        }
+
+        else {
+            return (
+            <div className="text-start ">
+                 <button className={error.noCourseModel ? "custome-disabled" : "custome-btn-info"} onClick={selectCourseModalHandler} disabled={error.noCourseModel}>انتخاب درس</button>
+            </div> )
+        }       
+        
+    };
+
     return (
         <Fragment>
             <section id="info" className="row custome-contaner-section">
@@ -136,15 +167,8 @@ const SelectCourses = () => {
                         </div >
                         <div className="d-flex justify-content-end flex-wrap">
                             {
-                                error.noCourseModel ? (
-                                    <div className="No-Course-error mb-3">
-                                        <p className="hit-message"><BsInfoCircle /> هیچ درسی برای این گروه در دیتابیس وجود ندارد</p>
-                                    </div>
-                                ) : (
-                                        <div className="text-start ">
-                                            <button className={error.noCourseModel ? "custome-disabled" : "custome-btn-info"} onClick={selectCourseModalHandler} disabled={error.noCourseModel}>انتخاب درس</button>
-                                        </div>
-                                )
+                                SelectCourseViewHandler()
+
                             }
                             
                             

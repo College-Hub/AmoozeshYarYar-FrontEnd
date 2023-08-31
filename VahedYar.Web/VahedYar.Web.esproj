@@ -12,9 +12,19 @@
     <BuildOutputFolder>$(MSBuildProjectDirectory)\build</BuildOutputFolder>
   </PropertyGroup>
   <ItemGroup>
-    <Folder Include="src\assets\" />
-    <Folder Include="src\Components\Popovers\" />
     <Folder Include="src\Components\UI\Badges\" />
     <Folder Include="src\Components\UI\TimeTable\" />
+  </ItemGroup>
+  <ItemGroup>
+    <TypeScriptConfiguration Remove="src\Components\Popovers\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="src\Components\Popovers\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <TypeScriptConfiguration Remove="src\assets\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="src\assets\**" />
   </ItemGroup>
 </Project>

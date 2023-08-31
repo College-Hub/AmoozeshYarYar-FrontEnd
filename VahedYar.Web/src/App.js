@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import Haeder from './Components/Layout/header';
 import Footer from './Components/Layout/footer';
-//import Signup from './Components/Auth/signup';
+import Signup from './Components/Auth/signup';
 //import Login from './Components/Auth/login';
 //import Auth from './Components/Auth/auth';
 import Home from './Components/Pages/home';
@@ -76,8 +76,8 @@ const App = () => {
                         {/* <Route path='/profile' element={isloggedIn ? <Profile /> : <NoAccess />} ></Route>*/}
                         <Route path='/selectCourses' element={<SelectCourses />} ></Route>
                         <Route path='/timetable' element={<TimeTable />} ></Route>
+                        <Route path='/Register' element={<Signup />} ></Route>
                         <Route path='/NotFound' element={<NoResponse />} ></Route>
-                        <Route path='/timetable' element={<TimeTable />} ></Route>
                         <Route path='/*' element={<NotFound />} ></Route>
                     </Routes>
                 </main>

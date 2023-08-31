@@ -18,7 +18,23 @@ const timeTableSlice = createSlice({
             for (let timneTable of timeTableModels) {
                 let newTimeTable = [];
                 for (let presentation of timneTable) {
-                    newTimeTable.push({ ...presentation, dayOfWeekToString: dayToPersian(presentation.dayOfWeek.toString()), startTimeToString: generateTimeString(presentation.startTime.toString()), endTimeToString: generateTimeString(presentation.endTime.toString()) });
+                    let ConvertDayTime = []
+                    presentation.dayTimes.map(day => ConvertDayTime.push(
+                        {
+                            dayOfWeek: day.dayOfWeek,
+                            startTime: generateTimeString(day.startTime),
+                            endTime: generateTimeString(day.endTime)
+                        }
+                    ));
+                    let dayIds = [];
+                    presentation.dayTimes.map(day => dayIds.push(day.dayOfWeek));
+                    newTimeTable.push(
+                        {
+                            ...presentation,
+                            ConvertDayTime,
+                            dayIds
+                        }
+                    );
                 }
                 convertedTimetable.push(newTimeTable);
             }

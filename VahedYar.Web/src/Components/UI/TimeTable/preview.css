@@ -11,7 +11,7 @@
     border: none;
 }
 
-    .preview-header i {
+    .preview-header svg {
         font-size: 20px;
         position: relative;
         top: 3px;
@@ -19,7 +19,7 @@
         transition: 0.25s;
     }
 
-        .preview-header i:hover {
+        .preview-header svg:hover {
             color: var(--C2);
         }
 
@@ -54,13 +54,13 @@
 .presentation-table-footer {
 }
 
-.details i {
+.details svg {
     color: var(--C4);
     cursor: pointer;
     transition: 0.25s;
 }
 
-    .details i:hover {
+    .details svg:hover {
         color: var(--C2);
     }
 
