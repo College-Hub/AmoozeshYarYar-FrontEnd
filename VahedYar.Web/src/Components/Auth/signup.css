@@ -32,15 +32,16 @@
     width: 100%;
     padding: 0.3rem 0.5rem;
     border: 1px solid var(--danger);
-    background-color: var(--danger-alternative);
+    background-color: var(--danger-lower);
     border-radius: 4px;
 }
 .helper .custome-danger {
     color: var(--C2) !important;
 }
-.helper .custome-danger i{
-    color: var(--alert);
-    margin: 0.5rem;
+.helper .custome-danger svg{
+    color: var(--alert)!important;
+    padding: 2px;
+    
 }
 .helper .custome-danger span {
 
@@ -61,14 +62,17 @@
     justify-content: center;
     align-items: center;
 }
-#signUpform i {
+#signUpform svg {
     color: var(--C4);
 }
-.showpass i {
+.showpass svg {
     cursor: pointer;
-    padding: 0.25rem 0.5rem;
+    padding: 2px;
+    font-size: 20px !important;
+    margin: 3px;
+    color: var(--C3--alternative) !important;
     border-radius: 4px;
 }
-    .showpass i:hover{
+    .showpass svg:hover {
         background-color: #80808030
     }

@@ -31,6 +31,6 @@
     background-color: var(--success-alternative);
     color: var(--C2);
 }
-#loginForm i {
+#loginForm svg {
     color: var(--C4);
 }

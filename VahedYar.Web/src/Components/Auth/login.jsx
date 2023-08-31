@@ -1,6 +1,7 @@
 ﻿import { Fragment, useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { authActions, requestData } from "../../Store/auth-slice";
+import { BsInfoCircle, BsSend, BsLock, BsPersonCheck, BsEnvelopeAt, BsPerson, BsEye, BsExclamationOctagon } from "react-icons/bs";
 import { uiActions } from "../../Store/ui-slice";
 
 import './login.css';
@@ -17,14 +18,14 @@ const Login = () => {
     const dispatch = useDispatch();
 
     // variables
-    var enteredEmail;
+    var enteredUsername;
     var enteredPassword;
 
     // input bular handler
-    const emailBulrHandler = (event) => {
-        enteredEmail = event.target.value;
+    const usernameBulrHandler = (event) => {
+        enteredUsername = event.target.value;
         //validate     
-        dispatch(authActions.validateInput({ inputType: 'EMAIL', inputTypeVal: enteredEmail, inputSideVal: '' }));
+        dispatch(authActions.validateInput({ inputType: 'USERNAME', inputTypeVal: enteredUsername, inputSideVal: '' }));
 
     };
     const passwordBulrHandler = (event) => {
@@ -59,20 +60,23 @@ const Login = () => {
     };
     return (
         <form className="col-12 col-sm-8 custome-outlet" id="loginForm" onSubmit={sumbitHandler}>
-            <h3 className="mt-3"> <i className="bi bi-person-check"></i> ورود</h3>
+            <h3 className="mt-3"> <BsPersonCheck/> ورود</h3>
             <div className="row">
                 <div className="col-12 col-md-6 ">
                     <div className="col-12 mt-3">
-                        <label htmlFor="exampleInputEmail" className="form-label"><i className="bi bi-envelope-at"></i>  ایمیل :</label>
-                        <input type="email" className="form-control custome-input" id="exampleInputEmail" onBlur={emailBulrHandler} aria-describedby="emailHelp" />
+                        <label htmlFor="exampleInputUserName" className="form-label"> <BsPerson /> نام‌کاربری :</label>
+                        <input type="text" className="form-control custome-input mt-1" id="exampleInputUserName" onBlur={usernameBulrHandler} aria-describedby="usernameHelp" placeholder="نام‌کاربری" />
+
+
                         {
-                            clientsideErrors.email && <div id="firstNamedHelp" className="form-text helper"><span className="custome-danger"><i className="bi bi-exclamation-octagon"></i>{clientsideErrors.email}</span></div>
+                            clientsideErrors.username && <div id="usernameHelp" className="form-text helper"><span className="custome-danger"><i className="bi bi-exclamation-octagon"></i>{clientsideErrors.username}</span></div>
                         }
+
                     </div>
                     <div className="col-12 mt-3">
-                        <label htmlFor="exampleInputpassword" className="form-label d-inline"> <i className="bi bi-lock"></i> رمز:</label>
+                        <label htmlFor="exampleInputpassword" className="form-label d-inline"> <BsLock /> رمز:</label>
                         <div className="showpass d-inline m-3">
-                            <i className="bi bi-eye " onClick={showPassword}></i>
+                            <BsEye onClick={showPassword} />
                         </div>
                         <input type="text" className="form-control custome-input mt-1" id="exampleInputpassword" onBlur={passwordBulrHandler} aria-describedby="passwordHelp" placeholder="رمز" disabled={showPassWord} />
                         {
