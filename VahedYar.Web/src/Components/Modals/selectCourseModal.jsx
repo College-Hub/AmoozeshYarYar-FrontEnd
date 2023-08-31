@@ -10,10 +10,6 @@ import LoadSpiner from '../Animations/loadSpiner';
 import { toPersianNumber } from '../../feratures/helper/helper';
 import { BsInfoCircle, BsSearch, BsList } from "react-icons/bs";
 
-import Overlay from 'react-bootstrap/Overlay';
-import Popover from 'react-bootstrap/Popover';
-import CourseDetail from '../Popovers/courseDetail';
-
 const SelectCourseModal = (prop) => {
     // state
     const { isloading, itemPerPage } = useSelector(state => state.ui);
@@ -23,8 +19,7 @@ const SelectCourseModal = (prop) => {
     const [amount, setAmount] = useState(Math.ceil(courses?.length / 5));
 
     const [courseDetail, setCourseDetail] = useState(false);
-    const [target, setTarget] = useState(null);
-    const ref = useRef(null);
+    const inputRefTitle = useRef(null);
     //paginator
     const dispatch = useDispatch();
 
@@ -45,7 +40,16 @@ const SelectCourseModal = (prop) => {
     };
     const filterTitleHandler = (event) => {
         let value = event.target.value;
+        if (inputRefTitle.current) {
+            inputRefTitle.current.value = value;
+        }
         dispatch(courseActions.setFiterForCourses({ filter: value }));
+    };
+    const cleaerTitleFilter = () => {
+        dispatch(courseActions.setFiterForCourses({ filter: "" }));
+        if (inputRefTitle.current) {
+            inputRefTitle.current.value = '';
+        }
     };
     const DetailHandler = (event) => {
         let courseId = event.target.getAttribute("data-course");
@@ -123,8 +127,8 @@ const SelectCourseModal = (prop) => {
                                             <div className="col-12 col-lg-6 mt-2">
                                                 <label className="mb-2">عنوان درس :</label>
                                                 <div className="search-input-group mb-1">
-                                                    <input className="form-control form-control-sm" type="text" placeholder="" id="filterTitleInput" onChange={filterTitleHandler} aria-label=".form-control-sm example" />
-                                                    <button className="custome-btn-danger">حذف</button>
+                                                    <input className="form-control form-control-sm" type="text" ref={inputRefTitle} id="filterTitleInput" onChange={filterTitleHandler} aria-label=".form-control-sm example" />
+                                                    <button className="custome-btn-danger" onClick={cleaerTitleFilter}>حذف</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -158,7 +162,7 @@ const SelectCourseModal = (prop) => {
                                                     <span >{toPersianNumber(course.theoreticalUnits)}/{toPersianNumber(course.practicalUnits)}</span>
                                                 </div>
                                                 <div className="col-1 col-md-2 d-flex detail-course justify-content-center ">
-                                                    <div ref={ref}>
+                                                    <div >
                                                         <BsInfoCircle data-course={course.courseId} onClick={DetailHandler} />
                                                     </div>
                                                 </div>
@@ -208,9 +212,9 @@ const SelectCourseModal = (prop) => {
                                     <div className="col-5">کد درس :</div>
                                     <div className="col-7 text-center">{toPersianNumber(courseDetail?.courseCode)}</div>
                                 </div>
-                                <div className="instractors">
+                                <div className="modal-PresentationDetail-row row">
                                     <span>اساتید :</span>
-                                    <ul>
+                                    <ul className="pe-5">
                                         {
                                             courseDetail?.instructors.map(instructor => <li>{instructor?.name}</li>)
                                         }
