@@ -29,7 +29,7 @@ const TimeTable = () => {
 
 
     useEffect(() => {
-        handleRequest();
+        if (!timeTables && TimeTableFilter.Courses?.length < 13) handleRequest();
     }, [])
     useEffect(() => {
         dispatch(uiActions.setLoader(isLoading));
