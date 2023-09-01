@@ -10,7 +10,8 @@ const authSlice = createSlice({
         token: initialToken ? initialToken : '',
         serversideErros: { email: '', password: '', phoneNumber: '' },
         clientsideErrors: { email: '', username: '', password: '', rePassword: '', firstName: '', lastName: '', phoneNumber: '' },
-        userInfo: initialUserInfo,
+        userInfo: !initialUserInfo ? initialUserInfo : {},
+
         userAlowedToSubmit: false,
         //isLoggedIn: !!initialToken,
         isLoggedIn: true,
@@ -40,37 +41,37 @@ const authSlice = createSlice({
                 else state.clientsideErrors.rePassword = '';
             }
             //for LASTNAME
-            if (action.payload.inputType === 'LASTNAME') {
-                if (!inputVal) state.clientsideErrors.lastName = 'وارد کردن نام خانوادگی اجباری است';
+            //if (action.payload.inputType === 'LASTNAME') {
+            //    if (!inputVal) state.clientsideErrors.lastName = 'وارد کردن نام خانوادگی اجباری است';
                 
-                else if (!(inputVal.search(/[0-9]/) < 0)) state.clientsideErrors.lastName = 'نام خانوادگی نباید شامل عدد باشد';
-                else if (!(inputVal.search(/[a-z]/i) < 0)) state.clientsideErrors.lastName = ' نام خانوادگی باید از حروف فارسی تشکیل شده باشد';
-                else state.clientsideErrors.lastName = '';
-            }
-            //for FIRSTNAME
-            if (action.payload.inputType === 'FIRSTNAME') {
-                if (!inputVal) state.clientsideErrors.firstName = 'وارد کردن نام اجباری است';                
-                else if (!(inputVal.search(/[0-9]/) < 0)) state.clientsideErrors.firstName = ' نام نباید شامل عدد باشد';                  
-                else if (!(inputVal.search(/[a-z]/i) < 0) ) state.clientsideErrors.firstName = ' نام باید از حروف فارسی تشکیل شده باشد';                
-                else state.clientsideErrors.firstName = '';
-            }
+            //    else if (!(inputVal.search(/[0-9]/) < 0)) state.clientsideErrors.lastName = 'نام خانوادگی نباید شامل عدد باشد';
+            //    else if (!(inputVal.search(/[a-z]/i) < 0)) state.clientsideErrors.lastName = ' نام خانوادگی باید از حروف فارسی تشکیل شده باشد';
+            //    else state.clientsideErrors.lastName = '';
+            //}
+            ////for FIRSTNAME
+            //if (action.payload.inputType === 'FIRSTNAME') {
+            //    if (!inputVal) state.clientsideErrors.firstName = 'وارد کردن نام اجباری است';                
+            //    else if (!(inputVal.search(/[0-9]/) < 0)) state.clientsideErrors.firstName = ' نام نباید شامل عدد باشد';                  
+            //    else if (!(inputVal.search(/[a-z]/i) < 0) ) state.clientsideErrors.firstName = ' نام باید از حروف فارسی تشکیل شده باشد';                
+            //    else state.clientsideErrors.firstName = '';
+            //}
             //for PHONENUMBER
             if (action.payload.inputType === 'PHONENUMBER') {
-                var validateresult = inputVal.match(/^0?9[0-9]{9}$/);        
+                var validateresult = inputVal?.match(/^0?9[0-9]{9}$/);        
                 if (!validateresult && inputVal) state.clientsideErrors.phoneNumber = 'شماره همراه معتبر نیست';
                 else state.clientsideErrors.phoneNumber = '';
             }
             //for EMAIL
             if (action.payload.inputType === 'EMAIL') {           
-                if (!inputVal.includes("@") && inputVal)  state.clientsideErrors.email = 'ایمیل معتبر نیست';
-                else if (inputVal.search(/[\u0621-\u0628\u062A-\u063A\u0641-\u0642\u0644-\u0648\u064E-\u0651\u0655\u067E\u0686\u0698\u06A9\u06AF\u06BE\u06CC]/) !== -1  )
+                if (!inputVal?.includes("@") && inputVal)  state.clientsideErrors.email = 'ایمیل معتبر نیست';
+                else if (inputVal?.search(/[\u0621-\u0628\u062A-\u063A\u0641-\u0642\u0644-\u0648\u064E-\u0651\u0655\u067E\u0686\u0698\u06A9\u06AF\u06BE\u06CC]/) !== -1 && inputVal)
                     state.clientsideErrors.email = 'ایمیل شما نمی تواند شامل حروف فارسی باشد';
                 else state.clientsideErrors.email = '';
             }   
             //for USERNAME
             if (action.payload.inputType === 'USERNAME') {
                 if (!inputVal) state.clientsideErrors.username = ' نام‌کاربری رو باید وارد کنی';
-                else if (inputVal.search(/[\u0621-\u0628\u062A-\u063A\u0641-\u0642\u0644-\u0648\u064E-\u0651\u0655\u067E\u0686\u0698\u06A9\u06AF\u06BE\u06CC]/) !== -1) state.clientsideErrors.username = 'برای نام‌کاربری نمی‌تونی از حروف فارسی استفاده کنی ';
+                else if (inputVal?.search(/[\u0621-\u0628\u062A-\u063A\u0641-\u0642\u0644-\u0648\u064E-\u0651\u0655\u067E\u0686\u0698\u06A9\u06AF\u06BE\u06CC]/) !== -1) state.clientsideErrors.username = 'برای نام‌کاربری نمی‌تونی از حروف فارسی استفاده کنی ';
                 else if (inputVal?.length > 12 && inputVal) state.clientsideErrors.username = 'نام‌کاربری کوتاه تری انتخاب کن';
                 else state.clientsideErrors.username = '';
             }   
@@ -99,8 +100,26 @@ const authSlice = createSlice({
             state.isLoggedIn = false;
         },
         userInfoKeeper(state, action) {
-            var inputVal = action.payload;
-           state.userInfo = inputVal;         
+            var inputVal = action.payload.inputTypeVal;
+            var inputType = action.payload.inputType;
+            if (inputType === "USERNAME") {
+                state.userInfo["username"] = inputVal;         
+            }
+            if (inputType === "PASSWORD") {
+                state.userInfo["password"] = inputVal;         
+            }
+            if (inputType === "PHONENUMBER") {
+                state.userInfo["phoneNumber"] = inputVal;         
+            }
+            if (inputType === "UNI") {
+                state.userInfo["uni"] = inputVal;         
+            }
+            if (inputType === "GROUP") {
+                state.userInfo["group"] = inputVal;         
+            }
+            if (inputType === "EDLEVEL") {
+                state.userInfo["eduLevel"] = inputVal;         
+            }
             localStorage.setItem('userInfo', JSON.stringify(state.userInfo));
         },
         editModalToggle(state, action) {

@@ -36,7 +36,6 @@ export const toPersianNumber = (input) => {
         '8': '۸',
         '9': '۹'
     };
-
     return inputString.replace(/[0-9]/g, match => persianNumbers[match]);
 };
 

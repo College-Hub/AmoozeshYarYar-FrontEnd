@@ -24,7 +24,7 @@ const Haeder = () => {
     const buttonRef = useRef(null);
 
     useEffect(() => {
-        console.log(location.pathname);
+        
     }, [location])
 
     // event handlers
@@ -48,49 +48,54 @@ const Haeder = () => {
                         <Nav className="me-auto" dir={"ltr"} >
                             <ul className="navbar-nav d-flex">
                                 <li className={location.pathname === '/aboutUs' ? "nav-item flex-fill" : "nav-item"}>
-                                    <NavLink className={"nav-link custome-link"} aria-current="page" to='/aboutUs'><BsChatLeftHeart /> درباره ما</NavLink>
+                                <NavLink className={"nav-link custome-link d-lg-none"} onClick={expandNavbarHandler} aria-current="page" to='/aboutUs'><BsChatLeftHeart /> درباره ما</NavLink>
+                                <NavLink className={"nav-link custome-link d-none d-lg-block"} aria-current="page" to='/aboutUs'><BsChatLeftHeart /> درباره ما</NavLink>
                                 </li>
                                 <li className={location.pathname === '/home' ? "nav-item flex-fill" : "nav-item" }>
-                                    <NavLink className={"nav-link custome-link"} aria-current="page" to='/home'><BsHouse />  صفحه اصلی</NavLink>
+                                <NavLink className={"nav-link custome-link d-lg-none"} onClick={expandNavbarHandler} aria-current="page" to='/home'><BsHouse />  صفحه اصلی</NavLink>
+                                <NavLink className={"nav-link custome-link d-none d-lg-block"} aria-current="page" to='/home'><BsHouse />  صفحه اصلی</NavLink>
                                 </li>
-                                {/*{*/}
-                                {/*false ? (*/}
-                                {/*    <li className={location.pathname === '/home' ? "nav-item d-lg-none flex-fill" : "nav-item d-lg-none"}>*/}
-                                {/*        <NavLink className={"nav-link custome-link"} aria-current="page" to='/home'>  خروج</NavLink>*/}
-                                {/*    </li>*/}
-                                {/*    ) : (*/}
-                                {/*    <Fragment>*/}
-                                {/*        <li className={location.pathname === '/home' ? "nav-item d-lg-none flex-fill " : " d-lg-none nav-item"}>*/}
-                                {/*            <NavLink className={"nav-link custome-link"} aria-current="page" to='/login'>  ورود  </NavLink>*/}
-                                {/*        </li >*/}
-                                {/*        <li className={location.pathname === '/home' ? "nav-item d-lg-none flex-fill" : "nav-item d-lg-none"}>*/}
-                                {/*            <NavLink className={"nav-link custome-link"} aria-current="page" to='/signup'>  ثبت نام</NavLink>*/}
-                                {/*        </li>*/}
-                                {/*    </Fragment>*/}
-                                {/*    ) */}
-                                {/*}*/}
+                                {
+                                false ? (
+                                    <li className={location.pathname === '/home' ? "nav-item d-lg-none flex-fill" : "nav-item d-lg-none"}>
+                                        <NavLink className={"nav-link custome-link"} aria-current="page" to='/home' onClick={expandNavbarHandler}>  خروج</NavLink>
+                                    </li>
+                                    ) : (
+                                    <Fragment>
+                                        <li className={location.pathname === '/home' ? "nav-item d-lg-none flex-fill " : " d-lg-none nav-item"}>
+                                                <NavLink className={"nav-link custome-link"} aria-current="page" to='/authentication/login' onClick={expandNavbarHandler}>  ورود  </NavLink>
+                                        </li >
+                                        <li className={location.pathname === '/home' ? "nav-item d-lg-none flex-fill" : "nav-item d-lg-none"}>
+                                                <NavLink className={"nav-link custome-link"} aria-current="page" to='/authentication/signup' onClick={expandNavbarHandler}>  ثبت نام</NavLink>
+                                        </li>
+                                    </Fragment>
+                                    ) 
+                                }
 
                             </ul>
                     </Nav>
                     <Nav dir={"ltr"} >
-                        {/*<Dropdown autoClose="outside" className={"d-none d-lg-block"}>*/}
-                        {/*    <Dropdown.Toggle id="dropdown-button-dark-example1" className={"nav-link custome-link-user" }>*/}
-                        {/*            <FaUserAstronaut />*/}
-                        {/*    </Dropdown.Toggle>*/}
-                        {/*    <Dropdown.Menu dir={"rtl"}>*/}
-                        {/*        {*/}
-                        {/*            false ? (*/}
-                        {/*                <NavLink className={"d-block text-end"} dir="rtl" aria-current="page" to='/'></NavLink>*/}
-                        {/*            ) : (*/}
-                        {/*                <Fragment>*/}
-                        {/*                   <NavLink className={"d-block text-end p-2"} dir="rtl" aria-current="page" to='/'>ورود  </NavLink>*/}
-                        {/*                    <NavLink className={"d-block text-end p-2"} dir="rtl" aria-current="page" to='/'>ثبت نام</NavLink>*/}
-                        {/*                </Fragment>*/}
-                                        
-                        {/*            )*/}
-                        {/*        }  */}
-                        {/*    </Dropdown.Menu>*/}
-                        {/*</Dropdown>*/}
+                        <div className={"justify-content-start w-100"}>
+                            <Dropdown autoClose="outside" className={"d-none d-lg-block"}>
+                                <Dropdown.Toggle id="dropdown-button-dark-example1" className={"nav-link custome-link-user"}>
+                                    <FaUserAstronaut />
+                                </Dropdown.Toggle>
+                                <Dropdown.Menu dir={"rtl"}>
+                                    {
+                                        false ? (
+                                            <NavLink className={"d-block text-end"} dir="rtl" aria-current="page" to='/'></NavLink>
+                                        ) : (
+                                            <Fragment>
+                                                <NavLink className={"d-block text-end p-2"} dir="rtl" aria-current="page" to='/authentication/login'>ورود  </NavLink>
+                                                <NavLink className={"d-block text-end p-2"} dir="rtl" aria-current="page" to='/authentication/signup'>ثبت نام</NavLink>
+                                            </Fragment>
+
+                                        )
+                                    }
+                                </Dropdown.Menu>
+                            </Dropdown>
+                        </div>
+                     
                         </Nav>
                     </Navbar.Collapse>
                 

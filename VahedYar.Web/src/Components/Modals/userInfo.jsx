@@ -48,7 +48,9 @@ const UserInfo = () => {
         if (uni && group  ) {
             dispatch(courseActions.clearCourses());
             dispatch(courseActions.StartUpHandler());
-            dispatch(authActions.userInfoKeeper({ uni, group, educLevel }));
+            dispatch(authActions.userInfoKeeper({ inputType: 'UNI', inputTypeVal: uni, inputSideVal: '' }));
+            dispatch(authActions.userInfoKeeper({ inputType: 'GROUP', inputTypeVal: group, inputSideVal: '' }));
+            dispatch(authActions.userInfoKeeper({ inputType: 'EDLEVEL', inputTypeVal: educLevel, inputSideVal: '' }));
             navigate("/selectCourses");
             dispatch(modalActions.hideModal());
         }

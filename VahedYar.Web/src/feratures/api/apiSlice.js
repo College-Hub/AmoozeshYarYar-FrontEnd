@@ -14,6 +14,7 @@ export const apiSlice = createApi({
         //baseUrl:'http://5.160.82.66:11025/api',
     }),
     endpoints: builder => ({
+        //TODO: user authenticatoin should be added 
         getUniversiy: builder.query({
             query: () => ({
                 url: '/University/GetAll',

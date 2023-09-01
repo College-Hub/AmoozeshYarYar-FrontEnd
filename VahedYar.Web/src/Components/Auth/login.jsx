@@ -46,9 +46,6 @@ const Login = () => {
     const sumbitHandler = (event) => {
         event.preventDefault();
         if (!(clientsideErrors.password || clientsideErrors.email) && (userInfo.email && userInfo.password)) {
-            //dispatch(
-            //    requestData({ email: userInfo.email, password: userInfo.password, hadAccount: false, fullName: '', phoneNumber: ', university: '', subject: '' })
-            //);
             console.log({ email: userInfo.email, password: userInfo.password, hadAccount: false})
         }
         else {
@@ -65,9 +62,7 @@ const Login = () => {
                 <div className="col-12 col-md-6 ">
                     <div className="col-12 mt-3">
                         <label htmlFor="exampleInputUserName" className="form-label"> <BsPerson /> نام‌کاربری :</label>
-                        <input type="text" className="form-control custome-input mt-1" id="exampleInputUserName" onBlur={usernameBulrHandler} aria-describedby="usernameHelp" placeholder="نام‌کاربری" />
-
-
+                        <input type="text" className="form-control custome-input" id="exampleInputUserName" onBlur={usernameBulrHandler} aria-describedby="usernameHelp" placeholder="نام‌کاربری" />
                         {
                             clientsideErrors.username && <div id="usernameHelp" className="form-text helper"><span className="custome-danger"><i className="bi bi-exclamation-octagon"></i>{clientsideErrors.username}</span></div>
                         }

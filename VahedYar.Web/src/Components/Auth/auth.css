@@ -17,7 +17,7 @@
     color: var(--C4);
 }
 .custome-auth-header {
-    margin-top: 5rem;
+    margin-top: 1rem;
 }
 #authentication .custome-tab:nth-of-type(2n) {
     border-radius: 4px 0 0 0;
