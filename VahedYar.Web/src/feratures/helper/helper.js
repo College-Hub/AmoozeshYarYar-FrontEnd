@@ -1,5 +1,6 @@
 ﻿
 
+
 // change day ids to day persian day title 
 export const dayToPersian = i => {
     i = i.toString();
@@ -39,7 +40,7 @@ export const toPersianNumber = (input) => {
     return inputString.replace(/[0-9]/g, match => persianNumbers[match]);
 };
 
-// Randome color generator wit opacity of 30 
+// Randome color generator wit opacity of 50 
 export const randomColor = () => {
     var letters = '0123456789ABCDEF';
     var color = '#';
@@ -48,3 +49,4 @@ export const randomColor = () => {
     }
     return color + '50';
 };
+ 

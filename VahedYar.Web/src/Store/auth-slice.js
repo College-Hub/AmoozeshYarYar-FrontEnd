@@ -10,8 +10,7 @@ const authSlice = createSlice({
         token: initialToken ? initialToken : '',
         serversideErros: { email: '', password: '', phoneNumber: '' },
         clientsideErrors: { email: '', username: '', password: '', rePassword: '', firstName: '', lastName: '', phoneNumber: '' },
-        userInfo: !initialUserInfo ? initialUserInfo : {},
-
+        userInfo: initialUserInfo ? initialUserInfo : {},
         userAlowedToSubmit: false,
         //isLoggedIn: !!initialToken,
         isLoggedIn: true,
@@ -40,21 +39,6 @@ const authSlice = createSlice({
                 else if (inputVal !== inputSideVal) state.clientsideErrors.rePassword = 'تکرار رمز با خود رمز برابر نیست';
                 else state.clientsideErrors.rePassword = '';
             }
-            //for LASTNAME
-            //if (action.payload.inputType === 'LASTNAME') {
-            //    if (!inputVal) state.clientsideErrors.lastName = 'وارد کردن نام خانوادگی اجباری است';
-                
-            //    else if (!(inputVal.search(/[0-9]/) < 0)) state.clientsideErrors.lastName = 'نام خانوادگی نباید شامل عدد باشد';
-            //    else if (!(inputVal.search(/[a-z]/i) < 0)) state.clientsideErrors.lastName = ' نام خانوادگی باید از حروف فارسی تشکیل شده باشد';
-            //    else state.clientsideErrors.lastName = '';
-            //}
-            ////for FIRSTNAME
-            //if (action.payload.inputType === 'FIRSTNAME') {
-            //    if (!inputVal) state.clientsideErrors.firstName = 'وارد کردن نام اجباری است';                
-            //    else if (!(inputVal.search(/[0-9]/) < 0)) state.clientsideErrors.firstName = ' نام نباید شامل عدد باشد';                  
-            //    else if (!(inputVal.search(/[a-z]/i) < 0) ) state.clientsideErrors.firstName = ' نام باید از حروف فارسی تشکیل شده باشد';                
-            //    else state.clientsideErrors.firstName = '';
-            //}
             //for PHONENUMBER
             if (action.payload.inputType === 'PHONENUMBER') {
                 var validateresult = inputVal?.match(/^0?9[0-9]{9}$/);        
@@ -102,25 +86,28 @@ const authSlice = createSlice({
         userInfoKeeper(state, action) {
             var inputVal = action.payload.inputTypeVal;
             var inputType = action.payload.inputType;
-            if (inputType === "USERNAME") {
-                state.userInfo["username"] = inputVal;         
+            if (inputVal) {
+                if (inputType === "USERNAME") {
+                    state.userInfo["username"] = inputVal;
+                }
+                if (inputType === "PASSWORD") {
+                    state.userInfo["password"] = inputVal;
+                }
+                if (inputType === "PHONENUMBER") {
+                    state.userInfo["phoneNumber"] = inputVal;
+                }
+                //if (inputType === "UNI") {
+                //    state.userInfo["uni"] = inputVal;         
+                //}
+                if (inputType === "GROUP") {
+                    state.userInfo["group"] = inputVal;
+                }
+                if (inputType === "EDLEVEL") {
+                    state.userInfo["eduLevel"] = inputVal;
+                }
+                localStorage.setItem('userInfo', JSON.stringify(state.userInfo));
             }
-            if (inputType === "PASSWORD") {
-                state.userInfo["password"] = inputVal;         
-            }
-            if (inputType === "PHONENUMBER") {
-                state.userInfo["phoneNumber"] = inputVal;         
-            }
-            if (inputType === "UNI") {
-                state.userInfo["uni"] = inputVal;         
-            }
-            if (inputType === "GROUP") {
-                state.userInfo["group"] = inputVal;         
-            }
-            if (inputType === "EDLEVEL") {
-                state.userInfo["eduLevel"] = inputVal;         
-            }
-            localStorage.setItem('userInfo', JSON.stringify(state.userInfo));
+    
         },
         editModalToggle(state, action) {
             state.showEditModal = !state.showEditModal
