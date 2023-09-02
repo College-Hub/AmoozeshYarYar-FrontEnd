@@ -80,7 +80,6 @@ input[type='checkbox'] {
 }
 .custome-btn-primary:hover{
     background-color: var(--C4-lower);
-    
 }
 .custome-btn-info {
     border: 1px solid var(--C3);

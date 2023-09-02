@@ -3,9 +3,10 @@ import { Fragment, useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { authActions, requestData } from "../../Store/auth-slice";
 import {uiActions } from "../../Store/ui-slice";
-import { BsInfoCircle, BsSend, BsLock, BsTelephone, BsEnvelopeAt, BsPerson, BsEye, BsExclamationOctagon, BsPersonAdd } from "react-icons/bs";
+import { BsInfoCircle, BsSend, BsLock, BsTelephone, BsEnvelopeAt, BsPerson, BsEye, BsExclamationOctagon, BsPersonAdd, BsBuildings, BsBook } from "react-icons/bs";
 import { useCookies } from 'react-cookie';
 import { useSignupMutation } from '../../feratures/api/apiSlice';
+import { toPersianNumber } from '../../feratures/helper/helper';
 
 const Signup = () => {
 
@@ -42,7 +43,7 @@ const Signup = () => {
     const usernameBulrHandler = (event) => {
         dispatch(authActions.userInfoKeeper({ inputType: 'USERNAME', inputTypeVal: event.target.value }));
         //validate     
-        dispatch(authActions.validateInput({ inputType: 'USERNAME', inputTypeVal: event.target.value, inputSideVal: '' }));
+        dispatch(authActions.validateInput({ inputType: 'USERNAME', inputTypeVal: event.target.value, inputSideVal: '', isRequired: true }));
        
     };
     const passwordBulrHandler = (event) => {
@@ -162,7 +163,7 @@ const Signup = () => {
                 </div>
                 <div className="col-12 col-lg-6 mt-3">
                     <label htmlFor="exampleInputPhone" className="form-label"><BsTelephone /> شماره همراه :</label>
-                    <input type="text" className="form-control custome-input" ref={TellRef} id="exampleInputPhone" dir="ltr" onBlur={phonNumberBulrHandler} aria-describedby="phoneHelp" placeholder="09123456789" />
+                    <input type="text" className="form-control custome-input" ref={TellRef} id="exampleInputPhone" dir="ltr" onBlur={phonNumberBulrHandler} aria-describedby="phoneHelp" placeholder={toPersianNumber("09123456789")} />
 
                     {
                         clientsideErrors.phoneNumber && <div id="firstNamedHelp" className="form-text helper"><span className="custome-danger"><BsExclamationOctagon />{clientsideErrors.phoneNumber}</span></div>
@@ -207,16 +208,17 @@ const Signup = () => {
             </div>
             <div className="row">
                 <div className="col-12 col-lg-6 mt-3">
-                    <label htmlFor="exampleInputUni" className="form-label"><i className="bi bi-buildings"></i> دانشگاه :</label>
+                    <label htmlFor="exampleInputUni" className="form-label"><BsBuildings /> دانشگاه :</label>
                     <select className="form-select custome-input" aria-label="Default select example" onChange={uniBulrHandler} id="exampleInputUni" aria-describedby="uniHelp">
-                        v                                        <option value={undefined}>انتخاب</option>
+                        <option value={undefined}>انتخاب</option>
                         {
                             startUpData?.map(item => <option key={item.universityId} value={item.universityId}>{item.title}</option>)
                         }
                     </select>
+
                 </div>
                 <div className="col-12 col-lg-6 mt-3">
-                    <label htmlFor="exampleInputSubject" className="form-label"><i className="bi bi-book"></i> رشته تحصیلی :</label>
+                    <label htmlFor="exampleInputSubject" className="form-label"><BsBook /> رشته تحصیلی :</label>
                     <select className="form-select custome-input" aria-label="Default select example" onChange={subjectBulrHandler} id="exampleInputSubject" aria-describedby="SubjectHelp" disabled={!uni}>
                         <option value={undefined}>انتخاب</option>
                         {

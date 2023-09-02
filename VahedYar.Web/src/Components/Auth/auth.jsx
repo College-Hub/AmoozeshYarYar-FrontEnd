@@ -13,7 +13,8 @@ const Auth = () => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(authActions.userHadAccStatus());
+        if (authStatus === "login") dispatch(authActions.userHadAccStatus(true));
+        if (authStatus === "signup") dispatch(authActions.userHadAccStatus(false));
         dispatch(authActions.resetErrors());
     }, [authStatus]);
 

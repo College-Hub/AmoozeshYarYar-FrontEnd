@@ -34,3 +34,7 @@
 #loginForm svg {
     color: var(--C4);
 }
+#loginMethodSelect{
+    height: 35px;
+    font-size: 15px;
+}

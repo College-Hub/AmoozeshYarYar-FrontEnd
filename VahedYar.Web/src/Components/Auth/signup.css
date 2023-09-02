@@ -40,8 +40,6 @@
 }
 .helper .custome-danger svg{
     color: var(--alert)!important;
-    padding: 2px;
-    
 }
 .helper .custome-danger span {
 
