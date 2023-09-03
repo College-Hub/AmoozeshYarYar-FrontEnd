@@ -173,7 +173,7 @@ const Login = () => {
                         {
                             renderLoginMethodLable(loginMethod)
                         }
-                        <select className="form-select custome-input w-auto" onChange={loginMethodHandler} dir={"ltr"} aria-label="Default select example" id="loginMethodSelect" aria-describedby="uniHelp">
+                        <select className="form-select custome-input w-auto" onChange={loginMethodHandler} dir={"rtl"} aria-label="Default select example" id="loginMethodSelect" aria-describedby="uniHelp">
                             <option value="1">نام‌کاربری</option>
                             <option value="2">ایمیل</option>
                             <option value="3">شماره‌همراه</option>

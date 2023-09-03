@@ -1,5 +1,6 @@
 ﻿import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-
+import { hashPassword } from "../feratures/helper/helper";
+import { sha256 } from 'crypto-hash';
 // local Storage
 const initialToken = localStorage.getItem('token');
 const initialUserInfo = JSON.parse(localStorage.getItem('userInfo'));
@@ -96,7 +97,8 @@ const authSlice = createSlice({
                 if (inputType === "USERNAME") {
                     state.userInfo["username"] = inputVal;
                 }
-                if (inputType === "PASSWORD") {
+                if (inputType === "PASSWORD")
+                {
                     state.userInfo["password"] = inputVal;
                 }
                 if (inputType === "PHONENUMBER") {

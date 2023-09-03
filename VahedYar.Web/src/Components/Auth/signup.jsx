@@ -6,12 +6,13 @@ import {uiActions } from "../../Store/ui-slice";
 import { BsInfoCircle, BsSend, BsLock, BsTelephone, BsEnvelopeAt, BsPerson, BsEye, BsExclamationOctagon, BsPersonAdd, BsBuildings, BsBook } from "react-icons/bs";
 import { useCookies } from 'react-cookie';
 import { useSignupMutation } from '../../feratures/api/apiSlice';
-import { toPersianNumber } from '../../feratures/helper/helper';
+import { hashPassword, toPersianNumber } from '../../feratures/helper/helper';
+import { sha256 } from 'crypto-hash';
 
 const Signup = () => {
 
     // states
-    const { serversideErros, clientsideErrors, isLoading, userInfo } = useSelector(state => state.auth);
+    const { serversideErros, clientsideErrors, isLoading, userInfo, hadAccount } = useSelector(state => state.auth);
     const { startUpData } = useSelector(state => state.course);
     const { showPassWord } = useSelector(state => state.ui);
     const [pass, setPass] = useState();
@@ -46,9 +47,10 @@ const Signup = () => {
         dispatch(authActions.validateInput({ inputType: 'USERNAME', inputTypeVal: event.target.value, inputSideVal: '', isRequired: true }));
        
     };
-    const passwordBulrHandler = (event) => {
+    const passwordBulrHandler = async (event) => {
+        let hashed = await sha256(event.target.value);
         setPass(event.target.value);
-        dispatch(authActions.userInfoKeeper({ inputType: 'PASSWORD', inputTypeVal: event.target.value }));
+        dispatch(authActions.userInfoKeeper({ inputType: 'PASSWORD', inputTypeVal: hashed }));
         //validate
         dispatch(authActions.validateInput({ inputType: 'PASSWORD', inputTypeVal: event.target.value, inputSideVal: '' }));
         dispatch(authActions.validateInput({ inputType: 'REPASSWORD', inputTypeVal: rePass, inputSideVal: event.target.value }));
@@ -86,7 +88,10 @@ const Signup = () => {
         event.preventDefault();
         if (!(clientsideErrors.phoneNumber || clientsideErrors.usename || clientsideErrors.firstName || clientsideErrors.rePassword || clientsideErrors.password || clientsideErrors.email) && ( pass && rePass && userInfo.username)) {
 
-            console.log({ email: userInfo.email, password: userInfo.password, hadAccount: false, firstName: userInfo.firstName, lastName: userInfo.lastName, phoneNumber: userInfo.phoneNumber, university: userInfo.uni, subject: userInfo.subject })
+            console.log({ email: userInfo.email, password: userInfo.password, hadAccount, phoneNumber: userInfo.phoneNumber, group: userInfo.group })
+            setTimeout(() => {
+                dispatch(authActions.userInfoKeeper({ inputType: 'PASSWORD', inputTypeVal: '' }));
+            }, 5000)
         }
         else {
             //validation
@@ -96,9 +101,7 @@ const Signup = () => {
             dispatch(authActions.validateInput({ inputType: 'REPASSWORD', inputTypeVal: rePass, inputSideVal: userInfo.password }));
             dispatch(authActions.validateInput({ inputType: 'PHONENUMBER', inputTypeVal: userInfo.phoneNumber, inputSideVal: '' }));
         }
-        setTimeout(() => {
-            dispatch(authActions.userInfoKeeper({ inputType: 'PASSWORD', inputTypeVal: '' }));
-        }, 2000)
+
     };
 
     // functions

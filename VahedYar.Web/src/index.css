@@ -67,6 +67,9 @@ input[type='checkbox'] {
 @media only screen and (max-width: 600px) {
     
 }
+select {
+    cursor: pointer;
+}
 
 /*buttons*/
 .custome-btn-primary {
