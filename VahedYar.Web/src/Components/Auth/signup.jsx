@@ -96,7 +96,7 @@ const Signup = () => {
         else {
             //validation
             dispatch(authActions.validateInput({ inputType: 'EMAIL', inputTypeVal: userInfo.email, inputSideVal: '' }));
-            dispatch(authActions.validateInput({ inputType: 'USERNAME', inputTypeVal: userInfo.username, inputSideVal: '' }));
+            dispatch(authActions.validateInput({ inputType: 'USERNAME', inputTypeVal: userInfo.username, inputSideVal: '', isRequired: true }));
             dispatch(authActions.validateInput({ inputType: 'PASSWORD', inputTypeVal: userInfo.password, inputSideVal: '' }));
             dispatch(authActions.validateInput({ inputType: 'REPASSWORD', inputTypeVal: rePass, inputSideVal: userInfo.password }));
             dispatch(authActions.validateInput({ inputType: 'PHONENUMBER', inputTypeVal: userInfo.phoneNumber, inputSideVal: '' }));
@@ -202,7 +202,7 @@ const Signup = () => {
                     <div className="showpass col-1  d-inline">
                         <BsEye onClick={showPassword} />
                     </div>
-                    <input type={showPassWord ? "text" : "password"} className="form-control custome-input mt-1" id="exampleInputRePassword" onBlur={rePasswordBulrHandler} aria-describedby="rePasswordHelp" placeholder="تکرار رمز غیر فعال" disabled={clientsideErrors.password && userInfo.password} />
+                    <input type={showPassWord ? "text" : "password"} className="form-control custome-input mt-1" id="exampleInputRePassword" onBlur={rePasswordBulrHandler} aria-describedby="rePasswordHelp" placeholder="تکرار رمز" disabled={!userInfo.password || clientsideErrors.password} />
                     {
                         clientsideErrors.rePassword && <div id="firstNamedHelp" className="form-text helper"><span className="custome-danger"><BsExclamationOctagon />{clientsideErrors.rePassword}</span></div>
                     }  

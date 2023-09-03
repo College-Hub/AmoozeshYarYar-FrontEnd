@@ -74,7 +74,9 @@ const Login = () => {
         }
         else {
             //validation
-            dispatch(authActions.validateInput({ inputType: 'EMAIL', inputTypeVal: userInfo.email, inputSideVal: '' }));
+            dispatch(authActions.validateInput({ inputType: 'USERNAME', inputTypeVal: userInfo.username, inputSideVal: '', isRequired: loginMethod === "1" }));
+            dispatch(authActions.validateInput({ inputType: 'EMAIL', inputTypeVal: userInfo.email, inputSideVal: '', isRequired: loginMethod === "2" }));
+            dispatch(authActions.validateInput({ inputType: 'PHONENUMBER', inputTypeVal: event.target.value, inputSideVal: '', isRequired: loginMethod === "3" }));
             dispatch(authActions.validateInput({ inputType: 'PASSWORD', inputTypeVal: userInfo.password, inputSideVal: '' }));
 
         }
@@ -188,7 +190,7 @@ const Login = () => {
                         <div className="showpass d-inline m-3">
                             <BsEye onClick={showPassword} />
                         </div>
-                        <input type="text" className="form-control custome-input mt-1" id="exampleInputpassword" onBlur={passwordBulrHandler} aria-describedby="passwordHelp" placeholder="رمز" disabled={showPassWord} />
+                        <input type="text" className="form-control custome-input mt-3" id="exampleInputpassword" onBlur={passwordBulrHandler} aria-describedby="passwordHelp" placeholder="رمز" disabled={showPassWord} />
                         {
                             clientsideErrors.password && <div id="firstNamedHelp" className="form-text helper"><span className="custome-danger"><BsExclamationOctagon />{clientsideErrors.password}</span></div>
                         }

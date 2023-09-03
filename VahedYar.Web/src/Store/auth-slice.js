@@ -74,12 +74,10 @@ const authSlice = createSlice({
             state.clientsideErrors.firstName = '';
             state.clientsideErrors.lastName = '';
             state.clientsideErrors.phoneNumber = '';
-            //state.userInfo.email = '';
-            //state.userInfo.password = '';
-            //state.userInfo.rePassword = '';
-            //state.userInfo.firstName = '';
-            //state.userInfo.lastName = '';
-            //state.userInfo.phoneNumber = '';
+            state.userInfo["username"] ='';
+            state.userInfo["password"] ='';
+            state.userInfo["phoneNumber"] ='';
+            state.userInfo["email"] ='';
         },
         userHadAccStatus(state, action) {
             let hadAcc = action.payload;
@@ -94,6 +92,9 @@ const authSlice = createSlice({
             var inputVal = action.payload.inputTypeVal;
             var inputType = action.payload.inputType;
             if (inputVal) {
+                if (inputType === "EMAIL") {
+                    state.userInfo["email"] = inputVal;
+                }
                 if (inputType === "USERNAME") {
                     state.userInfo["username"] = inputVal;
                 }
