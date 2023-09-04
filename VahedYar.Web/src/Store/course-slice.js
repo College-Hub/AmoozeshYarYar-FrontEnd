@@ -82,8 +82,8 @@ const courseSlice = createSlice({
         },
         //filtering handlation
         setFiterForCourses(state, action) {
-            let { filter } = action.payload;
-            state.filteredCourses = state.courses.filter(course => course.title.includes(filter))
+            let filterVal = action.payload.filter.replace(/ /g, '');
+            state.filteredCourses = state.courses.filter(course => course.title.replace(/ /g, '').includes(filterVal))
         },
         clearFilter(state, action) {
             state.filteredCourses = []
