@@ -10,7 +10,7 @@ const authSlice = createSlice({
     initialState: {
         token: initialToken ? initialToken : '',
         serversideErros: { email: '', password: '', phoneNumber: '' },
-        clientsideErrors: { email: '', username: '', password: '', rePassword: '', firstName: '', lastName: '', phoneNumber: '' },
+        clientsideErrors: { email: '', username: '', password: '', rePassword: '', firstName: '', lastName: '', /*phoneNumber: ''*/ },
         userInfo: initialUserInfo ? initialUserInfo : {},
         userAlowedToSubmit: false,
         //isLoggedIn: !!initialToken,
@@ -38,17 +38,17 @@ const authSlice = createSlice({
             }
             //for REPASSWORD
             if (action.payload.inputType === 'REPASSWORD') {
-                if (!inputVal) state.clientsideErrors.rePassword = ' تکرار رمز رو باید وارد کنی';               
+                if (!inputVal && isRequired) state.clientsideErrors.rePassword = ' تکرار رمز رو باید وارد کنی';               
                 else if (inputVal !== inputSideVal) state.clientsideErrors.rePassword = 'تکرار رمز با خود رمز برابر نیست';
                 else state.clientsideErrors.rePassword = '';
             }
             //for PHONENUMBER
-            if (action.payload.inputType === 'PHONENUMBER') {
-                var validateresult = inputVal?.match(/^0?9[0-9]{9}$/);        
-                if (!inputVal && isRequired) state.clientsideErrors.phoneNumber = 'شماره همراه رو باید وارد کنی';
-                else if (!validateresult && inputVal) state.clientsideErrors.phoneNumber = 'شماره همراه معتبر نیست';
-                else state.clientsideErrors.phoneNumber = '';
-            }
+            //if (action.payload.inputType === 'PHONENUMBER') {
+            //    var validateresult = inputVal?.match(/^0?9[0-9]{9}$/);        
+            //    if (!inputVal && isRequired) state.clientsideErrors.phoneNumber = 'شماره همراه رو باید وارد کنی';
+            //    else if (!validateresult && inputVal) state.clientsideErrors.phoneNumber = 'شماره همراه معتبر نیست';
+            //    else state.clientsideErrors.phoneNumber = '';
+            //}
             //for EMAIL
             if (action.payload.inputType === 'EMAIL') {           
                 if (!inputVal && isRequired) state.clientsideErrors.email = 'ایمیل رو باید وارد کنی';
@@ -73,10 +73,10 @@ const authSlice = createSlice({
             state.clientsideErrors.rePassword = '';
             state.clientsideErrors.firstName = '';
             state.clientsideErrors.lastName = '';
-            state.clientsideErrors.phoneNumber = '';
+            //state.clientsideErrors.phoneNumber = '';
             state.userInfo["username"] ='';
             state.userInfo["password"] ='';
-            state.userInfo["phoneNumber"] ='';
+            //state.userInfo["phoneNumber"] ='';
             state.userInfo["email"] ='';
         },
         userHadAccStatus(state, action) {
@@ -102,9 +102,9 @@ const authSlice = createSlice({
                 {
                     state.userInfo["password"] = inputVal;
                 }
-                if (inputType === "PHONENUMBER") {
-                    state.userInfo["phoneNumber"] = inputVal;
-                }
+                //if (inputType === "PHONENUMBER") {
+                //    state.userInfo["phoneNumber"] = inputVal;
+                //}
                 //if (inputType === "UNI") {
                 //    state.userInfo["uni"] = inputVal;         
                 //}

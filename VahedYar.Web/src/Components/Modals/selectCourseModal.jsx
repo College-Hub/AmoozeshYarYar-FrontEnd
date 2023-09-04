@@ -114,17 +114,13 @@ const SelectCourseModal = (prop) => {
                                         <h4><BsSearch /> فیلتر درس  </h4 >
                                     </div>
                                     <div className="col-12 mb-4" dir="rtl">
-                                        {/*<div className="">*/}
-                                        {/*    <p className="hit-message"><BsInfoCircle /> برای برداشتن درس های معارف راحت تر هستش که فیلتر گروه ارائه دهنده رو به گروه معارف تغییر بدی!</p>*/}
-
-                                        {/*</div>*/}
                                         <div className="">
                                             <p className="hit-message"><BsInfoCircle /> یادت باشه ما فقط داریم درس هایی رو بهت نشون میدیم که گروه درسی خودت ارائه میده! در صورتی که گروه درسیت رو اشتباه انتخاب کردی روی لینک تغییر مشخصات اولیه کلیک کن.</p>
                                         </div>
                                     </div>
                                     <div className="col-12" dir="rtl">
                                         <div className="select-course-Modal-search-row row">
-                                            <div className="col-12 col-lg-6 mt-2">
+                                            <div className="col-12 col-md-6 col-lg-5 col-xl-4 mt-2">
                                                 <label className="mb-2">عنوان درس :</label>
                                                 <div className="search-input-group mb-1">
                                                     <input className="form-control form-control-sm" type="text" ref={inputRefTitle} id="filterTitleInput" onChange={filterTitleHandler} aria-label=".form-control-sm example" />

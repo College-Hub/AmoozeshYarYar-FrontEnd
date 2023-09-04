@@ -111,60 +111,6 @@ const Login = () => {
         }
     }
     //functios
-    const renderLoginMethod = () => {
-        //USERNAME
-        if (loginMethod === "1") {
-            return (
-                <div className="col-12 mt-3">
-                <input type="text" className="form-control custome-input" id="exampleInputUserNameLogin" onBlur={usernameBulrHandler} aria-describedby="usernameHelp" placeholder="نام‌کاربری" />
-                {
-                        clientsideErrors.username && <div id="usernameHelp" className="form-text helper"><span className="custome-danger"><BsExclamationOctagon /> {clientsideErrors.username}</span></div>
-                }
-                </div>
-            );
-        }
-        //EMAIL
-        if (loginMethod === "2") {
-            return (
-                <div className="col-12 mt-3">
-                    <input type="email" className="form-control custome-input" id="exampleInputEmailLogin" onBlur={emailBulrHandler} dir="ltr" aria-describedby="emailHelp" placeholder="example@email.com" />
-                    {
-                        clientsideErrors.email && <div id="emailHelp" className="form-text helper"><span className="custome-danger"><BsExclamationOctagon /> {clientsideErrors.email}</span></div>
-                    }
-                </div>
-            );
-        }
-        //PHONENUMBER
-        if (loginMethod === "3") {
-            return (
-                <div className="col-12 mt-3">
-                    <input type="text" className="form-control custome-input" id="exampleInputPhoneLogin" onBlur={phoneNumberBulrHandler} dir="ltr" aria-describedby="phoneHelp" placeholder={toPersianNumber("09123456789")} />
-                    {
-                        clientsideErrors.phoneNumber && <div id="phoneHelp" className="form-text helper"><span className="custome-danger"><BsExclamationOctagon /> {clientsideErrors.phoneNumber}</span></div>
-                    }
-                </div>
-            );
-        }
-    }
-    const renderLoginMethodLable = () => {
-        if (loginMethod === "1") {
-            return (
-                <label htmlFor="exampleInputUserNameLogin" className="form-label"><BsPerson /> نام‌کاربری :</label>
-            );
-        }
-        //EMAIL
-        if (loginMethod === "2") {
-            return (
-                <label htmlFor="exampleInputEmailLogin" className="form-label"><BsEnvelopeAt />  ایمیل :</label>
-            );
-        }
-        //PHONENUMBER
-        if (loginMethod === "3") {
-            return (
-                <label htmlFor="exampleInputPhoneLogin" className="form-label"><BsTelephone /> شماره همراه :</label>
-            );
-        }
-    }
 
     return (
         <form className="col-12 col-sm-8 custome-outlet" id="loginForm" onSubmit={sumbitHandler}>
@@ -172,37 +118,34 @@ const Login = () => {
             <div className="row">
                 <div className="col-12 col-lg-6 mb-4">
                     <div className="col-12 d-flex justify-content-between flex-wrap ">
-                        {
-                            renderLoginMethodLable(loginMethod)
-                        }
-                        <select className="form-select custome-input w-auto" onChange={loginMethodHandler} dir={"rtl"} aria-label="Default select example" id="loginMethodSelect" aria-describedby="uniHelp">
-                            <option value="1">نام‌کاربری</option>
-                            <option value="2">ایمیل</option>
-                            <option value="3">شماره‌همراه</option>
-                        </select>
-                        {
-                            renderLoginMethod(loginMethod)
-                        }
+                        <label htmlFor="exampleInputUserNameLogin" className="form-label"><BsPerson /> نام‌کاربری :</label>
+                        <div className="col-12 mt-3">
+                            <input type="text" className="form-control custome-input" id="exampleInputUserNameLogin" onBlur={usernameBulrHandler} aria-describedby="usernameHelp" placeholder="نام‌کاربری" />
+                            <div className="d-flex justify-content-start mt-2 passForgot">
+                                <span className="small-text ">نام‌کاربریت رو یادت رفته؟</span>
+                            </div>
+                            {
+                                clientsideErrors.username && <div id="usernameHelp" className="form-text helper"><span className="custome-danger"><BsExclamationOctagon /> {clientsideErrors.username}</span></div>
+                            }
+                        </div>
                     </div>
-                   
                     <div className="col-12 mt-3">
                         <label htmlFor="exampleInputpassword" className="form-label d-inline"> <BsLock /> رمز :</label>
                         <div className="showpass d-inline m-3">
                             <BsEye onClick={showPassword} />
                         </div>
                         <input type="text" className="form-control custome-input mt-3" id="exampleInputpassword" onBlur={passwordBulrHandler} aria-describedby="passwordHelp" placeholder="رمز" disabled={showPassWord} />
+                        <div className="d-flex justify-content-start mt-2 passForgot">
+                            <span className="small-text ">رمزت رو یادت رفته؟</span>
+                        </div>
                         {
                             clientsideErrors.password && <div id="firstNamedHelp" className="form-text helper"><span className="custome-danger"><BsExclamationOctagon />{clientsideErrors.password}</span></div>
                         }
                     </div>
                     
                 </div>
-                <div className="col-12 col-lg-6 "> 
+                <div className="col-12 col-lg-6 ">
                     <p className="hit-message"><BsInfoCircle /> در صورتی که حساب کاربری ندارید بر روی لینک عضویت کلیک کنید تا در کمترین زمان یک حساب کاربری ایجاد کنید.</p>
-                    <p className="mt-4">
-                        
-                    </p>
-
                 </div>
             </div>
             <div className="form-check form-check-reverse">
@@ -213,7 +156,7 @@ const Login = () => {
             </div>
             <div className="d-grid gap-2 d-lg-inline-block text-start" dir="rtl">
                 
-                <button type="submit" className=" custome-submit-btn ">ثبت</button>
+                <button type="submit" className="custome-btn-success mt-4">ثبت</button>
             </div>
             
         </form>

@@ -17,7 +17,7 @@ const Signup = () => {
     const { showPassWord } = useSelector(state => state.ui);
     const [pass, setPass] = useState();
     const [rePass, setRePass] = useState();
-    const TellRef = useRef(null);
+    //const TellRef = useRef(null);
     const EmailRef = useRef(null);
     const [uni, setUni] = useState(undefined);
     const [group, setGroup] = useState(undefined);
@@ -31,11 +31,6 @@ const Signup = () => {
 
 
     // input bular handler
-    const contactHandler = (event) => {
-        if (event.target.value === '1') TellRef.current.focus();
-        else if (event.target.value === '2') EmailRef.current.focus();
-        
-    };
     const emailBulrHandler = (event) => {
         dispatch(authActions.userInfoKeeper({ inputType: 'EMAIL', inputTypeVal: event.target.value }));
         //validate     
@@ -53,7 +48,7 @@ const Signup = () => {
         dispatch(authActions.userInfoKeeper({ inputType: 'PASSWORD', inputTypeVal: hashed }));
         //validate
         dispatch(authActions.validateInput({ inputType: 'PASSWORD', inputTypeVal: event.target.value, inputSideVal: '' }));
-        dispatch(authActions.validateInput({ inputType: 'REPASSWORD', inputTypeVal: rePass, inputSideVal: event.target.value }));
+        dispatch(authActions.validateInput({ inputType: 'REPASSWORD', inputTypeVal: rePass, inputSideVal: event.target.value, isRequired: false }));
         
     };
     const rePasswordBulrHandler = (event) => {
@@ -144,32 +139,7 @@ const Signup = () => {
 
 
                     {
-                        clientsideErrors.username && <div id="usernameHelp" className="form-text helper"><span className="custome-danger"><BsExclamationOctagon />{clientsideErrors.username}</span></div>
-                    }
-
-                </div>
-                <div className="col-12 col-lg-6 mt-3">
-                    <label htmlFor="exampleInputUni" className="form-label"><BsSend /> راه ارتباطی :</label>
-                    <select className="form-select custome-input" aria-label="Default select example" defaultValue={0} onChange={contactHandler} id="exampleInputUni" aria-describedby="uniHelp">
-                        <option value="1">شماره همراه</option>
-                        <option value="2">ایمیل</option>
-                        <option value="3">به تو ربطی نداره!</option>
-                        <option value="4">اصلا دلم نمی خواد!</option>
-                        <option value="5">(خانم / آقا) برو گم شو؛ مزاحم نشو!</option>
-                    </select>
-                </div>
-
-            </div>
-            <div className="row">
-                <div className="col-12 mt-4">
-                    <p className="hit-message"><BsInfoCircle /> برای بازیابی حساب‌کاربریت بهتره حداقل یکی از راه های ارتباطی زیر رو بهمون بدی ولی اجباری نیست!</p>
-                </div>
-                <div className="col-12 col-lg-6 mt-3">
-                    <label htmlFor="exampleInputPhone" className="form-label"><BsTelephone /> شماره همراه :</label>
-                    <input type="text" className="form-control custome-input" ref={TellRef} id="exampleInputPhone" dir="ltr" onBlur={phonNumberBulrHandler} aria-describedby="phoneHelp" placeholder={toPersianNumber("09123456789")} />
-
-                    {
-                        clientsideErrors.phoneNumber && <div id="firstNamedHelp" className="form-text helper"><span className="custome-danger"><BsExclamationOctagon />{clientsideErrors.phoneNumber}</span></div>
+                        clientsideErrors.username && <div id="usernameHelp" className="form-text helper"><span className="custome-danger"><BsExclamationOctagon /> {clientsideErrors.username}</span></div>
                     }
 
                 </div>
@@ -178,10 +148,25 @@ const Signup = () => {
                     <input type="email" className="form-control custome-input" ref={EmailRef} id="exampleInputEmail" dir="ltr" onBlur={emailBulrHandler} aria-describedby="emailHelp" placeholder="example@email.com" />
 
                     {
-                        clientsideErrors.email && <div id="firstNamedHelp" className="form-text helper"><span className="custome-danger"><BsExclamationOctagon />{clientsideErrors.email}</span></div>
+                        clientsideErrors.email && <div id="firstNamedHelp" className="form-text helper"><span className="custome-danger"><BsExclamationOctagon /> {clientsideErrors.email}</span></div>
                     }
 
                 </div>
+            </div>
+            <div className="row">
+                <div className="col-12 mt-4">
+                    <p className="hit-message small-text"><BsInfoCircle /> برای بازیابی حساب‌کاربریت بهتره ایمیل خودت رو بهمون بدی ولی اجباری نیست!</p>
+                </div>
+                {/*<div className="col-12 col-lg-6 mt-3">*/}
+                {/*    <label htmlFor="exampleInputPhone" className="form-label"><BsTelephone /> شماره همراه :</label>*/}
+                {/*    <input type="text" className="form-control custome-input" ref={TellRef} id="exampleInputPhone" dir="ltr" onBlur={phonNumberBulrHandler} aria-describedby="phoneHelp" placeholder={toPersianNumber("09123456789")} />*/}
+
+                {/*    {*/}
+                {/*        clientsideErrors.phoneNumber && <div id="firstNamedHelp" className="form-text helper"><span className="custome-danger"><BsExclamationOctagon />{clientsideErrors.phoneNumber}</span></div>*/}
+                {/*    }*/}
+
+                {/*</div>*/}
+
             </div>
             
             
@@ -193,7 +178,7 @@ const Signup = () => {
                     </div>
                     <input type={showPassWord ? "text" : "password"} className="form-control custome-input mt-1" id="exampleInputpassword" onBlur={passwordBulrHandler} aria-describedby="passwordHelp" placeholder="رمز" />
                     {
-                        clientsideErrors.password && <div id="firstNamedHelp" className="form-text helper"><span className="custome-danger"><BsExclamationOctagon />{clientsideErrors.password}</span></div>
+                        clientsideErrors.password && <div id="firstNamedHelp" className="form-text helper"><span className="custome-danger"><BsExclamationOctagon /> {clientsideErrors.password}</span></div>
                     }
 
                 </div>
@@ -204,7 +189,7 @@ const Signup = () => {
                     </div>
                     <input type={showPassWord ? "text" : "password"} className="form-control custome-input mt-1" id="exampleInputRePassword" onBlur={rePasswordBulrHandler} aria-describedby="rePasswordHelp" placeholder="تکرار رمز" disabled={!userInfo.password || clientsideErrors.password} />
                     {
-                        clientsideErrors.rePassword && <div id="firstNamedHelp" className="form-text helper"><span className="custome-danger"><BsExclamationOctagon />{clientsideErrors.rePassword}</span></div>
+                        clientsideErrors.rePassword && <div id="firstNamedHelp" className="form-text helper"><span className="custome-danger"><BsExclamationOctagon /> {clientsideErrors.rePassword}</span></div>
                     }  
                 </div>
                 
@@ -231,7 +216,7 @@ const Signup = () => {
                 </div>
             </div>
             <div className="d-grid gap-2 d-lg-inline-block text-start">
-                <button type="submit" className=" custome-submit-btn" onClick={sumbitHandler}>ثبت</button>
+                <button type="submit" className="custome-btn-success mt-5" onClick={sumbitHandler}>ثبت</button>
             </div>
         </form>
     );

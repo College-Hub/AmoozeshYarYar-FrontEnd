@@ -7,26 +7,7 @@
     border-radius: 0 0 4px 4px;
     color: var(--C2);
 }
-.custome-input option{
-    background-color: var(--C1);
-}
 
-.custome-input {
-    background-color: transparent;
-    border: 1px solid var(--C4);
-    color: var(--C2);
-}
-.custome-input[disabled] {
-    background-color: var(--C4-lower);
-}
-
-.custome-input:focus {
-    background-color: var(--C4-lower);
-    color: var(--C2);
-}
-.custome-input::placeholder {
-    color: var(--C2-alternative);
-}
 .helper {
     margin-top: 0.75rem;
     width: 100%;
@@ -44,16 +25,7 @@
 .helper .custome-danger span {
 
 }
-.custome-submit-btn {
 
-    transition: 0.25s;
-    padding: 0.25rem 1rem;
-    margin-top: 3rem;
-}
-.custome-submit-btn:hover {
-    /*background-color: var(--success-lower);*/
-    color: var(--C3);
-}
 
 .showpass{
     display: flex;

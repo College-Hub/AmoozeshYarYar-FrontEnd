@@ -104,6 +104,7 @@ select {
     border-radius: 4px;
     cursor: pointer;
     padding: 0.45rem 0.75rem;
+    transition: 0.25s;
 }
 .custome-btn-alert:hover{
     background-color: var(--alert-lower);
@@ -115,8 +116,10 @@ select {
     border-radius: 4px;
     cursor: pointer;
     padding: 0.45rem 0.75rem;
+    transition :0.25s;
 }
 .custome-btn-success:hover{
+    color: var(--C2);
     background-color: var(--success-lower);
 }
 .custome-btn-danger {
@@ -126,6 +129,7 @@ select {
     border-radius: 4px;
     cursor: pointer;
     padding: 0.45rem 0.75rem;
+    transition: 0.25s;
 }
 .custome-btn-danger:hover{
     background-color: var(--danger-lower);
@@ -156,17 +160,42 @@ input[type='radio']:checked{
     background-color: var(--C3) !important;
     border-color: var(--C3) !important;
 }
+.custome-input[disabled] {
+    background-color: var(--C4-lower);
+    cursor: not-allowed;
+}
+.custome-input option {
+    background-color: var(--C1);
+}
+
+.custome-input {
+    background-color: transparent;
+    border: 1px solid var(--C4);
+    color: var(--C2);
+}
+.custome-input::placeholder {
+    color: var(--C2-alternative);
+}
+.custome-input:focus {
+    background-color: var(--C4-lower);
+    color: var(--C2);
+}
 
 /*texts*/
 .hit-message {
     margin-bottom: 0.4rem;
     color: var(--C2)
 }
-
-    .hit-message svg {
-        color: var(--alert) !important;
-        font-size: 16px !important;
-    }
+.hit-message svg {
+    color: var(--alert) !important;
+    font-size: 16px !important;
+}
+.small-text {
+    font-size: 14px !important;
+}
+.super-small-text {
+    font-size: 12px !important;
+}
 /*badges*/
 .badges {
     color: var(--C1);

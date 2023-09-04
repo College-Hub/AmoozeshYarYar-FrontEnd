@@ -81,7 +81,7 @@ const UserInfo = () => {
                     <Modal.Body className={"modal-userInfo"}>
                         <div className="row">
                             <div className="col-12">
-                                <span>اطلاعات زیر را برای شروع وارد کن</span>
+                                <span>اطلاعات زیر را برای شروع وارد کن!</span>
                             </div>
                             <div className="col-12">
                                 <div className="col-12 mt-3">

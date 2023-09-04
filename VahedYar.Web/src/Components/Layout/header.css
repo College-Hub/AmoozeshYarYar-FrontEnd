@@ -31,19 +31,20 @@ nav {
     font-weight: 400;
     min-width: 7.5rem;
     border-radius: 4px;
+    white-space: nowrap;
 }
     .custome-link:hover {
         color: var(--C4);
         background-color: var(--C4-lower);
     }
 
-nav .active:not(.brand) {
+nav .custome-link.active:not(.brand) {
     color: var(--C2) !important;
     background-color: var(--C4-lower);
 }
-    nav .active:hover {
-        color: var(--C4) !important;
-    }
+nav .custome-link.active:hover {
+    color: var(--C4) !important;
+}
 
 .toggle-icon i{
     color: var(--C2);
@@ -109,4 +110,15 @@ img {
 }
 .dropdown-menu a {
     color: var(--C2);
+}
+.account-icon svg{
+    color: var(--C2);
+    font-size: 25px;
+    cursor: pointer;
+    transition: 0.25s;
+    margin-left: 3rem;
+}
+.account-icon svg:hover {
+    color: var(--C4);
+    transform: scale(1.1);
 }
