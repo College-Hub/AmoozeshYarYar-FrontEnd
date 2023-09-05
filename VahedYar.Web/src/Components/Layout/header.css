@@ -36,6 +36,8 @@ nav {
     .custome-link:hover {
         color: var(--C4);
         background-color: var(--C4-lower);
+        transform: scale(1.04);
+        box-shadow: 1px 2px 10px 2px var(--C4-lower);
     }
 
 nav .custome-link.active:not(.brand) {
