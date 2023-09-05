@@ -1,0 +1,36 @@
+.modal-Forgot-ACC {
+    background-color: var(--C1);
+    border-radius: 4px;
+    color: var(--C2);
+}
+
+.userInfo_input {
+    font-size: 16px;
+}
+
+.custome-modal-input option {
+    background-color: var(--C1);
+}
+
+    .custome-modal-input option:hover {
+        background: #000 !important;
+    }
+
+.custome-modal-input {
+    border: 1px solid var(--C4);
+    background-color: var(--C1);
+    color: var(--C2);
+}
+
+    .custome-modal-input[disabled] {
+        background-color: var(--C4-lower);
+    }
+
+    .custome-modal-input:focus {
+        background-color: var(--C4-lower);
+        color: var(--C2);
+    }
+
+    .custome-modal-input::placeholder {
+        color: var(--C2-alternative);
+    }
