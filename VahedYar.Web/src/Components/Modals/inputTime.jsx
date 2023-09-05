@@ -126,11 +126,11 @@ const TimeModal = (prop) => {
                 }
                 <div className="d-flex justify-content-between btn-Group">
                     <div>
-                        <button className={errors.errmessage ? "custome-disabled" : "custome-btn-primary"} onClick={submitHandler} disabled={errors.errmessage}>ثبت</button>
-                        <button className={"custome-btn-danger"} onClick={closeHandler} >لغو</button>
+                        <button className={errors.errmessage ? "custome-disabled" : "btn_custome btn_primary"} onClick={submitHandler} disabled={errors.errmessage}>ثبت</button>
+                        <button className={"btn_custome btn_danger"} onClick={closeHandler} >لغو</button>
                     </div>
                     <div>
-                        <button className={"custome-btn-alert"} onClick={deleteTimeHandler} >پیش‌فرض</button>
+                        <button className={"btn_custome btn_alert"} onClick={deleteTimeHandler} >پیش‌فرض</button>
                     </div>
 
                 </div>

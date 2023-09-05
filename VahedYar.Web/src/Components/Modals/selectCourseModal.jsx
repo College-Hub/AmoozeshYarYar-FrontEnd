@@ -124,13 +124,13 @@ const SelectCourseModal = (prop) => {
                                                 <label className="mb-2">عنوان درس :</label>
                                                 <div className="search-input-group mb-1">
                                                     <input className="form-control form-control-sm" type="text" ref={inputRefTitle} id="filterTitleInput" onChange={filterTitleHandler} aria-label=".form-control-sm example" />
-                                                    <button className="custome-btn-danger" onClick={cleaerTitleFilter}>حذف</button>
+                                                    <button className="btn_custome btn_danger" onClick={cleaerTitleFilter}>حذف</button>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                     <div className="col-12 d-flex justify-content-end mt-5" dir="rtl">
-                                        <button className="custome-btn-info " onClick={closeHandler}>بازگشت</button>
+                                        <button className="btn_custome btn_info " onClick={closeHandler}>بازگشت</button>
                                     </div>
                                 </div>
 
@@ -217,7 +217,7 @@ const SelectCourseModal = (prop) => {
                                     </ul>
                                 </div>
                                 <div className="d-flex justify-content-end btn-Group mt-3">
-                                    <button className={"custome-btn-danger"} onClick={hideCourseDetail}>بستن</button>
+                                    <button className={"btn_custome btn_danger"} onClick={hideCourseDetail}>بستن</button>
                                 </div>
                             </div>
                         </Modal.Body>

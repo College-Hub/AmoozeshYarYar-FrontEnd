@@ -159,7 +159,7 @@ const WeeklyView = () => {
                                 </div>
                             </div>
                             <div className="d-flex justify-content-end btn-Group mt-3">
-                                <button className={"custome-btn-danger"} onClick={closeHandler}>بستن</button>
+                                <button className={"btn_custome btn_danger"} onClick={closeHandler}>بستن</button>
                             </div>
                         </Modal.Body>
 
@@ -205,7 +205,7 @@ const WeeklyView = () => {
                                             <div className="col-7 text-center"></div>
                                         </div>
                                         <div className="d-flex justify-content-end btn-Group mt-3">
-                                            <button className={"custome-btn-danger"} onClick={closeDetailHandler}>بستن</button>
+                                            <button className={"btn_custome btn_danger"} onClick={closeDetailHandler}>بستن</button>
                                         </div>
                                     </div>
                                 </Modal.Body>

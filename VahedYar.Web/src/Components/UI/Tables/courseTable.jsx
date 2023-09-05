@@ -55,7 +55,7 @@ const CourseTable = () => {
                     <div className="col-5 col-lg-2 text-end">استاد <span className="d-none d-md-inline">ارائه کننده</span></div>
                     <div className="col-2 d-flex justify-content-end">
                         <div className="p-1">
-                            <button className="custome-btn-info" onClick={selectCourseModalHandler}>انتخاب </button>
+                            <button className="btn_custome btn_info" onClick={selectCourseModalHandler}>انتخاب </button>
                         </div>
                     </div>
                 </div>

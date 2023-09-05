@@ -72,67 +72,52 @@ select {
 }
 
 /*buttons*/
-.custome-btn-primary {
+.btn_custome {
+    background-color: transparent;
+    border-radius: 5px;
+    padding: 0.45rem 0.75rem;
+    transition: 0.25s;
+    cursor: pointer;
+}
+.btn_primary {
     border: 1px solid var(--C4);
-    background-color: transparent;
     color: var(--C4);
-    border-radius: 5px;
-    padding: 0.45rem 0.75rem;
-    transition: 0.25s;
-    cursor: pointer;
 }
-.custome-btn-primary:hover{
+.btn_primary:hover {
     background-color: var(--C4-lower);
-}
-.custome-btn-info {
-    border: 1px solid var(--C3);
-    background-color: transparent;
-    color: var(--C3);
-    border-radius: 5px;
-    padding: 0.45rem 0.75rem;
-    cursor: pointer;
-    transition: 0.25s;
-}
-.custome-btn-info:hover{
-    background-color: var(--C3-lower) !important;
-    
-}
-.custome-btn-alert {
-    border: 1px solid var(--alert);
-    background-color: transparent;
-    color: var(--alert);
-    border-radius: 4px;
-    cursor: pointer;
-    padding: 0.45rem 0.75rem;
-    transition: 0.25s;
-}
-.custome-btn-alert:hover{
-    background-color: var(--alert-lower);
-}
-.custome-btn-success {
-    border: 1px solid var(--success);
-    background-color: transparent;
-    color: var(--success);
-    border-radius: 4px;
-    cursor: pointer;
-    padding: 0.45rem 0.75rem;
-    transition :0.25s;
-}
-.custome-btn-success:hover{
     color: var(--C2);
+}
+.btn_info {
+    border: 1px solid var(--C3);
+    color: var(--C3);
+}
+.btn_info:hover {
+    background-color: var(--C3-lower);
+    color: var(--C2);
+}
+.btn_alert {
+    border: 1px solid var(--alert);
+    color: var(--alert);
+}
+.btn_alert:hover{
+    background-color: var(--alert-lower);
+    color: var(--C2);
+}
+.btn_success {
+    border: 1px solid var(--success);
+    color: var(--success);
+}
+.btn_success:hover{
     background-color: var(--success-lower);
+    color: var(--C2);
 }
-.custome-btn-danger {
+.btn_danger {
     border: 1px solid var(--danger);
-    background-color: transparent;
     color: var(--danger);
-    border-radius: 4px;
-    cursor: pointer;
-    padding: 0.45rem 0.75rem;
-    transition: 0.25s;
 }
-.custome-btn-danger:hover{
+.btn_danger:hover{
     background-color: var(--danger-lower);
+    color: var(--C2);
 }
 .custome-disabled {
     border: 1px solid var(--C2-alternative);
@@ -161,8 +146,12 @@ input[type='radio']:checked{
     border-color: var(--C3) !important;
 }
 .custome-input[disabled] {
-    background-color: var(--C4-lower);
+    background-color: var(--C2-lower);
     cursor: not-allowed;
+    border-color: var(--C2-alternative) !important;
+}
+.custome-input[disabled]:hover {
+    box-shadow: 1px 2px 7px 2px var(--C2-lower);
 }
 .custome-input option {
     background-color: var(--C1);
@@ -172,9 +161,13 @@ input[type='radio']:checked{
     background-color: transparent;
     border: 1px solid var(--C4);
     color: var(--C2);
+    transition: 0.25s;
 }
 .custome-input::placeholder {
     color: var(--C2-alternative);
+}
+.custome-input:hover {
+    box-shadow: 1px 2px 7px 2px var(--C4-lower);
 }
 .custome-input:focus {
     background-color: var(--C4-lower);

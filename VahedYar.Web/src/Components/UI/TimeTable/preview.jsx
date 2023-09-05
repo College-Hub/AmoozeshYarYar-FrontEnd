@@ -125,7 +125,7 @@ const Preview = (prop) => {
                                     }
                                 </div>
                                 <div className="presentation-table-footer d-flex justify-content-end ">
-                                    <button className="d-none d-lg-block custome-btn-info mt-3" onClick={weeklyViewHandler}>نمایش هفتگی</button>
+                                    <button className="d-none d-lg-block btn_custome btn_info mt-3" onClick={weeklyViewHandler}>نمایش هفتگی</button>
                                 </div>
                             </div>
                         </div>

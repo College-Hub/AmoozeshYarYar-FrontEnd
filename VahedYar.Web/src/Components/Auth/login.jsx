@@ -8,19 +8,19 @@ import { useCookies } from 'react-cookie';
 import './login.css';
 import { useLoginMutation } from "../../feratures/api/apiSlice";
 import { toPersianNumber } from "../../feratures/helper/helper";
+import { modalActions } from "../../Store/modal-slice";
+import ForgotAcc from "../Modals/forgotAccount";
 
 const Login = () => {
     // states
-    const serversideErros = useSelector(state => state.auth.serversideErros);
-    const clientsideErrors = useSelector(state => state.auth.clientsideErrors);
-    const isLoading = useSelector(state => state.auth.isLoading);
-    const showPassWord = useSelector(state => state.ui.showPassWord);
-    const userInfo = useSelector(state => state.auth);
+    const { showPassWord, isloading } = useSelector(state => state.ui);
+    const { serversideErros, clientsideErrors, userInfo } = useSelector(state => state.auth);
+    const { content } = useSelector(state => state.modal);
 
     const [loginMethod, setLoginMethod] = useState("1");
 
     //query 
-    const [ login ,{ isLoading: isloading, isEroor } ] = useLoginMutation();
+    const [ login ,{ isLoading, isEroor } ] = useLoginMutation();
 
     // dispath
     const dispatch = useDispatch();
@@ -59,12 +59,12 @@ const Login = () => {
             dispatch(uiActions.hidePassword());
         }, 2000)
     };
-    const loginMethodHandler = (event) => {
-        dispatch(authActions.userInfoKeeper({ inputType: 'USERNAME', inputTypeVal: null }));
-        dispatch(authActions.userInfoKeeper({ inputType: 'PHONENUMBER', inputTypeVal: null }));
-        dispatch(authActions.userInfoKeeper({ inputType: 'EMAIL', inputTypeVal: null }));
-        setLoginMethod(event.target.value);
-    }
+
+    const forgotHandler = (event) => {
+        let id = event.target.getAttribute("data-content");
+        if (id === "PASS") dispatch(modalActions.setModalData({ content: "FORGOT-ACC", id }))
+        if (id === "USERNAME") dispatch(modalActions.setModalData({ content: "FORGOT-ACC", id }))
+    };
 
 
     const sumbitHandler = (event) => {
@@ -113,53 +113,59 @@ const Login = () => {
     //functios
 
     return (
-        <form className="col-12 col-sm-8 custome-outlet" id="loginForm" onSubmit={sumbitHandler}>
-            <h3 className="mt-3 mb-5"> <BsPersonCheck/> ورود</h3>
-            <div className="row">
-                <div className="col-12 col-lg-6 mb-4">
-                    <div className="col-12 d-flex justify-content-between flex-wrap ">
-                        <label htmlFor="exampleInputUserNameLogin" className="form-label"><BsPerson /> نام‌کاربری :</label>
+        <Fragment>
+            <form className="col-12 col-sm-8 custome-outlet" id="loginForm" onSubmit={sumbitHandler}>
+                <h3 className="mt-3 mb-5"> <BsPersonCheck /> ورود</h3>
+                <div className="row">
+                    <div className="col-12 col-lg-6 mb-4">
+                        <div className="col-12 d-flex justify-content-between flex-wrap ">
+                            <label htmlFor="exampleInputUserNameLogin" className="form-label"><BsPerson /> نام‌کاربری :</label>
+                            <div className="col-12 mt-3">
+                                <input type="text" className="form-control custome-input" id="exampleInputUserNameLogin" onBlur={usernameBulrHandler} aria-describedby="usernameHelp" placeholder="نام‌کاربری" />
+                                <div className="d-flex justify-content-start mt-2 passForgot">
+                                    <span className="small-text " data-content={"USERNAME"} onClick={forgotHandler}>نام‌کاربریت رو یادت رفته؟</span>
+                                </div>
+                                {
+                                    clientsideErrors.username && <div id="usernameHelp" className="form-text helper"><span className="custome-danger"><BsExclamationOctagon /> {clientsideErrors.username}</span></div>
+                                }
+                            </div>
+                        </div>
                         <div className="col-12 mt-3">
-                            <input type="text" className="form-control custome-input" id="exampleInputUserNameLogin" onBlur={usernameBulrHandler} aria-describedby="usernameHelp" placeholder="نام‌کاربری" />
+                            <label htmlFor="exampleInputpassword" className="form-label d-inline"> <BsLock /> رمز :</label>
+                            <div className="showpass d-inline m-3">
+                                <BsEye onClick={showPassword} />
+                            </div>
+                            <input type="text" className="form-control custome-input mt-3" id="exampleInputpassword" onBlur={passwordBulrHandler} aria-describedby="passwordHelp" placeholder="رمز" disabled={showPassWord} />
                             <div className="d-flex justify-content-start mt-2 passForgot">
-                                <span className="small-text ">نام‌کاربریت رو یادت رفته؟</span>
+                                <span className="small-text " data-content={"PASS"} onClick={forgotHandler}>رمزت رو یادت رفته؟</span>
                             </div>
                             {
-                                clientsideErrors.username && <div id="usernameHelp" className="form-text helper"><span className="custome-danger"><BsExclamationOctagon /> {clientsideErrors.username}</span></div>
+                                clientsideErrors.password && <div id="firstNamedHelp" className="form-text helper"><span className="custome-danger"><BsExclamationOctagon />{clientsideErrors.password}</span></div>
                             }
                         </div>
+
                     </div>
-                    <div className="col-12 mt-3">
-                        <label htmlFor="exampleInputpassword" className="form-label d-inline"> <BsLock /> رمز :</label>
-                        <div className="showpass d-inline m-3">
-                            <BsEye onClick={showPassword} />
-                        </div>
-                        <input type="text" className="form-control custome-input mt-3" id="exampleInputpassword" onBlur={passwordBulrHandler} aria-describedby="passwordHelp" placeholder="رمز" disabled={showPassWord} />
-                        <div className="d-flex justify-content-start mt-2 passForgot">
-                            <span className="small-text ">رمزت رو یادت رفته؟</span>
-                        </div>
-                        {
-                            clientsideErrors.password && <div id="firstNamedHelp" className="form-text helper"><span className="custome-danger"><BsExclamationOctagon />{clientsideErrors.password}</span></div>
-                        }
+                    <div className="col-12 col-lg-6 ">
+                        <p className="hit-message"><BsInfoCircle /> در صورتی که حساب کاربری ندارید بر روی لینک عضویت کلیک کنید تا در کمترین زمان یک حساب کاربری ایجاد کنید.</p>
                     </div>
-                    
                 </div>
-                <div className="col-12 col-lg-6 ">
-                    <p className="hit-message"><BsInfoCircle /> در صورتی که حساب کاربری ندارید بر روی لینک عضویت کلیک کنید تا در کمترین زمان یک حساب کاربری ایجاد کنید.</p>
+                <div className="form-check form-check-reverse">
+                    <input className="form-check-input" type="checkbox" value="" id="reverseCheck1" />
+                    <label className="form-check-label" htmlFor="reverseCheck1">
+                        منو یادت بمونه!
+                    </label>
                 </div>
-            </div>
-            <div className="form-check form-check-reverse">
-                <input className="form-check-input" type="checkbox" value="" id="reverseCheck1" />
-                <label className="form-check-label" for="reverseCheck1">
-                    منو یادت بمونه!
-                </label>
-            </div>
-            <div className="d-grid gap-2 d-lg-inline-block text-start" dir="rtl">
-                
-                <button type="submit" className="custome-btn-success mt-4">ثبت</button>
-            </div>
-            
-        </form>
+                <div className="d-grid gap-2 d-lg-inline-block text-start" dir="rtl">
+
+                    <button type="submit" className="btn_custome btn_success mt-4">ثبت</button>
+                </div>
+
+
+            </form>
+            {
+                content === "FORGOT-ACC" && <ForgotAcc/>
+            }
+        </Fragment>
     );
 };
 

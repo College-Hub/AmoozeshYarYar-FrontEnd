@@ -111,14 +111,14 @@ const SelectCourses = () => {
         else if (isLoading) {
             return (
             <div className="text-start ">
-               <button className={"custome-btn-info"}><span className="spinner-border spinner-border-sm" aria-hidden="true"></span> در حال بارگذاری</button>
+               <button className={"btn_custome btn_info"}><span className="spinner-border spinner-border-sm" aria-hidden="true"></span> در حال بارگذاری</button>
             </div>)
         }
 
         else {
             return (
             <div className="text-start ">
-                 <button className={error.noCourseModel ? "custome-disabled" : "custome-btn-info"} onClick={selectCourseModalHandler} disabled={error.noCourseModel}>انتخاب درس</button>
+                 <button className={error.noCourseModel ? "custome-disabled" : "btn_custome btn_info"} onClick={selectCourseModalHandler} disabled={error.noCourseModel}>انتخاب درس</button>
             </div> )
         }       
         
@@ -134,7 +134,7 @@ const SelectCourses = () => {
                 <div className="col-12 col-md-5 mb-3"><BsBook /> رشته تحصیلی : <span className="userInfo">{group?.title}</span></div>
                 <div className="col-12"></div>
                 <div className="col-12 text-start ">
-                    <button className="custome-btn-info" onClick={startHandler} >تغییر اطلاعات</button>
+                    <button className="btn_custome btn_info" onClick={startHandler} >تغییر اطلاعات</button>
                 </div>
             </section>
             {
@@ -149,7 +149,7 @@ const SelectCourses = () => {
                             <p className="hit-message"><BsInfoCircle /> در صورتی که ساعت ورود یا خروج خودت رو انتخاب نکرده باشی ساعت پیشفرض ورود {toPersianNumber("7:00")} و ساعت خروج {toPersianNumber("21:00")} برات ثبت میشه.</p>
                         </div >
                         <div className="col-12 text-start">
-                            <button className="custome-btn-info" onClick={dayTableHandler}>انتخاب روز</button>
+                            <button className="btn_custome btn_info" onClick={dayTableHandler}>انتخاب روز</button>
                         </div>
                     </div >
                 )
@@ -209,7 +209,7 @@ const SelectCourses = () => {
                     <span><BsCheck2Square />تایید فرم </span>
                 </div>
                 <div className="col-2 text-start">
-                    <button className={!TimeTableFilter.Courses?.length ? "custome-disabled" : "custome-btn-success"} onClick={submithandler}>ثبت</button>
+                    <button className={!TimeTableFilter.Courses?.length ? "custome-disabled" : "btn_custome btn_success"} onClick={submithandler}>ثبت</button>
                 </div>
                 {
                     days.find(day => day.isSelected) && (

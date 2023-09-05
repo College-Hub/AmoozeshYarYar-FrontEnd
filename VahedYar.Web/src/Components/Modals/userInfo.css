@@ -6,10 +6,6 @@
 .userInfo_input {
     font-size: 16px;
 }
-
-.modal-userInfo {
-    color: var(--C2);
-}
 .custome-modal-input option {
     background-color: var(--C1);
 }
@@ -35,9 +31,4 @@
 
 .custome-modal-input::placeholder {
     color: var(--C2-alternative);
-}
-.modal-userInfo select:disabled {
-    border: 1px solid var(--C4);
-    background-color: var(--C2-lower);
-    color: var(--C2);
 }

@@ -15,6 +15,7 @@ const Signup = () => {
     const { serversideErros, clientsideErrors, isLoading, userInfo, hadAccount } = useSelector(state => state.auth);
     const { startUpData } = useSelector(state => state.course);
     const { showPassWord } = useSelector(state => state.ui);
+
     const [pass, setPass] = useState();
     const [rePass, setRePass] = useState();
     //const TellRef = useRef(null);
@@ -216,7 +217,7 @@ const Signup = () => {
                 </div>
             </div>
             <div className="d-grid gap-2 d-lg-inline-block text-start">
-                <button type="submit" className="custome-btn-success mt-5" onClick={sumbitHandler}>ثبت</button>
+                <button type="submit" className="btn_custome btn_success mt-5" onClick={sumbitHandler}>ثبت</button>
             </div>
         </form>
     );

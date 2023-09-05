@@ -1,15 +1,12 @@
 ﻿import './userInfo.css';
-import { Fragment, useEffect } from 'react';
+import { Fragment, useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { modalActions } from "../../Store/modal-slice";
 import { courseActions } from "../../Store/course-slice";
 import { useNavigate } from "react-router-dom";
 import { authActions } from '../../Store/auth-slice';
-import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import LoadSpiner from '../Animations/loadSpiner';
-import NoResponse from '../Errors/Requests/noResponse';
-import { useState } from 'react';
 import { BsBuildings, BsBook, BsInfoCircle } from "react-icons/bs";
 import { FaUserGraduate } from "react-icons/fa6";
 
@@ -86,7 +83,7 @@ const UserInfo = () => {
                             <div className="col-12">
                                 <div className="col-12 mt-3">
                                         <label htmlFor="exampleInputUni" className="form-label"><BsBuildings /> دانشگاه :</label>
-                                    <select className="form-select custome-modal-input" aria-label="Default select example" onChange={uniBulrHandler} id="exampleInputUni" aria-describedby="uniHelp">
+                                        <select className="form-select custome-input" aria-label="Default select example" onChange={uniBulrHandler} id="exampleInputUni" aria-describedby="uniHelp">
                                         <option value={undefined}>انتخاب</option>
                                         {
                                             startUpData?.map(item => <option key={item.universityId} value={item.universityId}>{item.title}</option>)
@@ -95,7 +92,7 @@ const UserInfo = () => {
                                 </div>
                                 <div className="col-12 mt-3">
                                         <label htmlFor="exampleInputgroup" className="form-label"><BsBook /> رشته تحصیلی :</label>
-                                    <select className="form-select custome-modal-input" aria-label="Default select example" onChange={groupBulrHandler} id="exampleInputgroup" aria-describedby="groupHelp" disabled={!uni}>
+                                        <select className="form-select custome-input" aria-label="Default select example" onChange={groupBulrHandler} id="exampleInputgroup" aria-describedby="groupHelp" disabled={!uni}>
                                         <option value={undefined}>انتخاب</option>
                                         {
                                             uni?.groups?.map(group => <option key={group.groupId} value={group.groupId}>{group.title}</option>)
@@ -104,7 +101,7 @@ const UserInfo = () => {
                                     </div>
                                     <div className="col-12 mt-3">
                                         <label htmlFor="exampleInputgroup" className="form-label"><FaUserGraduate /> مقطع تحصیلی :</label>
-                                        <select className="form-select custome-modal-input" aria-label="Default select example" onChange={educationalHandler} id="exampleInputgroup" aria-describedby="groupHelp" disabled={false}>
+                                        <select className="form-select custome-input" aria-label="Default select example" onChange={educationalHandler} id="exampleInputgroup" aria-describedby="groupHelp" disabled={false}>
                                             <option value={undefined}>انتخاب</option>
                                             {/*{*/}
                                             {/*    uni?.groups?.map(group => <option key={group.groupId} value={group.groupId}>{group.title}</option>)*/}
@@ -114,8 +111,8 @@ const UserInfo = () => {
                             </div>
                         </div>
                             <div className="d-flex justify-content-end btn-Group mt-3">
-                                <button className={"custome-btn-danger"} onClick={closeHandler}>برگشت</button>
-                                <button className={!uni || !group ? "custome-disabled" : "custome-btn-primary"} onClick={submitHandler}>ادامه</button>
+                                <button className={"btn_custome btn_danger"} onClick={closeHandler}>برگشت</button>
+                                <button className={!uni || !group ? "custome-disabled" : "btn_custome btn_primary"} onClick={submitHandler}>ادامه</button>
                         </div>
                     </Modal.Body>
                 </Modal>)

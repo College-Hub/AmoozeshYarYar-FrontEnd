@@ -93,7 +93,7 @@ const PresentationDetail = () => {
                                     <div className="col-7 text-center">{toPersianNumber(data.presentationCode)}</div>
                                 </div>
                                 <div className="d-flex justify-content-end btn-Group mt-3">
-                                    <button className={"custome-btn-danger"} onClick={closeHandler}>بستن</button>
+                                    <button className={"btn_custome btn_danger"} onClick={closeHandler}>بستن</button>
                                 </div>
                             </div>
 
