@@ -1,3 +1,9 @@
 #home{
     color: var(--C2)
 }
+#home svg {
+    color: var(--C4);
+}
+.c-alert svg {
+    color: var(--alert) !important;
+}
