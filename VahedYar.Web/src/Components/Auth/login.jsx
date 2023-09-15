@@ -14,7 +14,7 @@ import ForgotAcc from "../Modals/forgotAccount";
 const Login = () => {
     // states
     const { showPassWord, isloading } = useSelector(state => state.ui);
-    const { serversideErros, clientsideErrors, userInfo } = useSelector(state => state.auth);
+    const { serversideErros, clientsideErrors, User } = useSelector(state => state.auth);
     const { content } = useSelector(state => state.modal);
 
     const [loginMethod, setLoginMethod] = useState("1");
@@ -30,25 +30,10 @@ const Login = () => {
 
     // input bular handler
     const usernameBulrHandler = (event) => {
-        dispatch(authActions.userInfoKeeper({ inputType: 'USERNAME', inputTypeVal: event.target.value }));
-        //validate     
-        dispatch(authActions.validateInput({ inputType: 'USERNAME', inputTypeVal: event.target.value, inputSideVal: '', isRequired: loginMethod === "1" }));
-
+        dispatch(authActions.userInfoKeeper({ inputType: 'USERNAME', inputTypeVal: event.target.value, isRequired: true }));
     };
     const passwordBulrHandler = (event) => {
-        dispatch(authActions.userInfoKeeper({ inputType: 'PASSWORD', inputTypeVal: event.target.value }));
-        //validate
-        dispatch(authActions.validateInput({ inputType: 'PASSWORD', inputTypeVal: event.target.value, inputSideVal: '' }));
-    };
-    const emailBulrHandler = (event) => {
-        dispatch(authActions.userInfoKeeper({ inputType: 'EMAIL', inputTypeVal: event.target.value }));
-        //validate
-        dispatch(authActions.validateInput({ inputType: 'EMAIL', inputTypeVal: event.target.value, inputSideVal: '', isRequired: loginMethod === "2" }));
-    };
-    const phoneNumberBulrHandler = (event) => {
-        dispatch(authActions.userInfoKeeper({ inputType: 'PHONENUMBER', inputTypeVal: event.target.value }));
-        //validate
-        dispatch(authActions.validateInput({ inputType: 'PHONENUMBER', inputTypeVal: event.target.value, inputSideVal: '', isRequired: loginMethod === "3" }));
+        dispatch(authActions.userInfoKeeper({ inputType: 'PASSWORD', inputTypeVal: event.target.value, isRequired: true }));
     };
 
     // event handlers
@@ -69,16 +54,8 @@ const Login = () => {
 
     const sumbitHandler = (event) => {
         event.preventDefault();
-        if (!(clientsideErrors.password || clientsideErrors.email) && (userInfo.email && userInfo.password)) {
-            console.log({ email: userInfo.email, password: userInfo.password, hadAccount: false})
-        }
-        else {
-            //validation
-            dispatch(authActions.validateInput({ inputType: 'USERNAME', inputTypeVal: userInfo.username, inputSideVal: '', isRequired: loginMethod === "1" }));
-            dispatch(authActions.validateInput({ inputType: 'EMAIL', inputTypeVal: userInfo.email, inputSideVal: '', isRequired: loginMethod === "2" }));
-            dispatch(authActions.validateInput({ inputType: 'PHONENUMBER', inputTypeVal: event.target.value, inputSideVal: '', isRequired: loginMethod === "3" }));
-            dispatch(authActions.validateInput({ inputType: 'PASSWORD', inputTypeVal: userInfo.password, inputSideVal: '' }));
-
+        if (!(clientsideErrors.password || clientsideErrors.email) && (User.email && User.password)) {
+            console.log({ email: User.email, password: User.password, hadAccount: false})
         }
     };
     

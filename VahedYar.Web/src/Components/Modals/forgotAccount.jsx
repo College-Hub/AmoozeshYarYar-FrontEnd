@@ -18,12 +18,8 @@ const ForgotAcc = () => {
     const { isloading, NoResponseFromServer } = useSelector(state => state.ui);
     const { content } = useSelector(state => state.modal);
     const { startUpData } = useSelector(state => state.course);
-    const { serversideErros, clientsideErrors, isLoading, userInfo, hadAccount } = useSelector(state => state.auth);
+    const { serversideErros, clientsideErrors, User, hadAccount } = useSelector(state => state.auth);
 
-    const [uni, setUni] = useState(undefined);
-    const [group, setGroup] = useState(undefined);
-    const [educLevel, setEducLevel] = useState(undefined);
-    const [view, setView] = useState();
 
     //hooks 
     const dispatch = useDispatch();
@@ -32,18 +28,17 @@ const ForgotAcc = () => {
     // event handler
 
     const emailBulrHandler = (event) => {
-        dispatch(authActions.userInfoKeeper({ inputType: 'EMAIL', inputTypeVal: event.target.value }));
         //validate     
         dispatch(authActions.validateInput({ inputType: 'EMAIL', inputTypeVal: event.target.value, inputSideVal: '' }));
+
+        if (!clientsideErrors.email) dispatch(authActions.userInfoKeeper({ inputType: 'EMAIL', inputTypeVal: event.target.value }));
     };
     
     const closeHandler = () => {
         dispatch(modalActions.hideModal());
     };
     const submitHandler = async () => {
-        if (uni && group) {
-            dispatch(courseActions.clearCourses());
-            //navigate("/");
+        if (User.email && !clientsideErrors.email) {
             dispatch(modalActions.hideModal());
         }
     };
@@ -57,7 +52,7 @@ const ForgotAcc = () => {
                 <Modal.Body className={"modal-Forgot-ACC"}>
                     <div className="row">
                         <div className="col-12">
-                            
+                            <p>برای بازیابی حساب کاربریت ایمیلی که قبلا بهمون دادی رو وارد کن!</p>
                         </div>
                         <div className="col-12 mt-3">
                             <label htmlFor="exampleInputEmail" className="form-label"><BsEnvelopeAt />  ایمیل :</label>
@@ -69,7 +64,7 @@ const ForgotAcc = () => {
                     </div>
                     <div className="d-flex justify-content-end btn-Group mt-3">
                         <button className={"btn_custome btn_danger"} onClick={closeHandler}>برگشت</button>
-                        <button className={!uni || !group ? "custome-disabled" : "btn_custome btn_primary"} onClick={submitHandler}>ادامه</button>
+                        <button className={!User.email || clientsideErrors.email ? "custome-disabled" : "btn_custome btn_primary"} onClick={submitHandler}>ادامه</button>
                     </div>
                 </Modal.Body>
             </Modal>

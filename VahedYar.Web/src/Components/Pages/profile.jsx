@@ -9,7 +9,7 @@ import EditProfile from '../Modals/editProfile';
 
 
 const Profile = () => {
-    const { userInfo } = useSelector(state => state.auth);
+    const { User } = useSelector(state => state.auth);
     const dispatch = useDispatch();
 
     // event Handlers
@@ -46,14 +46,14 @@ const Profile = () => {
                     <div className="col-12 col-md-6 col-xl-4 userInfo_input" >
                         <label htmlFor="exampleInputFirstName" className="form-label"> <i className="bi bi-file-earmark-person"></i> نام :</label>
                         <div className="d-flex">
-                            <input type="text" className="form-control" id="exampleInputFirstName" defaultValue={userInfo.firstName} aria-describedby="firstNamedHelp" disabled readOnly />
+                            <input type="text" className="form-control" id="exampleInputFirstName" defaultValue={User.firstName} aria-describedby="firstNamedHelp" disabled readOnly />
                             <button type="button" className="btn custome-btn" onClick={EditFirstNameHandler} >ویرایش</button>
                         </div>
                     </div>
                     <div className="col-12 col-md-6 col-xl-4 userInfo_input">
                         <label htmlFor="exampleInputLastName" className="form-label"> <i className="bi bi-file-earmark-person"></i>  نام خانوادگی  :</label>
                         <div className="d-flex">
-                            <input type="text" className="form-control" id="exampleInputLastName" defaultValue={userInfo.lastName} aria-describedby="lastNameHelp" disabled readOnly />
+                            <input type="text" className="form-control" id="exampleInputLastName" defaultValue={User.lastName} aria-describedby="lastNameHelp" disabled readOnly />
                             <button type="button" className="btn custome-btn" onClick={EditLastNameHandler} >ویرایش</button>
                         </div>
 
@@ -61,21 +61,21 @@ const Profile = () => {
                     <div className="col-12 col-md-6 col-xl-4 userInfo_input">
                         <label htmlFor="exampleInputPhone" className="form-label"><i className="bi bi-telephone"></i> شماره همراه :</label>
                         <div className="d-flex">
-                            <input type="text" className="form-control" id="exampleInputPhone" defaultValue={userInfo.phoneNumber} aria-describedby="phoneHelp" disabled readOnly />
+                            <input type="text" className="form-control" id="exampleInputPhone" defaultValue={User.phoneNumber} aria-describedby="phoneHelp" disabled readOnly />
                             <button type="button" className="btn custome-btn" onClick={EditPhoneNmberHandler} >ویرایش</button>
                         </div>
                     </div>
                     <div className="col-12 col-md-6 col-xl-4 userInfo_input">
                         <label htmlFor="exampleInputEmail" className="form-label"><i className="bi bi-envelope-at"></i>  ایمیل :</label>
                         <div className="d-flex">
-                            <input type="email" className="form-control" id="exampleInputEmail" defaultValue={userInfo.email} aria-describedby="emailHelp" disabled readOnly />
+                            <input type="email" className="form-control" id="exampleInputEmail" defaultValue={User.email} aria-describedby="emailHelp" disabled readOnly />
                             <button type="button" className="btn custome-btn" onClick={EditEamilHandler} >ویرایش</button>
                         </div>
                     </div>
                     <div className="col-12 col-md-6 col-xl-4 userInfo_input">
                         <label htmlFor="exampleInputUni" className="form-label"><i className="bi bi-buildings"></i> دانشگاه :</label>
                         <div className="d-flex">
-                            <select className="form-select" aria-label="Default select example" id="exampleInputUni" defaultValue={userInfo.uni} aria-describedby="uniHelp" disabled readOnly>
+                            <select className="form-select" aria-label="Default select example" id="exampleInputUni" defaultValue={User.uni} aria-describedby="uniHelp" disabled readOnly>
                                 {/*this will be change to dynamic */}
                                 <option value="1"> دانشگاه آزاد اسلامی واحد تهران مرکز</option>
                                 <option value="2">دانشگاه آزاد اسلامی واحد علوم تحقیقات</option>
@@ -87,7 +87,7 @@ const Profile = () => {
                     <div className="col-12 col-md-6 col-xl-4 userInfo_input">
                         <label htmlFor="exampleInputSubject" className="form-label"><i className="bi bi-book"></i> رشته تحصیلی :</label>
                         <div className="d-flex">
-                            <select className="form-select" aria-label="Default select example" id="exampleInputSubject" defaultValue={userInfo.subject} aria-describedby="SubjectHelp" disabled readOnly>
+                            <select className="form-select" aria-label="Default select example" id="exampleInputSubject" defaultValue={User.subject} aria-describedby="SubjectHelp" disabled readOnly>
                                 {/*this will be change to dynamic */}
                                 <option value="1">مهندسی کامپیوتر</option>
                                 <option value="2"> مهندسی برق</option>
@@ -99,7 +99,7 @@ const Profile = () => {
                     <div className="col-12 col-md-6 col-xl-4 userInfo_input">
                         <label htmlFor="exampleInputLastName" className="form-label"> <i className="bi bi-lock"></i>  رمز  :</label>
                         <div className="d-flex">
-                            <input type="password" className="form-control" id="exampleInputpassword" defaultValue={userInfo.password} aria-describedby="passwordHelp" disabled readOnly />
+                            <input type="password" className="form-control" id="exampleInputpassword" defaultValue={User.password} aria-describedby="passwordHelp" disabled readOnly />
                             <button type="button" className="btn custome-btn" onClick={EditPasswordHandler} >ویرایش</button>
                         </div>
                     </div>

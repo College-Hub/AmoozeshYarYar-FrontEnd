@@ -12,7 +12,7 @@ import { sha256 } from 'crypto-hash';
 const Signup = () => {
 
     // states
-    const { serversideErros, clientsideErrors, isLoading, userInfo, hadAccount } = useSelector(state => state.auth);
+    const { serversideErros, clientsideErrors, isLoading, User, hadAccount } = useSelector(state => state.auth);
     const { startUpData } = useSelector(state => state.course);
     const { showPassWord } = useSelector(state => state.ui);
 
@@ -33,45 +33,32 @@ const Signup = () => {
 
     // input bular handler
     const emailBulrHandler = (event) => {
-        dispatch(authActions.userInfoKeeper({ inputType: 'EMAIL', inputTypeVal: event.target.value }));
-        //validate     
-        dispatch(authActions.validateInput({ inputType: 'EMAIL', inputTypeVal: event.target.value, inputSideVal: '' }));       
+        dispatch(authActions.userInfoKeeper({ inputType: 'EMAIL', inputTypeVal: event.target.value }));    
     };
     const usernameBulrHandler = (event) => {
-        dispatch(authActions.userInfoKeeper({ inputType: 'USERNAME', inputTypeVal: event.target.value }));
-        //validate     
-        dispatch(authActions.validateInput({ inputType: 'USERNAME', inputTypeVal: event.target.value, inputSideVal: '', isRequired: true }));
-       
+        dispatch(authActions.userInfoKeeper({ inputType: 'USERNAME', inputTypeVal: event.target.value, isRequired: true }));
     };
     const passwordBulrHandler = async (event) => {
-        let hashed = await sha256(event.target.value);
         setPass(event.target.value);
-        dispatch(authActions.userInfoKeeper({ inputType: 'PASSWORD', inputTypeVal: hashed }));
-        //validate
-        dispatch(authActions.validateInput({ inputType: 'PASSWORD', inputTypeVal: event.target.value, inputSideVal: '' }));
-        dispatch(authActions.validateInput({ inputType: 'REPASSWORD', inputTypeVal: rePass, inputSideVal: event.target.value, isRequired: false }));
-        
+        let hashedPass = await sha256(event.target.value)
+        dispatch(authActions.userInfoKeeper({ inputType: 'PASSWORD', inputTypeVal: event.target.value, hashedPass, isRequired: true }));
     };
-    const rePasswordBulrHandler = (event) => {
+    const rePasswordBulrHandler = async (event) => {
         setRePass(event.target.value);
-        //validate
-        dispatch(authActions.validateInput({ inputType: 'REPASSWORD', inputTypeVal: event.target.value, inputSideVal: pass }));
-    };
-    const phonNumberBulrHandler = (event) => {
-        dispatch(authActions.userInfoKeeper({ inputType: 'PHONENUMBER', inputTypeVal: event.target.value }));
-        //validate
-        dispatch(authActions.validateInput({ inputType: 'PHONENUMBER', inputTypeVal: event.target.value, inputSideVal: '' }));
+        let inputTypeVal = await sha256(event.target.value);
+        dispatch(authActions.userInfoKeeper({ inputType: 'REPASSWORD', inputTypeVal, isRequired: true }));
     };
 
     const uniBulrHandler = (event) => {
         dispatch(authActions.userInfoKeeper({ inputType: 'UNI', inputTypeVal: event.target.value }));
         setUni(startUpData?.find(uni => uni.universityId === event.target.value));
     };
-    const subjectBulrHandler = (event) => {
 
+    const subjectBulrHandler = (event) => {
         dispatch(authActions.userInfoKeeper({ inputType: 'GROUP', inputTypeVal: event.target.value }));
         setGroup(startUpData?.find(item => item.universityId === uni.universityId).groups.find(gp => gp.groupId === event.target.value));
     };
+
     // event handlers
     const showPassword = () => {
         dispatch(uiActions.hidePassword());
@@ -82,22 +69,13 @@ const Signup = () => {
 
     const sumbitHandler = (event) => {
         event.preventDefault();
-        if (!(clientsideErrors.phoneNumber || clientsideErrors.usename || clientsideErrors.firstName || clientsideErrors.rePassword || clientsideErrors.password || clientsideErrors.email) && ( pass && rePass && userInfo.username)) {
+        if (!(clientsideErrors.phoneNumber || clientsideErrors.usename || clientsideErrors.firstName || clientsideErrors.rePassword || clientsideErrors.password || clientsideErrors.email) && ( pass && rePass && User.username)) {
 
-            console.log({ email: userInfo.email, password: userInfo.password, hadAccount, phoneNumber: userInfo.phoneNumber, group: userInfo.group })
+            console.log({ email: User.email, password: User.password, hadAccount, phoneNumber: User.phoneNumber, group: User.group })
             setTimeout(() => {
                 dispatch(authActions.userInfoKeeper({ inputType: 'PASSWORD', inputTypeVal: '' }));
             }, 5000)
         }
-        else {
-            //validation
-            dispatch(authActions.validateInput({ inputType: 'EMAIL', inputTypeVal: userInfo.email, inputSideVal: '' }));
-            dispatch(authActions.validateInput({ inputType: 'USERNAME', inputTypeVal: userInfo.username, inputSideVal: '', isRequired: true }));
-            dispatch(authActions.validateInput({ inputType: 'PASSWORD', inputTypeVal: userInfo.password, inputSideVal: '' }));
-            dispatch(authActions.validateInput({ inputType: 'REPASSWORD', inputTypeVal: rePass, inputSideVal: userInfo.password }));
-            dispatch(authActions.validateInput({ inputType: 'PHONENUMBER', inputTypeVal: userInfo.phoneNumber, inputSideVal: '' }));
-        }
-
     };
 
     // functions
@@ -188,7 +166,7 @@ const Signup = () => {
                     <div className="showpass col-1  d-inline">
                         <BsEye onClick={showPassword} />
                     </div>
-                    <input type={showPassWord ? "text" : "password"} className="form-control custome-input mt-1" id="exampleInputRePassword" onBlur={rePasswordBulrHandler} aria-describedby="rePasswordHelp" placeholder="تکرار رمز" disabled={!userInfo.password || clientsideErrors.password} />
+                    <input type={showPassWord ? "text" : "password"} className="form-control custome-input mt-1" id="exampleInputRePassword" onBlur={rePasswordBulrHandler} aria-describedby="rePasswordHelp" placeholder="تکرار رمز" disabled={!User.password || clientsideErrors.password} />
                     {
                         clientsideErrors.rePassword && <div id="firstNamedHelp" className="form-text helper"><span className="custome-danger"><BsExclamationOctagon /> {clientsideErrors.rePassword}</span></div>
                     }  

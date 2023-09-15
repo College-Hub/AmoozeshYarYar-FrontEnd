@@ -21,7 +21,7 @@ import { toPersianNumber } from '../../feratures/helper/helper';
 const SelectCourses = () => {
     // state
     const { selectedcourses, daySelectTable, courses, days, TimeTableFilter, error } = useSelector(state => state.course);
-    const { group, uni } = useSelector(state => state.auth.userInfo);
+    const { group, uni } = useSelector(state => state.auth.User);
     const { content } = useSelector(state => state.modal);
     const [submitUserInfo, { isLoading, isEroor }] = useSubmitUserInfoMutation();
     const [filter, setFilter] = useState();

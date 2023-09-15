@@ -10,7 +10,7 @@ import './editProfile.css';
 const EditProfile = () => {
     // state
     const content = useSelector(state => state.modal.content);
-    const userInfo = useSelector(state => state.auth.userInfo);
+    const User = useSelector(state => state.auth.User);
     // dispatch 
     const dispatch = useDispatch();
 
@@ -25,7 +25,7 @@ const EditProfile = () => {
         dispatch(authActions.userInfoKeeper({ inputType: 'PASSWORD', inputTypeVal: event.target.value }));
         //validate
         dispatch(authActions.validateInput({ inputType: 'PASSWORD', inputTypeVal: event.target.value, inputSideVal: '' }));
-        dispatch(authActions.validateInput({ inputType: 'REPASSWORD', inputTypeVal: userInfo.rePassword, inputSideVal: event.target.value }));
+        dispatch(authActions.validateInput({ inputType: 'REPASSWORD', inputTypeVal: User.rePassword, inputSideVal: event.target.value }));
 
     };
     const phonNumberBulrHandler = (event) => {
@@ -63,7 +63,7 @@ const EditProfile = () => {
                         <Form.Label>نام قدیم :</Form.Label>
                         <Form.Control
                             type="text"
-                            defaultValue={userInfo.firstName}
+                            defaultValue={User.firstName}
                             disabled
                             readOnly 
                         />
@@ -89,7 +89,7 @@ const EditProfile = () => {
                         <Form.Label>نام خانوادگی قدیم :</Form.Label>
                         <Form.Control
                             type="text"
-                            defaultValue={userInfo.lastName}
+                            defaultValue={User.lastName}
                             disabled
                             readOnly 
                         />
@@ -115,7 +115,7 @@ const EditProfile = () => {
                         <Form.Label>ایمیل قدیم :</Form.Label>
                         <Form.Control
                             type="email"
-                            defaultValue={userInfo.email}
+                            defaultValue={User.email}
                             disabled
                             readOnly 
                         />
@@ -142,7 +142,7 @@ const EditProfile = () => {
                         <Form.Control
                             type="password"
                             disabled
-                            defaultValue={userInfo.password}
+                            defaultValue={User.password}
                             readOnly 
 
                         />
@@ -168,7 +168,7 @@ const EditProfile = () => {
                         <Form.Label>شماره همراه قدیم :</Form.Label>
                         <Form.Control
                             type="text"
-                            defaultValue={userInfo.phoneNumber}
+                            defaultValue={User.phoneNumber}
                             disabled
                             readOnly 
                         />
@@ -192,7 +192,7 @@ const EditProfile = () => {
                 <Form onSubmit={sumbitHandler}>
                     <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
                         <Form.Label>دانشگاه قدیم :</Form.Label>
-                        <Form.Select aria-label="Default select example" defaultValue={userInfo.uni} disabled readOnly  >
+                        <Form.Select aria-label="Default select example" defaultValue={User.uni} disabled readOnly  >
                             <option value="1"> دانشگاه آزاد اسلامی واحد تهران مرکز</option>
                             <option value="2">دانشگاه آزاد اسلامی واحد علوم تحقیقات</option>
                             <option value="3">دانشگاه آزاد اسلامی واحد تهران شمال</option>
@@ -217,7 +217,7 @@ const EditProfile = () => {
                 <Form onSubmit={sumbitHandler}>
                     <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
                         <Form.Label>رشته تحصیلی  قدیم :</Form.Label>
-                        <Form.Select aria-label="Default select example" defaultValue={userInfo.subject} disabled readOnly>
+                        <Form.Select aria-label="Default select example" defaultValue={User.subject} disabled readOnly>
                             <option value="1">مهندسی کامپیوتر</option>
                             <option value="2"> مهندسی برق</option>
                             <option value="3">مهندسی مکانیک</option>
