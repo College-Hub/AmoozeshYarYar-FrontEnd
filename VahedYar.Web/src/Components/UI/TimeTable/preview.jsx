@@ -16,6 +16,7 @@ import { dayToPersian, toPersianNumber } from '../../../feratures/helper/helper'
 const Preview = (prop) => {
     const { timeTable, eventKey } = prop
     const { content } = useSelector(state => state.modal);
+    const { isLoggedIn } = useSelector(state => state.auth);
     // state 
 
     //hook 
@@ -42,10 +43,17 @@ const Preview = (prop) => {
         }
         dispatch(modalActions.setModalData({ content: "WEEKVIEW", data: convertPresentations }))
     };
+    const copyCodeHandler = (event) => {
+        navigator.clipboard.writeText(event.target.getAttribute("data-valueToCopy"));
+        console.log(event.target.getAttribute("data-valueToCopy"));
+    };
     //like handler 
     const [like, setLike] = useState(false);
     const likeHandler = () => {
-        setLike(!like)
+        if (!isLoggedIn) {
+            dispatch(modalActions.setModalData({ content: "NEEDACC", data: "LikeEnable" }))
+        }
+        else setLike(!like)
     };
     // functions
     const DayTimeRender = (presentation) => {
@@ -61,7 +69,7 @@ const Preview = (prop) => {
 
     return (
         <Fragment>
-            <Card className={"preview"}>
+            <Card className={"preview"} key={eventKey + "CARD"}>
                 <Card.Header className={"d-flex justify-content-between preview-header"}>
                     <div>
                         <span> # {toPersianNumber(eventKey + 1)}</span>
@@ -92,39 +100,43 @@ const Preview = (prop) => {
                                     <div className="d-none d-md-block col-md-2 col-lg-2 col-xl-1">روز</div>
                                     <div className="d-none d-md-block col-md-3 col-xl-2 text-center">ساعت</div>
                                     <div className="d-none d-xl-block col-xl-2 text-center">واحد (نظری/عملی) </div>
-                                    <div className="d-none d-xl-block col-xl-2 text-center">کد درس</div>
-                                    
+                                    <div className="d-none d-xl-block col-xl-2 text-center">کد ارائه</div>
                                     <div className="col-4 col-md-2 col-xl-1 text-start text-xl-center">جزئیات</div>
                                 </div>
                                 <div className="presentation-table-body">
                                     {
-                                        timeTable?.map((Presentation, index) => (
-                                            <div className="presentation-table-body-row row" key={index}>
-                                                <div className="col-8 col-md-3 col-xl-2">{Presentation.courseTitle}</div>
-                                                <div className="d-none col-2 d-md-block col-md-2 col-xl-2">{Presentation.instructorName}</div>
-                                                <div className="d-none d-md-block col-md-2 col-lg-2 col-xl-1">
-                                                    {
-                                                        dayRender(Presentation)
-                                                    }
-                                                </div>
-                                                <div className="d-none d-md-block col-md-3 col-xl-2 text-center" dir="ltr">
-                                                    {
-                                                        DayTimeRender(Presentation)
-                                                    }
-                                                </div> 
-                                                <div className="d-none d-xl-block col-xl-2 text-center">
-                                                    {
-                                                        toPersianNumber(Presentation.theoreticalUnit + " / " + Presentation.practicalUnit)
-                                                    }
-                                                </div>
-
-                                                <div className="d-none d-xl-block col-xl-2 text-center">{toPersianNumber(Presentation.presentationCode)}</div>
-                                                <div className="col-4 col-md-2 col-xl-1  text-start text-xl-center details" data-prestation={index}><BsInfoCircle data-prestation={index} onClick={detailShowHandler} /></div>
+                                    timeTable?.map((Presentation, index) => (
+                                        <div className="presentation-table-body-row row" key={index}>
+                                            <div className="col-8 col-md-3 col-xl-2">{Presentation.courseTitle}</div>
+                                            <div className="d-none col-2 d-md-block col-md-2 col-xl-2">{Presentation.instructorName}</div>
+                                            <div className="d-none d-md-block col-md-2 col-lg-2 col-xl-1">
+                                                {
+                                                    dayRender(Presentation)
+                                                }
                                             </div>
-                                        ))
+                                            <div className="d-none d-md-block col-md-3 col-xl-2 text-center" dir="ltr">
+                                                {
+                                                    DayTimeRender(Presentation)
+                                                }
+                                            </div> 
+                                            <div className="d-none d-xl-block col-xl-2 text-center">
+                                                {
+                                                    toPersianNumber(Presentation.theoreticalUnit + " / " + Presentation.practicalUnit)
+                                                }
+                                            </div>
+
+                                            <div className="d-none d-xl-block col-xl-2 text-center" >
+                                                <span className="PCodeCell" data-valueToCopy={Presentation.presentationCode} onContextMenu={copyCodeHandler}>{toPersianNumber(Presentation.presentationCode)}</span>
+                                            </div>
+                                            <div className="col-4 col-md-2 col-xl-1  text-start text-xl-center details" data-prestation={index}><BsInfoCircle data-prestation={index} onClick={detailShowHandler} /></div>
+                                        </div>
+                                    ))
                                     }
                                 </div>
-                                <div className="presentation-table-footer d-flex justify-content-end ">
+                                <div className="presentation-table-footer d-flex justify-content-end justify-content-xl-between">
+                                    <div className="p-3 d-none d-xl-block">
+                                        <p className="hit-message m-0"><BsInfoCircle />  با کلیک راست روی کد ارائه هر درس می‌تونی اونو کپی کنی.</p>
+                                    </div>
                                     <button className="d-none d-lg-block btn_custome btn_info mt-3" onClick={weeklyViewHandler}>نمایش هفتگی</button>
                                 </div>
                             </div>

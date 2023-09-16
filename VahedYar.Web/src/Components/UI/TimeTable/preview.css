@@ -70,3 +70,12 @@
     font-size: 19px;
     cursor: pointer;
 }
+.PCodeCell{
+    padding: 2px 10px;
+    border-radius: 4px;
+    transition: 0.25s;
+}
+.PCodeCell:hover {
+    background-color: var(--C2-lower);
+     cursor: copy;
+}
