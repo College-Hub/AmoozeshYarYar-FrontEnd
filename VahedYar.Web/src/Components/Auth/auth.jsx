@@ -1,16 +1,18 @@
 ﻿import { Fragment, useEffect } from 'react';
-import { Outlet, NavLink, useParams } from 'react-router-dom';
+import { Outlet, NavLink, useParams, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { authActions } from "../../Store/auth-slice";
 
 
 import './auth.css'
 const Auth = () => {
+    const { isLoggedIn } = useSelector(state => state.auth);
+
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
     const params = useParams();
     const authStatus = params['*'];
     
-
-    const dispatch = useDispatch();
 
     useEffect(() => {
         if (authStatus === "login") dispatch(authActions.userHadAccStatus(true));

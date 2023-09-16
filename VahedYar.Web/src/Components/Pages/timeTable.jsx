@@ -29,7 +29,8 @@ const TimeTable = () => {
 
 
     useEffect(() => {
-        if (timeTables?.length !== 0 && TimeTableFilter.Courses?.length < 13) handleRequest();
+        if (timeTables?.length === 0 && TimeTableFilter.Courses?.length < 13 && TimeTableFilter.Courses?.length)
+            handleRequest();
     }, [])
     useEffect(() => {
         dispatch(uiActions.setLoader(isLoading));
@@ -58,9 +59,9 @@ const TimeTable = () => {
                                 <div className={"row"}>
                                     <article className="col-12">
                                         <h5><i className="bi bi-pin"></i> راهنما</h5>
-                                        <p className="hit-message"><i className="bi bi-exclamation-circle"></i>  ما با توجه به فیلتر هایی که در  قسمت ها قبلی بهمون دادی برات تعدادی جدول زمانی درست کردیم و در نهایت 5 تا از نتایج رو بهت نشون میدیم. ( برای نمایش جدول های زمانی بیشتر نیازه حساب کاربری بسازی! )</p>
-                                        <p className="hit-message"><i className="bi bi-exclamation-circle"></i> لیستی از  پیش‌نمایش ها از هر جدول زمانی رو در پایین این بخش میتونی ببینی. این پیش‌نمایش ها دارای یکسری اطلاعات پایه برای نمایش هستن با کلیک بر روی آیکون  ( <BsChevronBarContract /> ) میتونی اطلاعات بیشتری از اون جدول زمانی بگیری.</p>
-                                        <p className="hit-message"><i className="bi bi-exclamation-circle"></i> با کلیک  بر روی آیکون قلب ( <BsHeart /> ) میتونی جدول زمانی موردعلاقت رو سیو کنی که اگه بعدا باز به سایت ما برگشتی بتونی ببینیش. ( برای فعال شدن این افزونه نیازه حساب کاربری بسازی! )</p>
+                                        <p className="hit-message"><BsInfoCircle/>  ما با توجه به فیلتر هایی که در  قسمت ها قبلی بهمون دادی برات تعدادی جدول زمانی درست کردیم و در نهایت 5 تا از نتایج رو بهت نشون میدیم. ( برای نمایش جدول های زمانی بیشتر نیازه حساب کاربری بسازی! )</p>
+                                        <p className="hit-message"><BsInfoCircle /> لیستی از  پیش‌نمایش ها از هر جدول زمانی رو در پایین این بخش میتونی ببینی. این پیش‌نمایش ها دارای یکسری اطلاعات پایه برای نمایش هستن با کلیک بر روی آیکون  ( <BsChevronBarContract /> ) میتونی اطلاعات بیشتری از اون جدول زمانی بگیری.</p>
+                                        <p className="hit-message"><BsInfoCircle /> با کلیک  بر روی آیکون قلب ( <BsHeart /> ) میتونی جدول زمانی موردعلاقت رو سیو کنی که اگه بعدا باز به سایت ما برگشتی بتونی ببینیش. ( برای فعال شدن این افزونه نیازه حساب کاربری بسازی! )</p>
                                     </article>
                                 </div>
                             </section>

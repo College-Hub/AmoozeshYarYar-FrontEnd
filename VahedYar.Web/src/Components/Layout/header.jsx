@@ -12,10 +12,12 @@ import './header.css';
 import { FaUserAstronaut, FaRegUser } from "react-icons/fa6";
 import { BsBoxArrowLeft, BsBoxArrowInLeft } from "react-icons/bs";
 import { Fragment } from 'react';
+import { authActions } from '../../Store/auth-slice';
 
 const Haeder = () => {
     // states 
     const expandNavbar = useSelector(state => state.ui.expandNavbar);
+    const { isLoggedIn } = useSelector(state => state.auth);
     const [expandNav, setExpandNav] = useState(false)
     /*const isloggedIn = useSelector(state => state.auth.isLoggedIn);*/
 
@@ -29,6 +31,9 @@ const Haeder = () => {
     }, [location])
 
     // event handlers
+    const goToAuthHandler = () => {
+        dispatch(authActions.setLastPageUrl(location.pathname))
+    };
     const expandNavbarHandler = () => {
         buttonRef.current.click();
         setExpandNav(!expandNav)
@@ -78,7 +83,7 @@ const Haeder = () => {
                     <Nav dir={"ltr"} >
                         <div className={"justify-content-start w-100 account-icon d-none d-md-block"}>
                             {
-                                false ? <BsBoxArrowLeft /> : <NavLink className={""} aria-current="page" to='/authentication/login'><BsBoxArrowInLeft /></NavLink>
+                                isLoggedIn ? <BsBoxArrowLeft /> : <NavLink className={""} aria-current="page" to='/authentication/login' onClick={goToAuthHandler}><BsBoxArrowInLeft /></NavLink>
                             }
                         </div>
                     </Nav>

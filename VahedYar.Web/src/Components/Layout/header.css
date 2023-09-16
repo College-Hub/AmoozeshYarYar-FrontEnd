@@ -36,7 +36,6 @@ nav {
     .custome-link:hover {
         color: var(--C4);
         background-color: var(--C4-lower);
-        transform: scale(1.04);
         box-shadow: 1px 2px 10px 2px var(--C4-lower);
     }
 
@@ -94,7 +93,6 @@ img {
         color: var(--C4);
     }
     .custome-link-user:hover svg {
-        transform: scale(1.1);
         color: var(--C2);
     }
 #dropdown-button-dark-example1::after{

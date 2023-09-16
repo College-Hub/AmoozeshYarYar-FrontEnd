@@ -12,7 +12,7 @@ import { sha256 } from 'crypto-hash';
 const Signup = () => {
 
     // states
-    const { serversideErros, clientsideErrors, isLoading, User, hadAccount } = useSelector(state => state.auth);
+    const { serversideErros, clientsideErrors, User, hadAccount, lastPageUrl } = useSelector(state => state.auth);
     const { startUpData } = useSelector(state => state.course);
     const { showPassWord } = useSelector(state => state.ui);
 
@@ -25,7 +25,7 @@ const Signup = () => {
     
     
     //query 
-    const [signup, { isLoading: isloading, isEroor }] = useSignupMutation();
+    const [signup, { isLoading, isEroor }] = useSignupMutation();
 
     // dispath
     const dispatch = useDispatch();
@@ -99,7 +99,7 @@ const Signup = () => {
         try {
             const { data: response } = await signup();
             dispatch(uiActions.setLoader(isLoading));
-            if (!isEroor && !isloading) {
+            if (!isEroor && !isLoading) {
                 //dispatch(courseActions.initiateCourse({ course: response.data }));
                 //setCookie('myCookie', 'cookieValue', cookieOptions);
             }
@@ -136,15 +136,6 @@ const Signup = () => {
                 <div className="col-12 mt-4">
                     <p className="hit-message small-text"><BsInfoCircle /> برای بازیابی حساب‌کاربریت بهتره ایمیل خودت رو بهمون بدی ولی اجباری نیست!</p>
                 </div>
-                {/*<div className="col-12 col-lg-6 mt-3">*/}
-                {/*    <label htmlFor="exampleInputPhone" className="form-label"><BsTelephone /> شماره همراه :</label>*/}
-                {/*    <input type="text" className="form-control custome-input" ref={TellRef} id="exampleInputPhone" dir="ltr" onBlur={phonNumberBulrHandler} aria-describedby="phoneHelp" placeholder={toPersianNumber("09123456789")} />*/}
-
-                {/*    {*/}
-                {/*        clientsideErrors.phoneNumber && <div id="firstNamedHelp" className="form-text helper"><span className="custome-danger"><BsExclamationOctagon />{clientsideErrors.phoneNumber}</span></div>*/}
-                {/*    }*/}
-
-                {/*</div>*/}
 
             </div>
             

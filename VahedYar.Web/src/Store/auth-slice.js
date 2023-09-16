@@ -1,5 +1,4 @@
 ﻿import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { sha256 } from 'crypto-hash';
 import { validateEmail, validatePhoneNumber, validateRePassword, validatePassWord, validateUsername } from "../feratures/validations/authValidation";
 // local Storage
 const initialToken = localStorage.getItem('token');
@@ -12,10 +11,14 @@ const authSlice = createSlice({
         clientsideErrors: { email: '', username: '', password: '', rePassword: '', firstName: '', lastName: '', /*phoneNumber: ''*/ },
         User: initialUserInfo ? initialUserInfo : {},
         //isLoggedIn: !!initialToken,
-        isLoggedIn: true,
+        isLoggedIn: false,
         hadAccount: true,
+        lastPageUrl: ''
     },
     reducers: {
+        setLastPageUrl(state, action) {
+            state.lastPageUrl = action.payload;
+        },
         resetErrors(state, action) {
             state.clientsideErrors.email = '';
             state.clientsideErrors.username = '';

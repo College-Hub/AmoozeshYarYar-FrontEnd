@@ -4,7 +4,7 @@ import { authActions, requestData } from "../../Store/auth-slice";
 import { BsInfoCircle, BsSend, BsLock, BsPersonCheck, BsEnvelopeAt, BsPerson, BsEye, BsExclamationOctagon, BsTelephone } from "react-icons/bs";
 import { uiActions } from "../../Store/ui-slice";
 import { useCookies } from 'react-cookie';
-
+import { useNavigate, useLocation } from "react-router-dom";
 import './login.css';
 import { useLoginMutation } from "../../feratures/api/apiSlice";
 import { toPersianNumber } from "../../feratures/helper/helper";
@@ -14,16 +14,15 @@ import ForgotAcc from "../Modals/forgotAccount";
 const Login = () => {
     // states
     const { showPassWord, isloading } = useSelector(state => state.ui);
-    const { serversideErros, clientsideErrors, User } = useSelector(state => state.auth);
+    const { serversideErros, clientsideErrors, User, lastPageUrl } = useSelector(state => state.auth);
     const { content } = useSelector(state => state.modal);
-
-    const [loginMethod, setLoginMethod] = useState("1");
 
     //query 
     const [ login ,{ isLoading, isEroor } ] = useLoginMutation();
 
-    // dispath
+    // hooks 
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     // variables
  
@@ -57,6 +56,7 @@ const Login = () => {
         if (!(clientsideErrors.password || clientsideErrors.email) && (User.email && User.password)) {
             console.log({ email: User.email, password: User.password, hadAccount: false})
         }
+        navigate(lastPageUrl);
     };
     
     const [cookies, setCookie, removeCookie] = useCookies(['myCookie']);

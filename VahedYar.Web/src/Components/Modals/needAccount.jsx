@@ -2,16 +2,9 @@
 import { Fragment, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { modalActions } from "../../Store/modal-slice";
-import { courseActions } from "../../Store/course-slice";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { authActions } from '../../Store/auth-slice';
-import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
-import LoadSpiner from '../Animations/loadSpiner';
-import NoResponse from '../Errors/Requests/noResponse';
-import { useState } from 'react';
-import { BsBuildings, BsBook, BsInfoCircle } from "react-icons/bs";
-import { FaUserGraduate } from "react-icons/fa6";
 import { BsExclamationTriangle } from "react-icons/bs";
 
 const NeedAccount = () => {
@@ -20,17 +13,20 @@ const NeedAccount = () => {
 
     // state
     const { isloading, NoResponseFromServer } = useSelector(state => state.ui);
-    const { content } = useSelector(state => state.modal);
+    const { content, data} = useSelector(state => state.modal);
     //hooks 
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    const location = useLocation();
     // event handler 
 
     const closeHandler = () => {
         dispatch(modalActions.hideModal());
     };
     const submitHandler = () => {
+        dispatch(authActions.setLastPageUrl(location.pathname));
         navigate("/authentication/signup");
+        dispatch(modalActions.hideModal());
     }; 
     // content handler
 
@@ -42,7 +38,12 @@ const NeedAccount = () => {
                     <div className="row">
                         <div className="col-12">
                             <h2><BsExclamationTriangle /></h2>
-                            <p>برای ادامه فعالیت مدنظرت نیازه که داخل حساب‌کاربریت باشی تا ما بتونیم تغییراتی که داری میدی رو برات ذخیره کنیم!</p>
+                            {
+                                data === "MoreTimeTable" && <p>برای ادامه فعالیت مدنظرت نیازه که داخل حساب‌کاربریت باشی تا ما بتونیم تغییراتی که داری میدی رو برات ذخیره کنیم!</p>
+                            }
+                            {
+                                data === "LikeEnable" && <p>برای اینکه بتونیم برنامه مورد نظرت رو به لیست مورد علاقت اضافه کنیم باید داخل حساب کاربریت باشی!</p>
+                            }
                         </div>
                     </div>
  
