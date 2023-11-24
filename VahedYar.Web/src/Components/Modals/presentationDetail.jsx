@@ -9,8 +9,12 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import LoadSpiner from '../Animations/loadSpiner';
 import { useState } from 'react';
-import { BsList } from "react-icons/bs";
+import { BsList, BsClipboardPlus } from "react-icons/bs";
 import { dayToPersian, toPersianNumber } from '../../feratures/helper/helper';
+import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
+import Tooltip from 'react-bootstrap/Tooltip';
+
+
 const PresentationDetail = () => {
 
     // route
@@ -28,7 +32,9 @@ const PresentationDetail = () => {
     const closeHandler = () => {
         dispatch(modalActions.hideModal());
     };
-
+    const copyPCodeHandler = (event) => {
+        navigator.clipboard.writeText(event.target.getAttribute("data-valueToCopy"));
+    }
     // functios
     const DayTimeRender = () => {
         return data.ConvertDayTime.map((day, index) => <div className={index !== 0 ? "border-top border-secondary " : ""}><span dir="ltr">{toPersianNumber(day.endTime)}</span><span> تا </span><span dir="ltr">{toPersianNumber(day.startTime)}</span></div>)
@@ -50,7 +56,7 @@ const PresentationDetail = () => {
                             <div className="modal-PresentationDetail-body">
                                 <div className="modal-PresentationDetail-row row">
                                     <div className="col-5">عنوان درس :</div>
-                                    <div className="col-6 text-center">{data.courseTitle}</div>
+                                    <div className="col-7 text-center">{data.courseTitle}</div>
                                 </div>
                                 <div className="modal-PresentationDetail-row row">
                                     <div className="col-5">استاد :</div>
@@ -89,8 +95,24 @@ const PresentationDetail = () => {
                                     <div className="col-7 text-center"></div>
                                 </div>
                                 <div className="modal-PresentationDetail-row row">
-                                    <div className="col-5">کد ارائه :</div>
-                                    <div className="col-7 text-center">{toPersianNumber(data.presentationCode)}</div>
+                                    <div className="col-6">کد ارائه :</div>
+                                    <div className="col-4 text-center">{toPersianNumber(data.presentationCode)}</div>
+                                    <div className="col-2 text-center copyIcon">
+                                        
+                                            <OverlayTrigger
+                                                key={data.presentationCode + "GF"}
+                                                placement="top"
+                                                delay={{ show: 250, hide: 400 }}
+                                                containerPadding={60}
+                                                overlay={<Tooltip id="custom-tooltip">کپی</Tooltip>}
+                                        >
+                                            <span>
+                                                <BsClipboardPlus onClick={copyPCodeHandler} data-valueToCopy={data.presentationCode} />
+                                            </span>
+
+                                            </OverlayTrigger>
+                                    </div>
+
                                 </div>
                                 <div className="d-flex justify-content-end btn-Group mt-3">
                                     <button className={"btn_custome btn_danger"} onClick={closeHandler}>بستن</button>

@@ -67,14 +67,18 @@ const Signup = () => {
         }, 2000)
     };
 
-    const sumbitHandler = (event) => {
+    const sumbitHandler = async (event) => {
         event.preventDefault();
         if (!(clientsideErrors.phoneNumber || clientsideErrors.usename || clientsideErrors.firstName || clientsideErrors.rePassword || clientsideErrors.password || clientsideErrors.email) && ( pass && rePass && User.username)) {
-
-            console.log({ email: User.email, password: User.password, hadAccount, phoneNumber: User.phoneNumber, group: User.group })
-            setTimeout(() => {
-                dispatch(authActions.userInfoKeeper({ inputType: 'PASSWORD', inputTypeVal: '' }));
-            }, 5000)
+            try {
+                const { data: response } = await signup(User);
+                dispatch(uiActions.setLoader(isLoading));
+                if (!isEroor && !isLoading) {
+                    console.log(response);
+                }
+            } catch (e) {
+                console.log(e)
+            }
         }
     };
 

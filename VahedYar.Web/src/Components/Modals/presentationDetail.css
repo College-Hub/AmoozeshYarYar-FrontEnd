@@ -30,3 +30,17 @@
 .modal-PresentationDetail-row:nth-of-type(2n+1) {
     background-color: var(--C3-lower);
 }
+.copyIcon{
+    
+}
+.copyIcon span{
+    border-radius:3px;
+    padding: 3px 5px;
+}
+.copyIcon span:hover{
+    background-color: var(--C2-lower);
+    cursor: pointer;
+}
+.copyIcon span svg{
+    font-size: 20px;
+}

@@ -2,21 +2,18 @@
 
 import { useEffect, useState, Fragment } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import modalSlice, { modalActions } from "../../Store/modal-slice";
+import { modalActions } from "../../Store/modal-slice";
 import { uiActions } from '../../Store/ui-slice';
 import { timeTableActions } from '../../Store/timeTable-slice';
 import { courseActions } from "../../Store/course-slice";
 import { useNavigate } from "react-router-dom";
 import { authActions } from '../../Store/auth-slice';
-import Badges from '../UI/Badges/badges';
+
 import LoadSpiner from '../Animations/loadSpiner';
-import Button from 'react-bootstrap/Button';
+
 import Modal from 'react-bootstrap/Modal';
-import PresentationDetail from './presentationDetail';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Tooltip from 'react-bootstrap/Tooltip';
-import Overlay from 'react-bootstrap/Overlay';
-import Popover from 'react-bootstrap/Popover';
 import { randomColor, toPersianNumber } from '../../feratures/helper/helper';
 
 const WeeklyView = () => {
@@ -99,7 +96,7 @@ const WeeklyView = () => {
                 >
                         <div key={dayId + 'A'} className=" timeZonRow-child" style={{ position: "absolute", right: `${pos[0]}%`, width: `${pos[1]}%`, backgroundColor: `${randomColor()}` }} id={pos[2]} onClick={showPresentationDetailHanlder} >
                         {getPresentationInfo(pos[2]).courseTitle}
-                    </div>
+                        </div>
                 </OverlayTrigger>
                     
                 </Fragment>

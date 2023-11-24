@@ -44,8 +44,8 @@ const Preview = (prop) => {
         dispatch(modalActions.setModalData({ content: "WEEKVIEW", data: convertPresentations }))
     };
     const copyCodeHandler = (event) => {
+        event.preventDefault();
         navigator.clipboard.writeText(event.target.getAttribute("data-valueToCopy"));
-        console.log(event.target.getAttribute("data-valueToCopy"));
     };
     //like handler 
     const [like, setLike] = useState(false);
