@@ -1,7 +1,9 @@
 ﻿import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { validateEmail, validatePhoneNumber, validateRePassword, validatePassWord, validateUsername } from "../feratures/validations/authValidation";
+import Cookies from 'js-cookie';
+
 // local Storage
-const initialToken = localStorage.getItem('token');
+const initialToken = Cookies.get('JWT');
 const initialUserInfo = JSON.parse(localStorage.getItem('userInfo'));
 
 const authSlice = createSlice({
@@ -10,8 +12,6 @@ const authSlice = createSlice({
         token: initialToken ? initialToken : '',
         clientsideErrors: { email: '', username: '', password: '', rePassword: '', firstName: '', lastName: '', /*phoneNumber: ''*/ },
         User: initialUserInfo ? initialUserInfo : {},
-        //isLoggedIn: !!initialToken,
-        isLoggedIn: false,
         hadAccount: true,
         lastPageUrl: ''
     },
@@ -85,6 +85,12 @@ const authSlice = createSlice({
 
             }
             localStorage.setItem('User', JSON.stringify(state.User));
+        },
+        setToken(state, action) {
+            state.token = action.payload;
+        },
+        clearToken(state, action) {
+            state.token = '';
         }
     },
 

@@ -15,6 +15,7 @@
     <Folder Include="src\Components\UI\Badges\" />
     <Folder Include="src\Components\UI\TimeTable\" />
     <Folder Include="src\feratures\validations\" />
+    <Folder Include="src\Middlewares\" />
   </ItemGroup>
   <ItemGroup>
     <TypeScriptConfiguration Remove="src\Components\Popovers\**" />

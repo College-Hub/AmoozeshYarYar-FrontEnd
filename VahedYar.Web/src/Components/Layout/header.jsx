@@ -1,5 +1,5 @@
 ﻿ import { useSelector, useDispatch } from 'react-redux';
-import { NavLink, useLocation } from 'react-router-dom';
+import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import { useState, useEffect, useRef } from 'react';
 import { uiActions, } from "../../Store/ui-slice";
 import { BsHouse, BsChatLeftHeart } from "react-icons/bs";
@@ -8,23 +8,28 @@ import Nav from 'react-bootstrap/Nav';
 import Dropdown from 'react-bootstrap/Dropdown';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
+import { useCookies } from 'react-cookie';
 import './header.css';
 import { FaUserAstronaut, FaRegUser } from "react-icons/fa6";
 import { BsBoxArrowLeft, BsBoxArrowInLeft } from "react-icons/bs";
 import { Fragment } from 'react';
 import { authActions } from '../../Store/auth-slice';
+import { useLogoutQuery } from '../../feratures/api/apiSlice';
 
 const Haeder = () => {
     // states 
     const expandNavbar = useSelector(state => state.ui.expandNavbar);
-    const { isLoggedIn } = useSelector(state => state.auth);
+    const { token } = useSelector(state => state.auth);
     const [expandNav, setExpandNav] = useState(false)
     /*const isloggedIn = useSelector(state => state.auth.isLoggedIn);*/
 
     // Hooks
     const location = useLocation();
+    const navigate = useNavigate();
     const dispatch = useDispatch();
     const buttonRef = useRef(null);
+    const [cookies, setCookie, removeCookie] = useCookies(['JWT']);
+    const { data, isLoading, isError, refetch } = useLogoutQuery({ skip: true });
 
     useEffect(() => {
         
@@ -37,6 +42,12 @@ const Haeder = () => {
     const expandNavbarHandler = () => {
         buttonRef.current.click();
         setExpandNav(!expandNav)
+    }
+    const logoutHandler = () => {
+        dispatch(authActions.clearToken());
+        refetch();
+        removeCookie('JWT', { path: '/' });
+        navigate("/home");
     }
     return (
         <header>
@@ -83,7 +94,7 @@ const Haeder = () => {
                     <Nav dir={"ltr"} >
                         <div className={"justify-content-start w-100 account-icon d-none d-md-block"}>
                             {
-                                isLoggedIn ? <BsBoxArrowLeft /> : <NavLink className={""} aria-current="page" to='/authentication/login' onClick={goToAuthHandler}><BsBoxArrowInLeft /></NavLink>
+                                token ? <BsBoxArrowLeft onClick={logoutHandler} /> : <NavLink className={""} aria-current="page" to='/authentication/login' onClick={goToAuthHandler}><BsBoxArrowInLeft /></NavLink>
                             }
                         </div>
                     </Nav>

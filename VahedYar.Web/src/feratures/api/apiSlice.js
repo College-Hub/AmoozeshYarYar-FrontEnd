@@ -52,17 +52,13 @@ export const apiSlice = createApi({
                 body: JSON.stringify(User),
             })
         }),
-        logout: builder.mutation({
-            query: (User) => ({
-                url: `/auth/logout`,
-                method: 'GET',
-                headers: {
-                    "content-type": "application/json"
-                },
-            })
-        })
+        logout: builder.query({
+            query: () => ({
+                url: '/auth/logout',
+            }),
+        }),
     }),
-    keepUnusedDataor:  10 * 60 * 1000,
+    keepUnusedDataFor:  10 * 60 * 1000,
 })
 export const {
     useGetUniversiyQuery,
@@ -70,4 +66,5 @@ export const {
     useSubmitFitersMutation,
     useLoginMutation,
     useSignupMutation,
+    useLogoutQuery,
 } = apiSlice

@@ -17,6 +17,7 @@ const uiSlice = createSlice({
         isloading: false,
         // Noresponse 
         NoResponseFromServer: false,
+        // fialed requests
 
     },
     reducers: {

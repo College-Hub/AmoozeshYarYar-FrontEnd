@@ -1,13 +1,16 @@
 ﻿import './signup.css';
 import { Fragment, useEffect, useRef, useState } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
-import { authActions, requestData } from "../../Store/auth-slice";
+import { authActions } from "../../Store/auth-slice";
 import {uiActions } from "../../Store/ui-slice";
 import { BsInfoCircle, BsSend, BsLock, BsTelephone, BsEnvelopeAt, BsPerson, BsEye, BsExclamationOctagon, BsPersonAdd, BsBuildings, BsBook } from "react-icons/bs";
 import { useCookies } from 'react-cookie';
 import { useSignupMutation } from '../../feratures/api/apiSlice';
 import { hashPassword, toPersianNumber } from '../../feratures/helper/helper';
 import { sha256 } from 'crypto-hash';
+import { errorHandler } from '../../Middlewares/errorHandler';
+import { cookieOptions } from '../../Config/cookieOptions';
 
 const Signup = () => {
 
@@ -16,6 +19,7 @@ const Signup = () => {
     const { startUpData } = useSelector(state => state.course);
     const { showPassWord } = useSelector(state => state.ui);
 
+    const navigate = useNavigate();
     const [pass, setPass] = useState();
     const [rePass, setRePass] = useState();
     //const TellRef = useRef(null);
@@ -25,7 +29,7 @@ const Signup = () => {
     
     
     //query 
-    const [signup, { isLoading, isEroor }] = useSignupMutation();
+    const [signup, { isLoading, isError, reset }] = useSignupMutation();
 
     // dispath
     const dispatch = useDispatch();
@@ -70,45 +74,29 @@ const Signup = () => {
     const sumbitHandler = async (event) => {
         event.preventDefault();
         if (!(clientsideErrors.phoneNumber || clientsideErrors.usename || clientsideErrors.firstName || clientsideErrors.rePassword || clientsideErrors.password || clientsideErrors.email) && ( pass && rePass && User.username)) {
-            try {
-                const { data: response } = await signup(User);
-                dispatch(uiActions.setLoader(isLoading));
-                if (!isEroor && !isLoading) {
-                    console.log(response);
-                }
-            } catch (e) {
-                console.log(e)
-            }
+            handleRequest(User);
         }
     };
 
     // functions
-    const [cookies, setCookie, removeCookie] = useCookies(['myCookie']);
+    const [cookies, setCookie, removeCookie] = useCookies(['JWT']);
 
-    // Function to set a new cookie with options
-    const cookieOptions = {
-        path: '/', // Optional: specify the URL path for which the cookie is available
-        maxAge: 3600, // Optional: set the cookie's expiration time in seconds
-        expires: new Date('2030-12-31T23:59:59'), // Optional: specify an exact expiration date
-        domain: 'example.com', // Optional: set the domain where the cookie is available
-        secure: true, // Optional: enable the "Secure" attribute for HTTPS-only
-    };
-
-    // Set the cookie with a name, value, and options
-    //setCookie('myCookie', 'cookieValue', cookieOptions);
-    
     
     // Request handler
-    const handleRequest = async () => {
+    const handleRequest = async (reqBody) => {
         try {
-            const { data: response } = await signup();
+            const { error, data } = await signup(reqBody);
             dispatch(uiActions.setLoader(isLoading));
-            if (!isEroor && !isLoading) {
-                //dispatch(courseActions.initiateCourse({ course: response.data }));
-                //setCookie('myCookie', 'cookieValue', cookieOptions);
+            if (error) errorHandler(error);
+            if (!isError && !isLoading) {
+                dispatch(authActions.setToken(data));
+                setCookie('JWT', data, { path: '/' });
+                reset();
+                navigate("/selectCourses");
+                // dispatch(courseActions.initiateCourse({ course: response.data }));
             }
-        } catch (e) {
-            console.log(e)
+        } catch (error) {
+                console.log(error);
         }
     }
     return (

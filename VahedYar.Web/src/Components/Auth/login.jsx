@@ -10,6 +10,11 @@ import { useLoginMutation } from "../../feratures/api/apiSlice";
 import { toPersianNumber } from "../../feratures/helper/helper";
 import { modalActions } from "../../Store/modal-slice";
 import ForgotAcc from "../Modals/forgotAccount";
+import { sha256 } from 'crypto-hash';
+import { errorHandler } from '../../Middlewares/errorHandler';
+import { cookieOptions } from '../../Config/cookieOptions';
+
+
 
 const Login = () => {
     // states
@@ -18,9 +23,10 @@ const Login = () => {
     const { content } = useSelector(state => state.modal);
 
     //query 
-    const [ login ,{ isLoading, isEroor } ] = useLoginMutation();
+    const [login, { isLoading, isError, reset } ] = useLoginMutation();
 
     // hooks 
+    const [cookies, setCookie, removeCookie] = useCookies(['JWT']);
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
@@ -31,10 +37,10 @@ const Login = () => {
     const usernameBulrHandler = (event) => {
         dispatch(authActions.userInfoKeeper({ inputType: 'USERNAME', inputTypeVal: event.target.value, isRequired: true }));
     };
-    const passwordBulrHandler = (event) => {
-        dispatch(authActions.userInfoKeeper({ inputType: 'PASSWORD', inputTypeVal: event.target.value, isRequired: true }));
+    const passwordBulrHandler = async (event) => {
+        let hashedPass = await sha256(event.target.value);
+        dispatch(authActions.userInfoKeeper({ inputType: 'PASSWORD', inputTypeVal: event.target.value, hashedPass, isRequired: true }));
     };
-
     // event handlers
 
     const showPassword = () => {
@@ -51,43 +57,28 @@ const Login = () => {
     };
 
 
-    const sumbitHandler = (event) => {
+    const sumbitHandler = async (event) => {
         event.preventDefault();
-        if (!(clientsideErrors.password || clientsideErrors.email) && (User.email && User.password)) {
-            console.log({ email: User.email, password: User.password, hadAccount: false})
+        if (!(clientsideErrors.password || clientsideErrors.email) && (User.username && User.password)) {
+            handleRequest(User);
         }
-        navigate(lastPageUrl);
     };
-    
-    const [cookies, setCookie, removeCookie] = useCookies(['myCookie']);
-
-    // Function to set a new cookie with options
-    const setNewCookie = () => {
-        const cookieOptions = {
-            path: '/', // Optional: specify the URL path for which the cookie is available
-            maxAge: 3600, // Optional: set the cookie's expiration time in seconds
-            expires: new Date('2030-12-31T23:59:59'), // Optional: specify an exact expiration date
-            domain: 'example.com', // Optional: set the domain where the cookie is available
-            secure: true, // Optional: enable the "Secure" attribute for HTTPS-only
-        };
-
-        // Set the cookie with a name, value, and options
-        //setCookie('myCookie', 'cookieValue', cookieOptions);
-    };
+   
     // Request handler
-    const handleRequest = async () => {
+    const handleRequest = async (reqBody) => {
         try {
-            const { data: response } = await login();
+            const { error, data } = await login(reqBody);
             dispatch(uiActions.setLoader(isLoading));
-            if (!isEroor && isloading) {
-                //dispatch(courseActions.initiateCourse({ course: response.data }));
-                //setCookie('myCookie', 'cookieValue', cookieOptions);
+            if (error) errorHandler(error);
+            if (!isError && !isLoading) {
+                dispatch(authActions.setToken(data));
+                setCookie('JWT', data, { path: '/' });
+                navigate(lastPageUrl);
             }
         } catch (e) {
             console.log(e)
         }
     }
-    //functios
 
     return (
         <Fragment>
